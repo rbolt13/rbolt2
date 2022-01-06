@@ -21,14 +21,14 @@ portfolioitems:
           - data manipulation 
           - covid-19
         status: 'Ongoing'
-        start: 'Summer 2020'
+        start: 'Summer 2021'
       - name: Rsite 
         image: '/images/portfolio/rfire.png'
         link: https://rbolt13.github.io/rsite/index.html
         description: 'Created using github repositories, rsite includes 4 different class projects from Statistics-363 : Introduction to R. Each project includes various techniques of data manipulation, statistics, analysis, and visuals in the form of various tables, graphs, and a map. '
         status: 'Complete'
-        start: 'Spring 2020'
-        end: 'Summer 2020'
+        start: 'Spring 2021'
+        end: 'Summer 2021'
         tags:
           - NYC Flight data
           - Kobe Bryant LA 2009 NBA Finals data
@@ -48,37 +48,31 @@ portfolioitems:
           - quantile
           - conditional probabilities 
           - base R
-      - name: Project 3
-        link: https://gohugo.io/
+      - name: Rsite2
+        link: https://rbolt13.github.io/rsite2/
         status: 'Finished'
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        start: 'Summer 2021'
+        end: 'Summer 2021'
+        description: 'Inspired by Rsite, this site was created using R Studio, github repositories, and a little CSS. Included are instructions on how the project was created, data and visuals on classical ballet, and one of my statistics homeworks done compeltely in R. '
         tags:
-          - Tag 1
-          - Tag 2
-  # portfolio category
-  - title: Research
-    portfolioitem:
-      - name: Project 1
-        image: '/images/portfolio/code.jpg'
-        link: https://gohugo.io/
-        description: 'A description'
-        tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 2
-        image: '/images/portfolio/code.jpg'
-        link: https://gohugo.io/
-        description: 'A description'
-        tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 3
-        image: '/images/portfolio/code.jpg'
-        link: https://gohugo.io/
-        description: 'A description'
-        tags:
-          - Tag 1
-          - Tag 2
+          - R
+          - github
+          - CSS 
+          - ggplot2
+          - stem
+          - hist
+          - mean
+          - median
+          - sort
+          - sum
+          - length 
+          - sd
+          - sqrt
+          - quantile
+          - min
+          - max
+          - par
+          - boxplot
   # GIS category
   - title: GIS
     portfolioitem:
@@ -97,3 +91,59 @@ portfolioitems:
           - GIS in Action 2021
           - GIS
           - statistics 
+# portfolio category
+  - title: Blogs
+    portfolioitem:
+      - name: rbolt
+        image: '/images/portfolio/code.jpg'
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+      - name: Randi Grows
+        image: '/images/portfolio/code.jpg'
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+# Class Notes
+  - title: Class Notes
+    portfolioitem:
+      - name: Project 1
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+      - name: Project 2
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+      - name: Project 3
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+      - name: Project 4
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+      - name: Project 5
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
+      - name: Project 6
+        link: https://gohugo.io/
+        description: 'A description'
+        tags:
+          - Tag 1
+          - Tag 2
