@@ -104,9 +104,9 @@ portfolioitems:
         tags:
           - blogdown 
           - Alexander Bilz ~ Anatole
-      - name: rbolt  
+      - name: rbolt (First Undergrad Math/Stat Blog)
         image: '/images/portfolio/rbolt.png'
-        link: https://rbolt13.github.io/rsite/index.html
+        link: https://rbolt.netlify.app/
         status: 'Incomplete'
         start: 'Summer 2021'
         end: 'Fall 2021'
@@ -143,8 +143,8 @@ portfolioitems:
         tags:
           - undergrad math
           - cerulean theme
-      - name: ~Mathematics 388~ Modern College Geometry
-        link: https://rbolt13.github.io/mth388/
+      - name: ~Mathematics 338~ Modern College Geometry
+        link: https://rbolt13.github.io/mth338/
         status: 'Ongoing'
         start: 'Winter 2022'
         description: '**Topics Covered :** ...'
@@ -170,7 +170,7 @@ portfolioitems:
           - undergrad stat
           - darkly theme
       - name: ~Statistics 451~  Applied Statistics for Engineers and Scientists
-        link: https://rbolt13.github.io/itam/
+        link: https://rbolt13.github.io/stat451/
         status: 'Complete'
         start: 'Fall 2021'
         end: 'Fall 2021'
