@@ -130,6 +130,7 @@ portfolioitems:
       - name: ~Statistics 462~ Introduction to Mathematical Statistics II
         link: https://rbolt13.github.io/stat462/
         status: 'Ongoing'
+        start: 'Winter 2022'
         description: '**Topics Covered :** ...'
         tags:
           - undergrad stat
@@ -137,6 +138,7 @@ portfolioitems:
       - name: ~Mathematics 344~ Introduction to Group Theory Application
         link: https://rbolt13.github.io/mth344/
         status: 'Ongoing'
+        start: 'Winter 2022'
         description: '**Topics Covered :** ...'
         tags:
           - undergrad math
@@ -145,7 +147,6 @@ portfolioitems:
         link: https://rbolt13.github.io/mth388/
         status: 'Ongoing'
         start: 'Winter 2022'
-        end: 'Winter 2022'
         description: '**Topics Covered :** ...'
         tags:
           - undergrad math
