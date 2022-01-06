@@ -1,5 +1,5 @@
 ---
-title: Latex Hacks
+title: Latex
 author: Randi Bolt
 date: '2022-01-06'
 slug: latex-hacks
@@ -13,7 +13,62 @@ tags:
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p>Here are some short hacks and just simple latex code I occasionally forget.</p>
-<p><span class="math inline">\(\sim\)</span> : (backslash)sim</p>
-<p><span class="math inline">\(\circ\)</span> : (backslash)circ</p>
-<p><span class="math inline">\(\equiv\)</span> : (backslash)equiv</p>
+<p>Here are some short and simple latex code I occasionally forget.</p>
+<p>To signify a backslash I will us this emoji <span class="math inline">\(\Rightarrow\)</span> :no_entry_sign:.</p>
+<div id="basic-symbols" class="section level3">
+<h3>Basic Symbols :</h3>
+<ul>
+<li><p><span class="math inline">\(\sim\)</span> : :no_entry_sign:sim</p></li>
+<li><p><span class="math inline">\(\circ\)</span> : :no_entry_sign:circ</p></li>
+<li><p><span class="math inline">\(\square\)</span> : :no_entry_sign:square</p></li>
+<li><p><span class="math inline">\(\equiv\)</span> : :no_entry_sign:equiv</p></li>
+<li><p><span class="math inline">\(\div\)</span> : :no_entry_sign:div</p></li>
+<li><p><span class="math inline">\(a\choose b\)</span> : a:no_entry_sign:b</p></li>
+</ul>
+</div>
+<div id="inline" class="section level3">
+<h3>Inline :</h3>
+<p>Limits above and below sums and integrals</p>
+<ul>
+<li><span class="math inline">\(\sum\limits_{n}^{i}\int_0^1\)</span> : :no_entry_sign:limits</li>
+</ul>
+<p>Matrices and Matrix Equations</p>
+<ul>
+<li><p><span class="math inline">\(\begin{smallmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{smallmatrix}\)</span> : :no_entry_sign:{smallmatrix} 1 &amp; 0 :no_entry_sign::no_entry_sign: 0 &amp; 1:no_entry_sign:end{smallmatrix}</p>
+<ul>
+<li><p><span class="math inline">\(I=[\begin{smallmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{smallmatrix}]\)</span></p></li>
+<li><p><span class="math inline">\((\begin{smallmatrix} 1 &amp; 1 \\ 1 &amp; 0\end{smallmatrix})(\begin{smallmatrix} 1 &amp; 1 \\ 0 &amp; 1\end{smallmatrix})\ne(\begin{smallmatrix} 1 &amp; 1 \\ 0 &amp; 1\end{smallmatrix})(\begin{smallmatrix} 1 &amp; 1 \\ 1 &amp; 0\end{smallmatrix})\)</span></p></li>
+</ul></li>
+</ul>
+</div>
+<div id="multiple-lines" class="section level3">
+<h3>Multiple Lines :</h3>
+<p>Function</p>
+<ul>
+<li><p><span class="math inline">\(F(x)=\begin{cases}1 &amp; x\geq 0\\0 &amp; \text{otherwise}\end{cases}\)</span> : F(x)=:no_entry_sign:\begin{cases} . . . :no_entry_sign:end{cases}</p>
+<ul>
+<li><p>1 &amp; x :no_entry_sign:geq 0 :no_entry_sign::no_entry_sign:</p></li>
+<li><p>0 &amp; :no_entry_sign:text{otherwise}</p></li>
+</ul></li>
+</ul>
+<p>Series of Equalities</p>
+<ul>
+<li><span class="math inline">\(\begin{equation}\label{a}\begin{split}x &amp;= a+b+c\\&amp;=1+2+3\\&amp;=6\end{split}\end{equation}\)</span></li>
+</ul>
+<p>: :no_entry_sign:begin{equation}:no_entry_sign:{label}:no_entry_sign:begin{split}… :no_entry_sign:end{split}:no_entry_sign:end{equation}</p>
+<ul>
+<li><p>x &amp;= a+b+c :no_entry_sign::no_entry_sign:</p></li>
+<li><p>&amp;= 1+2+3 :no_entry_sign::no_entry_sign:</p></li>
+<li><p>&amp;= 6</p></li>
+</ul>
+</div>
+<div id="advice" class="section level3">
+<h3>Advice</h3>
+<p>Google Docs Equations Boxes</p>
+<ul>
+<li><p>Most latex backslashes work in google doc’s equation boxes. If I have to do a “quick” homework, and dont want to spend a lot of time formatting a pdf in R, I will use google docs, and these shortcuts in the equations boxes.</p>
+<ul>
+<li>Note that before I started using R this is how I began learning latex.</li>
+</ul></li>
+</ul>
+</div>
