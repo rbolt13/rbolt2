@@ -49,8 +49,9 @@ portfolioitems:
           - conditional probabilities 
           - base R
       - name: Rsite2
+        image: '/images/portfolio/rpinkfire.png'
         link: https://rbolt13.github.io/rsite2/
-        status: 'Finished'
+        status: 'Complete'
         start: 'Summer 2021'
         end: 'Summer 2021'
         description: 'Inspired by Rsite, this site was created using R Studio, github repositories, and a little CSS. Included are instructions on how the project was created, data and visuals on classical ballet, and one of my statistics homeworks done compeltely in R. '
