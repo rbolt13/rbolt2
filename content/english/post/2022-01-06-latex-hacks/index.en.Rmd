@@ -26,7 +26,7 @@ To signify a backslash I will us this emoji $\Rightarrow$ :no_entry_sign:.
 
 - $\div$ : :no_entry_sign:div
 
-- $a\choose b$ : a:no_entry_sign:b
+- $a\choose b$ : a:no_entry_sign:choose b
 
 ### Inline : 
 
