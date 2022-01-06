@@ -95,18 +95,21 @@ portfolioitems:
 # portfolio category
   - title: Blogs
     portfolioitem:
-      - name: ~rbolt2~ Personal Website 
+      - name: rbolt2 (Personal Website) 
         image: '/images/portfolio/rbolt2.png'
         link: https://rbolt2.netlify.app/
         status: 'Ongoing'
-        description: 'My most current and up to date blog created using blogdown, github, and netlify.'
+        start: 'Winter 2022'
+        description: 'My most current and up to date blog created using blogdown, github, and netlify. Posts are related to statistics, mathematics, and R.'
         tags:
           - blogdown 
           - Alexander Bilz ~ Anatole
-      - name: ~rbolt~ First Personal Website 
+      - name: rbolt  
         image: '/images/portfolio/rbolt.png'
         link: https://rbolt13.github.io/rsite/index.html
-        status:
+        status: 'Incomplete'
+        start: 'Summer 2021'
+        end: 'Fall 2021'
         description: 'Second blog and first personal website created using blogdown, github, and netlify. 8 blog posts from the Fall of 2021 including how to use APIs, examples from regression annalysis, proofs, and a few other micro posts from undergrad. This blog was scrapped for one with more features already included such as day / night mode, and contact form.'
         tags:
           - blogdown
@@ -114,6 +117,9 @@ portfolioitems:
       - name: Randi Grows
         image: '/images/portfolio/rgrows.png'
         link: https://randigrows.netlify.app/about/
+        status: 'Incomplete'
+        start: 'Summer 2021'
+        end: 'Summer 2021'
         description: 'My first blog created using blogdown, github, and netlify. This was originally intedned to track the progress of my garden, but was scraped after only 8 posts to use that time to focus on my other projects. '
         tags:
           - blogdown 
