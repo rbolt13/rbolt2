@@ -112,39 +112,53 @@ portfolioitems:
 # Class Notes
   - title: Class Notes
     portfolioitem:
-      - name: Project 1
-        link: https://gohugo.io/
-        description: 'A description'
+      - name: ~Statistics 462~ Introduction to Mathematical Statistics II
+        link: https://rbolt13.github.io/stat462/
+        status: 'Ongoing'
+        description: '**Topics Covered :** ...'
         tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 2
-        link: https://gohugo.io/
-        description: 'A description'
+          - undergrad stat
+          - cosmo theme
+      - name: ~Mathematics 344~ Introduction to Group Theory Application
+        link: https://rbolt13.github.io/mth344/
+        status: 'Ongoing'
+        description: '**Topics Covered :** ...'
         tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 3
-        link: https://gohugo.io/
-        description: 'A description'
+          - undergrad math
+          - cerulean theme
+      - name: ~Mathematics 388~ Modern College Geometry
+        link: https://rbolt13.github.io/mth388/
+        status: 'Ongoing'
+        start: 'Winter 2022'
+        end: 'Winter 2022'
+        description: '**Topics Covered :** ...'
         tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 4
-        link: https://gohugo.io/
-        description: 'A description'
+          - undergrad math
+          - journal theme
+      - name: ~Statistics 464~ Applied Regression Analysis
+        link: https://rbolt13.github.io/stat464/
+        status: 'Complete'
+        start: 'Fall 2021'
+        end: 'Fall 2021'
+        description: '**Topics Covered :** Simple linear regression, least-square estimates, hypothesis testing, t-statistic, p-statistic, analysis of variance, sum of squares estimate, sum of squares regression, mean square error, confidence intervals, R squared, multiple linear models, hat matrix, Broferoni Method, Scheffe Method, multilinearity, variance inflation factor, model adequacy checking, residual analysis, residual plotting, residual scaling, PRESS statsitic, detecting outliers, transformations and weighting to correct model inadequacies, stabilizing variance, weighted least squares, diagnostics for leverage and influence, DIFFTS, DFBETAS, and COVRATIO. '
         tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 5
-        link: https://gohugo.io/
-        description: 'A description'
+          - undergrad stat
+          - spacelab theme
+      - name: ~Statistics 461~ Introduction to Mathematical Statistics I
+        link: https://rbolt13.github.io/stat461/
+        status: 'Complete'
+        start: 'Fall 2021'
+        end: 'Fall 2021'
+        description: '**Topics Covered :** Mean, median, mode, variance, standard deviation, the Empirical Rule, basic properties and axioms of probabilities, set theory, DeMorgans Law, Distributive Law, counting rules, statistical independence, mutual independence, total law of probability, Bayes Rule, discrete and continuous random variables, probability distribution, expected value, CDF, PMF, and PDF. '
         tags:
-          - Tag 1
-          - Tag 2
-      - name: Project 6
-        link: https://gohugo.io/
-        description: 'A description'
+          - undergrad stat
+          - darkly theme
+      - name: ~Statistics 451~  Applied Statistics for Engineers and Scientists
+        link: https://rbolt13.github.io/itam/
+        status: 'Complete'
+        start: 'Fall 2021'
+        end: 'Fall 2021'
+        description: '**Topics Covered :** Discrete and continuous random variables and probability distributions, bernoulli random variables, pmf, pdf, expected value, variance, mean, standard deviation for geometric, Poisson, binomial, uniform, exponential, gamma, chi-squared, Weilbull, lognormal, standard beta density curve and normal distributions and r.v. (This is mainly notes for chapter 3 and 4 of the text).'
         tags:
-          - Tag 1
-          - Tag 2
+          - undergrad stat
+          - rmdformats readthedown theme
