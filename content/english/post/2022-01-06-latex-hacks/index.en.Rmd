@@ -10,7 +10,7 @@ tags:
   - undergrad
 ---
 
-Here are some short and simple latex code I occasionally forget. 
+Here is some short and simple latex that I often find helpful. 
 
 To signify a backslash I will us this emoji $\Rightarrow$ :no_entry_sign:.
 
@@ -70,4 +70,4 @@ Google Docs Equations Boxes
 
 - Most latex backslashes work in google doc's equation boxes. If I have to do a "quick" homework, and dont want to spend a lot of time formatting a pdf in R, I will use google docs, and these shortcuts in the equations boxes.  
 
-  - Note that before I started using R this is how I began learning latex. 
+  - Note that before I started using R this is how I began learning latex.
