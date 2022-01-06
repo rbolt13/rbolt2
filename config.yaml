@@ -1,7 +1,7 @@
-baseURL: https://example.com
-languageCode: en
+baseURL: "https://rbolt2.netlify.app/"
+languageCode: "en-us"
 DefaultContentLanguage: en
-title: Website of Jane Doe
+title: Randi Bolt
 theme: anatole
 summarylength: 10
 enableEmoji: yes

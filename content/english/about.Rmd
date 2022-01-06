@@ -1,0 +1,16 @@
+---
+title: "about"
+author: "Randi Bolt"
+date: "1/2/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Hello Beautiful Person :heart: 
+
+My name is **Randi Bolt** (she/her/hers pronouns) and I am senior undergraduate at Portland State University, studying mathematics and statistics. This blog was created in R using blogdown, github, and netlify. 
+
+Thanks for stopping by, and please enjoy!

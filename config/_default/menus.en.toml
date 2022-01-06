@@ -29,7 +29,7 @@
   url = "/contact/"
 
   [[footer]]
-  name = "imprint"
+  name = "Github"
   weight = 1
-  identifier = "imprint"
-  url = "/imprint/"
+  identifier = "gitbub"
+  url = "https://github.com/rbolt13"

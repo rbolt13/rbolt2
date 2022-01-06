@@ -1,9 +1,9 @@
 
-title = "I'm Jane Doe"
-author = "Jane Doe"
+title = "I'm Randi Bolt"
+author = "Randi Bolt"
 #copyright = "2020-2021"
-description = "Call me Jane"
-profilePicture = "images/profile.jpg"
+description = "Randi Bolt"
+profilePicture = "images/profile.PNG"
 keywords = ""
 favicon = "favicons/"
 # example ["css/custom.css"]
@@ -36,27 +36,27 @@ reversepagetitle = true # When set to 'true', the Window Title will be reversed 
 
 ## Math settings
 [math]
-enable = false  # options: true, false. Enable math support globally, default: false. You can always enable math on per page.
+enable = true  # options: true, false. Enable math support globally, default: false. You can always enable math on per page.
 use = "katex"  # options: "katex", "mathjax". default is "katex".
 
 ## Social links
 # use 'fab' when brand icons, use 'fas' when standard solid icons.
-[[socialIcons]]
-icon = "fab fa-linkedin"
-title = "Linkedin"
-url = "https://de.linkedin.com/"
+# [[socialIcons]]
+# icon = "fab fa-linkedin"
+# title = "Linkedin"
+# url = "https://de.linkedin.com/"
 
 [[socialIcons]]
 icon = "fab fa-github"
 title = "GitHub"
-url = "https://github.com/lxndrblz/anatole/"
+url = "https://github.com/rbolt13/"
 
-[[socialIcons]]
-icon = "fab fa-instagram"
-title = "instagram"
-url = "https://www.instagram.com/"
+# [[socialIcons]]
+# icon = "fab fa-instagram"
+# title = "instagram"
+# url = "https://www.instagram.com/"
 
 [[socialIcons]]
 icon = "fas fa-envelope"
 title = "e-mail"
-url = "mailto:mail@example.com"
+url = "rbolt@pdx.edu"

@@ -1,0 +1,19 @@
+---
+title: Latex Hacks
+author: Randi Bolt
+date: '2022-01-06'
+slug: latex-hacks
+categories:
+  - undergrad
+tags:
+  - latex
+  - undergrad
+---
+
+Here are some short hacks and just simple latex code I occasionally forget. 
+
+$\sim$ : (backslash)sim
+
+$\circ$ : (backslash)circ
+
+$\equiv$ : (backslash)equiv
