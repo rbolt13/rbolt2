@@ -5,7 +5,7 @@ portfolioitems:
       - name: COVID-19
         image: '/images/portfolio/covid.png'
         link: https://rbolt13.github.io/covid19/
-        description: 'Maipulated data from the NYT github repository, and tidycensus package to create multiple tables about Covid-19 in the United States as a whole and my home state of Oregon.'
+        description: 'Maipulated data from the NYT github repository, and tidycensus package to create multiple tables about Covid-19 in the United States, and in Oregon.'
         tags:
           - magrittr
           - dplyr
