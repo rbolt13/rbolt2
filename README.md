@@ -4,8 +4,10 @@ This is my personal website, and growing portfolio created with blogdown in R St
 View [here](https://rbolt2.netlify.app/). 
 
 # To Do 
-* Create
+* add comments to blog posts
 
 # Done 
 
 ☑️ Update README
+
+☑️ Create
