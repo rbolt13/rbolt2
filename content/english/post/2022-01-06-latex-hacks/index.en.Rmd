@@ -12,31 +12,29 @@ tags:
 
 Here is some short and simple latex that I often find helpful. 
 
-To signify a backslash I will us this emoji $\Rightarrow$ :no_entry_sign:.
-
 ### Basic Symbols : 
 
-- $\sim$ : :no_entry_sign:sim
+- $\sim$ : `\sim`
 
-- $\circ$ : :no_entry_sign:circ
+- $\circ$ : `\circ`
 
-- $\square$ : :no_entry_sign:square
+- $\square$ : `\square`
 
-- $\equiv$ : :no_entry_sign:equiv
+- $\equiv$ : `\equiv`
 
-- $\div$ : :no_entry_sign:div
+- $\div$ : `\div`
 
-- $a\choose b$ : a:no_entry_sign:choose b
+- $a\choose b$ : `a\choose b`
 
 ### Inline : 
 
 Limits above and below sums and integrals 
 
-- $\sum\limits_{n}^{i}\int_0^1$ : :no_entry_sign:limits
+- $\sum\limits_{n}^{i}\int_0^1$ : `\limits`
 
 Matrices and Matrix Equations 
 
-- $\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}$ : :no_entry_sign:{smallmatrix} 1 & 0 :no_entry_sign::no_entry_sign: 0 & 1:no_entry_sign:end{smallmatrix}
+- $\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}$ : `\{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}`
 
   - $I=[\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}]$
   
@@ -46,23 +44,21 @@ Matrices and Matrix Equations
 
 Function 
 
-- $F(x)=\begin{cases}1 & x\geq 0\\0 & \text{otherwise}\end{cases}$ : F(x)=:no_entry_sign:\begin{cases} . . . :no_entry_sign:end{cases}
+- $F(x)=\begin{cases}1 & x\geq 0\\0 & \text{otherwise}\end{cases}$ : `F(x)=\begin{cases} . . . \end{cases}`
 
-  - 1 & x :no_entry_sign:geq 0 :no_entry_sign::no_entry_sign:
+  - `1 & x \geq 0 \\`
   
-  - 0 & :no_entry_sign:text{otherwise}
+  - `0 & \text{otherwise}`
   
 Series of Equalities 
 
-- $\begin{equation}\label{a}\begin{split}x &= a+b+c\\&=1+2+3\\&=6\end{split}\end{equation}$ 
+- $\begin{equation}\label{a}\begin{split}x &= a+b+c\\&=1+2+3\\&=6\end{split}\end{equation}$ : `\begin{equation}\{label}\begin{split}... \end{split}\end{equation}'
 
-: :no_entry_sign:begin{equation}:no_entry_sign:{label}:no_entry_sign:begin{split}... :no_entry_sign:end{split}:no_entry_sign:end{equation}
+  - `x &= a+b+c \\`
 
-  - x &= a+b+c :no_entry_sign::no_entry_sign:
-
-  - &= 1+2+3 :no_entry_sign::no_entry_sign:
+  - `&= 1+2+3`
   
-  - &= 6 
+  - `&= 6` 
 
 ### Advice 
 
