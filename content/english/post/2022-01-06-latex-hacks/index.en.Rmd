@@ -26,6 +26,8 @@ Here is some short and simple latex that I often find helpful.
 
 - $a\choose b$ : `a\choose b`
 
+- $\langle\rangle$ : `\langle\rangle`
+
 - $\mathbb{R}$ : `\mathbb{R}` 
 
   - bb : blackboard bold 
