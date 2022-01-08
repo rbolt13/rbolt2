@@ -32,11 +32,11 @@ Here is some short and simple latex that I often find helpful.
 
 ### Inline : 
 
-Limits above and below sums and integrals 
+**Limits above and below sums and integrals** 
 
 - $\sum\limits_{n}^{i}\int_0^1$ : `\limits`
 
-Matrices and Matrix Equations 
+**Matrices and Matrix Equations** 
 
 - $\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}$ : `\{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}`
 
@@ -46,7 +46,7 @@ Matrices and Matrix Equations
 
 ### Multiple Lines : 
 
-Function 
+**Function** 
 
 - $F(x)=\begin{cases}1 & x\geq 0\\0 & \text{otherwise}\end{cases}$ : `F(x)=\begin{cases} . . . \end{cases}`
 
@@ -54,7 +54,7 @@ Function
   
   - `0 & \text{otherwise}`
   
-Series of Equalities 
+**Series of Equalities** 
 
 - $\begin{equation}\label{a}\begin{split}x &= a+b+c\\&=1+2+3\\&=6\end{split}\end{equation}$ : `\begin{equation}\{label}\begin{split}... \end{split}\end{equation}'
 
@@ -66,7 +66,7 @@ Series of Equalities
 
 ### Advice 
 
-Google Docs Equations Boxes
+**Google Docs Equations Boxes**
 
 - Most latex backslashes work in google doc's equation boxes. If I have to do a "quick" homework, and dont want to spend a lot of time formatting a pdf in R, I will use google docs, and these shortcuts in the equations boxes.  
 
