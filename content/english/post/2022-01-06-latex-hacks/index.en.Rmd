@@ -26,6 +26,10 @@ Here is some short and simple latex that I often find helpful.
 
 - $a\choose b$ : `a\choose b`
 
+- $\mathbb{R}$ : `\mathbb{R}` 
+
+  - bb : blackboard bold 
+
 ### Inline : 
 
 Limits above and below sums and integrals 
