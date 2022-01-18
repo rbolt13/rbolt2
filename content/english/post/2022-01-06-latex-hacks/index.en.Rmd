@@ -76,7 +76,7 @@ Here is some short and simple latex that I often find helpful.
   
   - `&= 6` 
 
-### Advice 
+### Advice :
 
 **Google Docs Equations Boxes**
 
