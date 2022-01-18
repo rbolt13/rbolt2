@@ -17,12 +17,16 @@ tags:
 
 
 <p>Code and plots using the LearnGeom package.</p>
-<pre class="r"><code>### Libraries  
-library(LearnGeom)
-### Set global chunk options 
+<p>For more information about LearnGeom, check out the package details <a href="https://cran.r-project.org/web/packages/LearnGeom/LearnGeom.pdf">here</a>.</p>
+<div id="load-libraris-and-set-gloabal-chunk-options" class="section level2">
+<h2>Load Libraris and Set Gloabal Chunk Options</h2>
+<pre class="r"><code>library(LearnGeom)
 knitr::opts_chunk$set(error=FALSE, 
                       message= FALSE,
                       warning=FALSE)</code></pre>
+</div>
+<div id="coordinate-plane" class="section level2">
+<h2>Coordinate Plane</h2>
 <pre class="r"><code># Coordinate Plane 
 # plots an empty coordinate (cartesian) plane with customizable limits for the X and Y axis.
 # CoordinatePlane(x_min, x_max, y_min, y_max)
@@ -38,6 +42,9 @@ CoordinatePlane(x_min, x_max, y_min, y_max)</code></pre>
 <pre><code>## NULL</code></pre>
 <pre class="r"><code># can&#39;t save coordPlan &lt;- CoordinatePlane() as an object
 # will get error: Error in polygon(xx, yy, col = color, border = border) : plot.new has not been called yet</code></pre>
+</div>
+<div id="polygons" class="section level2">
+<h2>Polygons</h2>
 <pre class="r"><code># plane 
 CoordinatePlane(x_min, x_max, y_min, y_max)</code></pre>
 <pre><code>## NULL</code></pre>
@@ -58,6 +65,9 @@ Poly2 &lt;- CreatePolygon(P4, P5, P6)</code></pre>
 <pre class="r"><code>Draw(Poly2, c(&quot;light green&quot;))</code></pre>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <pre><code>## NULL</code></pre>
+</div>
+<div id="angle-and-point-line-segments" class="section level2">
+<h2>Angle and Point Line Segments</h2>
 <pre class="r"><code># plane 
 CoordinatePlane(x_min, x_max, y_min, y_max)</code></pre>
 <pre><code>## NULL</code></pre>
@@ -75,3 +85,4 @@ Segment &lt;- CreateSegmentPoints(P1, P2)
 Draw(Segment, &quot;purple&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index.en_files/figure-html/segment%20angle%20and%20segment%20point-1.png" width="672" /></p>
 <pre><code>## NULL</code></pre>
+</div>

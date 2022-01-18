@@ -15,14 +15,18 @@ tags:
 
 Code and plots using the LearnGeom package. 
 
+For more information about LearnGeom, check out the package details  [here](https://cran.r-project.org/web/packages/LearnGeom/LearnGeom.pdf). 
+
+## Load Libraris and Set Gloabal Chunk Options
+
 ```{r setup}
-### Libraries  
 library(LearnGeom)
-### Set global chunk options 
 knitr::opts_chunk$set(error=FALSE, 
                       message= FALSE,
                       warning=FALSE)
 ```
+
+## Coordinate Plane
 
 ```{r coordinate plane}
 # Coordinate Plane 
@@ -40,6 +44,8 @@ CoordinatePlane(x_min, x_max, y_min, y_max)
 # will get error: Error in polygon(xx, yy, col = color, border = border) : plot.new has not been called yet
 ```
 
+## Polygons 
+
 ```{r}
 # plane 
 CoordinatePlane(x_min, x_max, y_min, y_max)
@@ -56,6 +62,8 @@ P6 <- c(7, 8)
 Poly2 <- CreatePolygon(P4, P5, P6)
 Draw(Poly2, c("light green"))
 ```
+
+## Angle and Point Line Segments
 
 ```{r segment angle and segment point}
 # plane 
