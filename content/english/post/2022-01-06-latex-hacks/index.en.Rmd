@@ -26,6 +26,8 @@ Here is some short and simple latex that I often find helpful.
 
 - $\div$ : `\div`
 
+- $H\subseteq G$ : `H\subseteq G`
+
 - $a\choose b$ : `a\choose b`
 
 - $\Leftrightarrow$ : `\Leftrightarrow`
@@ -33,6 +35,8 @@ Here is some short and simple latex that I often find helpful.
 - $\langle\rangle$ : `\langle\rangle`
 
 - $\overrightarrow{\rm AB}$ : `\overrightarrow{\rm AB}`
+
+- $\underline{\text{Underline Text}}$ : `\underline{\text{Underline Text}}`
 
 - $\mathbb{R}$ : `\mathbb{R}` 
 
