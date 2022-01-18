@@ -17,7 +17,8 @@ Code and plots using the LearnGeom package.
 
 For more information about LearnGeom, check out the package details  [here](https://cran.r-project.org/web/packages/LearnGeom/LearnGeom.pdf). 
 
-## Load Libraris and Set Gloabal Chunk Options
+## Load Libraries and Set Global Chunk Options
+
 
 ```{r setup}
 library(LearnGeom)
@@ -83,22 +84,8 @@ Draw(Segment, "purple")
 
 
 ```{r, echo=F}
-# point 
-
-# segment
-
-# arc
 # CreateArcAngles()
-# 
 # CreateArcPointsDist()
-
-# line 
-
-# poly 
-
-
-# reflect  
-
 # ReflectedPoint()
 # ReflectedPolygon()
 ```
