@@ -22,11 +22,17 @@ Here is some short and simple latex that I often find helpful.
 
 - $\equiv$ : `\equiv`
 
+- $\cong$ : `\cong`
+
 - $\div$ : `\div`
 
 - $a\choose b$ : `a\choose b`
 
+- $\Leftrightarrow$ : `\Leftrightarrow`
+
 - $\langle\rangle$ : `\langle\rangle`
+
+- $\overrightarrow{\rm AB}$ : `\overrightarrow{\rm AB}`
 
 - $\mathbb{R}$ : `\mathbb{R}` 
 
