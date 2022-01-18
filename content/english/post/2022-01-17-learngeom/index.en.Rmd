@@ -13,7 +13,7 @@ tags:
   - r studio
 ---
 
-Code and plots, simply playing around with the package LearnGeom. 
+Code and plots using the LearnGeom package. 
 
 ```{r setup}
 ### Libraries  
