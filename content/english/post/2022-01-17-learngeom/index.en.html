@@ -1,0 +1,83 @@
+---
+title: LearnGeom
+author: Randi Bolt
+date: '2022-01-17'
+slug: []
+categories:
+  - undergrad
+
+tags:
+  - geometry
+  - LearnGeom
+  - package
+  - r studio
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>### Libraries  
+library(LearnGeom)</code></pre>
+<pre class="r"><code># Coordinate Plane 
+# plots an empty coordinate (cartesian) plane with customizable limits for the X and Y axis.
+# CoordinatePlane(x_min, x_max, y_min, y_max)
+x_min &lt;- 0
+x_max &lt;- 10
+y_min &lt;- 0
+y_max &lt;- 10
+CoordinatePlane(x_min, x_max, y_min, y_max)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code># can&#39;t save coordPlan &lt;- CoordinatePlane() as an object
+# will get error: Error in polygon(xx, yy, col = color, border = border) : plot.new has not been called yet</code></pre>
+<pre class="r"><code># plane 
+CoordinatePlane(x_min, x_max, y_min, y_max)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code># polygon 1 
+P1 &lt;- c(1,4)
+P2 &lt;- c(3,7)
+P3 &lt;- c(4, 1)
+Poly &lt;- CreatePolygon(P1, P2, P3)</code></pre>
+<pre><code>## [1] &quot;Some of the inserted points are collinear. This could lead to a defective polygon.&quot;</code></pre>
+<pre class="r"><code>Draw(Poly, c(&quot;light blue&quot;), label = TRUE)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code># polygon 2 
+P4 &lt;- c(6, 3)
+P5 &lt;- c(8, 3)
+P6 &lt;- c(7, 8)
+Poly2 &lt;- CreatePolygon(P4, P5, P6)</code></pre>
+<pre><code>## [1] &quot;Some of the inserted points are collinear. This could lead to a defective polygon.&quot;</code></pre>
+<pre class="r"><code>Draw(Poly2, c(&quot;light green&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code># P1 &lt;- c(0,0)
+# P2 &lt;- c(1,1)
+# P4 &lt;- c(0,-2)
+# P5 &lt;- c(-2, -4)
+# Poly &lt;- CreatePolygon(P1, P2, P3)
+# Poly2 &lt;- CreatePolygon(P4, P5)
+# Draw(Poly, c(&quot;light blue&quot;), label = TRUE)
+# Draw(Poly2, label = TRUE)
+
+# CoordinatePlane
+
+# Draw : produces the plot of a geometric object (point, segment, arc, line or polygon) in the current coordinate plane
+
+# point 
+
+# segment
+
+# arc
+# CreateArcAngles()
+# 
+# CreateArcPointsDist()
+
+# line 
+
+# poly 
+
+
+# reflect  
+
+# ReflectedPoint()
+# ReflectedPolygon()</code></pre>
