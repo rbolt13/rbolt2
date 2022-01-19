@@ -1,0 +1,33 @@
+---
+title: ggplot2 UO Workshop
+author: Randi Bolt
+date: '2022-01-18'
+slug: []
+categories:
+  - undergrad
+tags:
+  - r studio
+  - undergrad
+  - package
+  - ggplot2
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>These are my notes from the University of Oregon’s Data Service Consultants workshop on ggplot2.</p>
+<p>Gabriele Hayden with help from Cameron Mulder ran the workshop. They can be contacted via their consultation page <a href="https://library.uoregon.edu/research-data-management/consultations">here</a>.</p>
+<pre class="r"><code># install.pcakages(&quot;ggpot2&quot;)
+library(ggplot2)</code></pre>
+<pre class="r"><code>download.file(&quot;https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv&quot;, destfile = &quot;gapminder_data.csv&quot;)
+gapminder &lt;- read.csv(&quot;gapminder_data.csv&quot;, stringsAsFactors = TRUE)</code></pre>
+<pre class="r"><code>ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/first%20example-1.png" width="672" /></p>
+<div id="challenge-1" class="section level2">
+<h2>Challenge 1</h2>
+<p>Modify the example so the figure shows how life expectancy has changed over time</p>
+<pre class="r"><code>ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp)) + 
+  geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>

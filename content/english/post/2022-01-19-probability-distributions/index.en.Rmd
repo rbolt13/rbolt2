@@ -1,0 +1,35 @@
+---
+title: Probability Distributions
+author: 'Randi Bolt '
+date: '2022-01-19'
+slug: []
+categories:
+  - undergrad
+tags:
+  - probability
+  - distributions
+  - probability distribution
+  - undergrad
+  - exponential
+  - normal
+  - Poisson
+  - Uniform
+  - Gamma
+  - Binomial
+  - Geometric
+  - Negative Binomial
+  - Hypergeometric
+---
+
+Equations for probability distributions. 
+
+This post in under construction, don't mind the dust. 
+
+## Exponential 
+
+$$Y\sim\text{Exp}(\mu)=\frac{1}{\mu}e^{\mu y}$$
+
+## Normal 
+
+$$Y\sim\text{N}(\mu,\sigma)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y-\mu}{\sigma})}$$
+

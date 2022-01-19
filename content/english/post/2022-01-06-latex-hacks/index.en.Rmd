@@ -26,6 +26,8 @@ Here is some short and simple latex that I often find helpful.
 
 - $\div$ : `\div`
 
+- $\emptyset$ : `\emptyset`
+
 - $H\subseteq G$ : `H\subseteq G`
 
 - $a\choose b$ : `a\choose b`

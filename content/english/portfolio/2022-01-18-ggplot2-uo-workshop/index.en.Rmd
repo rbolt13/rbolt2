@@ -1,0 +1,106 @@
+---
+title: ggplot2 UO Workshop
+author: Randi Bolt
+date: '2022-01-18'
+slug: []
+categories:
+  - undergrad
+tags:
+  - r studio
+  - undergrad
+  - package
+  - ggplot2
+---
+
+These are my notes from the University of Oregon's Data Service Consultants workshop on ggplot2. 
+
+Gabriele Hayden with help from Cameron Mulder ran the workshop. They can be contacted via their consultation page [here](https://library.uoregon.edu/research-data-management/consultations). 
+
+```{r setup}
+# install.pcakages("ggpot2")
+library(ggplot2)
+```
+
+```{r data}
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv", destfile = "gapminder_data.csv")
+gapminder <- read.csv("gapminder_data.csv", stringsAsFactors = TRUE)
+```
+
+```{r first example }
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+```
+
+## Challenge 1
+
+Modify the example so the figure shows how life expectancy has changed over time 
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp)) + 
+  geom_point()
+```
+
+At this point my notes didn't save so there is a gap here between challenge 1 and 4. 
+
+```{r}
+americas <- gapminder[gapminder$continent == "america",]
+lifeExp_plot <- ggplot(americas, aes(x = year, y = LifeExp)) + 
+  geom_line() +
+  facet_wrap(~ country) +
+  labs(
+    x = "Year",
+    y = "Life expectancy",
+    title = "Figure 1",
+    color = "Continent"
+  ) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+lifeExp_plot
+
+# ggsave(filename = "LifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
+```
+
+## Challenge 4
+
+Generate boxplots to compare the life expectancy between the different continents during the available years
+
+```{r challenge 4}
+ggplot(gapminder, aes(x=year, y=lifeExp, fill = continent)) +
+  geom_boxplot() +
+  labs(
+    x = "Continent",
+    y = "Life Expectancy",
+    title = "Figure 1",
+    fill = "Continent"
+  )
+```
+
+```{r by year}
+ggplot(data = gapminder, mapping = aes(x = continent, y = lifeExp, fill = continent)) +
+  geom_boxplot() +
+  facet_wrap( ~ year)+ 
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+```{r Dante's code}
+ggplot(gapminder, aes(x = continent, y = lifeExp)) +
+  geom_point(show.legend = FALSE, size = 0.75) +
+  geom_boxplot(aes(fill = continent), alpha = 0.5) +
+  facet_wrap(~ year) +
+  labs(
+    x = "Continent", #Title of x axis
+    y = "Life Expectancy (years)", #title of y axis
+    title = "Figure 2", #figure title
+    color = "Continent" #title of legend
+  ) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+# Thurseday 
+
+- ggplot cookbook examples 
+
+- integrate map data 
+
+- plotly 
+
+
