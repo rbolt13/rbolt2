@@ -37,6 +37,10 @@ $$Y\sim\text{N}(\mu,\sigma)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y-\
 
 $$Y\sim\text{Pois}(\lambda)=\frac{\lambda^y}{y!}e^{-\lambda}$$
 
+## Uniform Distribution 
+
+$$Y\sim U(a,b)$$
+
 
 
 
