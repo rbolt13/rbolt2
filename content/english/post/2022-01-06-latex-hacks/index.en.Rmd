@@ -43,6 +43,10 @@ Here is some short and simple latex that I often find helpful.
 - $\mathbb{R}$ : `\mathbb{R}` 
 
   - bb : blackboard bold 
+  
+- $\mathcal{F}$ : `\mathcal{F}`
+
+- $\mathscr{F}$ : `\mathscr{F}`
 
 ### Inline : 
 
