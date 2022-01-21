@@ -282,7 +282,7 @@ data %>% flametree_plot(
 )
 ```
 
-Package by Danielle Navarro. Check out her art [here](art.djnavarro.net). 
+Package by Danielle Navarro. Check out her art [here](https://art.djnavarro.net/). 
 
 Next week we are going over rmd. 
 

@@ -124,6 +124,17 @@ portfolioitems:
         tags:
           - blogdown 
           - Kishan B ~ Creative portfolio
+# Class Projects 
+  - title: Class Projects
+    portfolioitem:
+      - name: Quiz 1 - Proof that two verticle angles are congruent. 
+        link: https://rbolt13.github.io/quiz_1/
+        status: 'Ongoing'
+        start: 'Winter 2022'
+        description: 'This quiz ... '
+        tags:
+          - undergrad math
+          - journal theme
 # Class Notes
   - title: Class Notes
     portfolioitem:
