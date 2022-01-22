@@ -21,7 +21,7 @@ tags:
   - Hypergeometric
 ---
 
-Equations for probability distributions. 
+Equations for various probability distributions functions (PDF's). 
 
 This post is under construction.
 
@@ -35,11 +35,17 @@ $$Y\sim\text{N}(\mu,\sigma)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y-\
 
 ## Poisson
 
-$$Y\sim\text{Pois}(\lambda)=\frac{\lambda^y}{y!}e^{-\lambda}$$
+$$Y\sim\text{Pois}(\lambda)=\begin{cases}\frac{\lambda^y}{y!}e^{-\lambda} & y\geq 0 \\ 0 & \text{Otherwise}\end{cases}$$
 
-## Uniform Distribution 
+## Uniform  
 
-$$Y\sim U(a,b)$$
+$$Y\sim U(a,b)=\frac{1}{b-a}$$
+
+## Geometric 
+
+$Y\sim Geom(p) = \begin{cases}p(1-p)^y & y\geq 0\\0& \text{Otherwise}\end{cases}$
+
+
 
 
 

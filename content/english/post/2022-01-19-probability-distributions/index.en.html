@@ -24,7 +24,7 @@ tags:
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p>Equations for probability distributions.</p>
+<p>Equations for various probability distributions functions (PDF’s).</p>
 <p>This post is under construction.</p>
 <div id="exponential" class="section level2">
 <h2>Exponential</h2>
@@ -36,5 +36,13 @@ tags:
 </div>
 <div id="poisson" class="section level2">
 <h2>Poisson</h2>
-<p><span class="math display">\[Y\sim\text{Pois}(\lambda)=\frac{\lambda^y}{y!}e^{-\lambda}\]</span></p>
+<p><span class="math display">\[Y\sim\text{Pois}(\lambda)=\begin{cases}\frac{\lambda^y}{y!}e^{-\lambda} &amp; y\geq 0 \\ 0 &amp; \text{Otherwise}\end{cases}\]</span></p>
+</div>
+<div id="uniform" class="section level2">
+<h2>Uniform</h2>
+<p><span class="math display">\[Y\sim U(a,b)=\frac{1}{b-a}\]</span></p>
+</div>
+<div id="geometric" class="section level2">
+<h2>Geometric</h2>
+<p><span class="math inline">\(Y\sim Geom(p) = \begin{cases}p(1-p)^y &amp; y\geq 0\\0&amp; \text{Otherwise}\end{cases}\)</span></p>
 </div>
