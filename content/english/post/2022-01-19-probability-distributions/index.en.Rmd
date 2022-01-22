@@ -27,7 +27,9 @@ This post is under construction.
 
 ## Exponential 
 
-$$Y\sim\text{Exp}(\mu)=\frac{1}{\mu}e^{\mu y}$$
+$$Y\sim\text{Exp}(\mu)=\frac{1}{\mu}e^{-\frac{y}{\mu}}$$
+
+$$Y\sim\text{Exp}(\lambda)=\lambda e^{-\lambda y}$$
 
 ## Normal 
 
