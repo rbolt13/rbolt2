@@ -49,7 +49,19 @@ $$Y\sim Geom(p) = \begin{cases}p(1-p)^y & y\geq 0\\0& \text{Otherwise}\end{cases
 
 ## Gamma 
 
-$$Y\sim \text{Gamma}(\alpha,\beta)=$$
+$$Y\sim \text{Gamma}(\alpha,\beta)=\begin{cases}\frac{y^{\alpha-1}e^{\frac{-y}{\beta}}}{\beta^\alpha \Gamma(\alpha)}&y\geq 0\\0& \text{Otherwise}\end{cases}$$
+
+Note:
+
+- Standard Gamma Distribution has $\beta = 1$
+
+- $\Gamma(\alpha =1)=1$
+
+- $\Gamma(\alpha =2)=1$
+
+- $\Gamma(\alpha =3)=2$
+
+- $\Gamma(\alpha =4)=6$
 
 ## Chi-squared 
 
