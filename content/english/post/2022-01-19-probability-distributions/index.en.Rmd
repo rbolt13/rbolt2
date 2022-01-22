@@ -43,7 +43,15 @@ $$Y\sim U(a,b)=\frac{1}{b-a}$$
 
 ## Geometric 
 
-$Y\sim Geom(p) = \begin{cases}p(1-p)^y & y\geq 0\\0& \text{Otherwise}\end{cases}$
+$$Y\sim Geom(p) = \begin{cases}p(1-p)^y & y\geq 0\\0& \text{Otherwise}\end{cases}$$
+
+## Gamma 
+
+$$Y\sim \text{Gamma}(\alpha,\beta)=$$
+
+## Chi-squared 
+
+$$Y\sim \chi^2(k)=\begin{cases}\frac{y^{\frac{1}{2}k-1}e^{-\frac{1}{2}y}}{2^{\frac{1}{2}k}\Gamma (\frac{1}{2}k)}&y>0\\0&\text{Otherwise}\end{cases}$$
 
 
 
