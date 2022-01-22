@@ -21,7 +21,7 @@ tags:
   - Hypergeometric
 ---
 
-Equations for various probability distributions functions (PDF's). 
+Equations for various probability density functions (PDF's). 
 
 This post is under construction.
 
