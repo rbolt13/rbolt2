@@ -3,7 +3,7 @@ portfolioitems:
   - title: Projects
     portfolioitem:
       - name: COVID-19
-        image: '/images/portfolio/covid.png'
+        image: '/images/portfolio/Covid.png'
         link: https://rbolt13.github.io/covid19/
         description: 'Maipulated data from the NYT github repository, and tidycensus package to create tables about Covid-19 in the United States, and interactive graphs in Oregon.'
         tags:
@@ -24,7 +24,7 @@ portfolioitems:
         status: 'Ongoing'
         start: 'Summer 2021'
       - name: Rsite 
-        image: '/images/portfolio/rfire.png'
+        image: '/images/portfolio/rsite.png'
         link: https://rbolt13.github.io/rsite/index.html
         description: 'Created using github repositories, rsite includes 4 different class projects from Statistics-363 : Introduction to R. Each project includes various techniques of data manipulation, statistics, analysis, and visuals in the form of various tables, graphs, and a map. '
         status: 'Complete'
@@ -50,7 +50,7 @@ portfolioitems:
           - conditional probabilities 
           - base R
       - name: Rsite2
-        image: '/images/portfolio/rpinkfire.png'
+        image: '/images/portfolio/rsite2.png'
         link: https://rbolt13.github.io/rsite2/
         status: 'Complete'
         start: 'Summer 2021'
@@ -125,17 +125,6 @@ portfolioitems:
         tags:
           - blogdown 
           - Kishan B ~ Creative portfolio
-# Class Projects 
-  - title: Class Projects
-    portfolioitem:
-      - name: Quiz 1 - Proof that two verticle angles are congruent. 
-        link: https://rbolt13.github.io/quiz_1/
-        status: 'Ongoing'
-        start: 'Winter 2022'
-        description: 'This quiz ... '
-        tags:
-          - undergrad math
-          - journal theme
 # Class Notes
   - title: Class Notes
     portfolioitem:
@@ -156,6 +145,7 @@ portfolioitems:
           - undergrad math
           - cerulean theme
       - name: ~Mathematics 338~ Modern College Geometry
+        image: '/images/portfolio/mth338.png'
         link: https://rbolt13.github.io/mth338/
         status: 'Ongoing'
         start: 'Winter 2022'
@@ -164,6 +154,7 @@ portfolioitems:
           - undergrad math
           - journal theme
       - name: ~Statistics 464~ Applied Regression Analysis
+        image: '/images/portfolio/stat464.png'
         link: https://rbolt13.github.io/stat464/
         status: 'Complete'
         start: 'Fall 2021'
@@ -173,6 +164,7 @@ portfolioitems:
           - undergrad stat
           - spacelab theme
       - name: ~Statistics 461~ Introduction to Mathematical Statistics I
+        image: '/images/portfolio/stat461.png'
         link: https://rbolt13.github.io/stat461/
         status: 'Complete'
         start: 'Fall 2021'
@@ -182,6 +174,7 @@ portfolioitems:
           - undergrad stat
           - darkly theme
       - name: ~Statistics 451~  Applied Statistics for Engineers and Scientists
+        image: '/images/portfolio/stat451.png'
         link: https://rbolt13.github.io/stat451/
         status: 'Complete'
         start: 'Fall 2021'
@@ -190,3 +183,19 @@ portfolioitems:
         tags:
           - undergrad stat
           - rmdformats readthedown theme
+# Class Projects 
+  - title: Class Projects
+    portfolioitem:
+      - name: Quiz 1 
+        image: '/images/portfolio/quiz1.png'
+        link: https://rbolt13.github.io/quiz_1/
+        status: 'Complete'
+        start: 'Winter 2022'
+        end: 'Winter 2022'
+        description: 'Quiz 1 for Math-338 is a proof that two vertical angles are congruent. This proof includes and uses the definition of vertical angles, congruence, and supplementary angles, as well as axioms of angle measure, and congruence and angle measure theorem.'
+        tags:
+          - undergrad math
+          - Geometry
+          - congruence 
+          - angles
+          - flatly theme
