@@ -129,6 +129,7 @@ portfolioitems:
   - title: Class Notes
     portfolioitem:
       - name: ~Statistics 462~ Introduction to Mathematical Statistics II
+        image: '/images/portfolio/stat462.png'
         link: https://rbolt13.github.io/stat462/
         status: 'Ongoing'
         start: 'Winter 2022'
@@ -137,6 +138,7 @@ portfolioitems:
           - undergrad stat
           - cosmo theme
       - name: ~Mathematics 344~ Introduction to Group Theory Application
+        image: '/images/portfolio/mth344.png'
         link: https://rbolt13.github.io/mth344/
         status: 'Ongoing'
         start: 'Winter 2022'
