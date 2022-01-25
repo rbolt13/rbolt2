@@ -1,0 +1,145 @@
+---
+title: 'RStudio: Building a Blog with R'
+author: Randi Bolt
+date: '2022-01-25'
+slug: []
+categories:
+  - undergrad
+tags:
+  - rstudio
+  - blogdown
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>These are my notes from RStudio’s “Building a Blog with R” tutorial, which was presented by Isabella Velasquez on January 25th, 2022. The recorded presentation will be posted to Youtube, and materials for this presentation can be found on their Github repository for this presentation <a href="https://github.com/ivelasq/2022-01-25_building-a-blog-with-r">here</a>.</p>
+<p>For more links on RStudio meet-up, check out the link <a href="https://www.meetup.com/RStudio-Enterprise-Community-Meetup/">here</a>.</p>
+<div id="isabella-velasquez" class="section level2">
+<h2>Isabella Velasquez</h2>
+<ul>
+<li><p><a href="mailto:isabella.velasquez@rstudio.com" class="email">isabella.velasquez@rstudio.com</a></p></li>
+<li><p><a href="https://ivelasq.rbind.io/">Website</a></p></li>
+<li><p>works on RStudio Blog</p></li>
+<li><p>reach out</p></li>
+<li><p>Seattle Lady Co-Organizer</p></li>
+<li><p>First R-Ladies talk was in 2018</p></li>
+</ul>
+</div>
+<div id="intro-question" class="section level2">
+<h2>Intro Question</h2>
+<p>What is your favorite data science or technical blog?</p>
+</div>
+<div id="agenda" class="section level2">
+<h2>Agenda</h2>
+<ul>
+<li><p>Why create a blog</p></li>
+<li><p>Deciding on topics</p></li>
+<li><p>Considerations</p></li>
+<li><p>Tools for building a blog</p></li>
+</ul>
+</div>
+<div id="why-create-a-blog" class="section level2">
+<h2>Why create a blog</h2>
+<ul>
+<li><p>when you’ve given the same advice 3 times, write a blog post</p></li>
+<li><p>share what you’ve learned</p></li>
+<li><p>write your opinions</p></li>
+<li><p>give updates and news</p></li>
+<li><p>external blogs (for companies)</p>
+<ul>
+<li><p>Rstudio has 4 different blogs</p>
+<ul>
+<li><p>RStudio Blog</p></li>
+<li><p>AI Blog (Distill)</p></li>
+<li><p>tidyverse (Hugodown)</p></li>
+<li><p>RViews (Blogdown)</p></li>
+</ul></li>
+</ul></li>
+<li><p>internal blog (for companies)</p>
+<ul>
+<li><p>share information more easily and effectively</p></li>
+<li><p>improve collaboration</p></li>
+<li><p>serving as a bulletin board for projects</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="types-of-posts" class="section level2">
+<h2>Types of Posts</h2>
+<ul>
+<li><p>standard lists</p></li>
+<li><p>how-t0 / tutorials</p></li>
+<li><p>news posts</p></li>
+<li><p>problem - and - solutions</p></li>
+<li><p>FAQ</p></li>
+<li><p>cheat sheets</p></li>
+<li><p>checklists</p></li>
+<li><p>infographics</p></li>
+<li><p>presentations</p></li>
+<li><p>debates</p></li>
+<li><p>inspiration</p></li>
+<li><p>interviews</p></li>
+</ul>
+</div>
+<div id="seperating-posts" class="section level2">
+<h2>Seperating posts</h2>
+<ul>
+<li><p>tutorials (learning oriented)</p></li>
+<li><p>how-tos (task oriented)</p></li>
+<li><p>explanation (understanding oriented)</p></li>
+<li><p>reference (information oriented)</p></li>
+</ul>
+</div>
+<div id="building-a-blog-with-r" class="section level2">
+<h2>Building a Blog with R</h2>
+<ul>
+<li><p>Knowledge of R and R Markdown</p></li>
+<li><p>Version control (Github)</p></li>
+</ul>
+</div>
+<div id="todays-demos" class="section level2">
+<h2>Today’s Demos</h2>
+<ul>
+<li><p>R blogdown</p></li>
+<li><p>Distill</p></li>
+</ul>
+</div>
+<div id="creating-a-new-blog" class="section level2">
+<h2>Creating a New Blog</h2>
+<ul>
+<li><p>Rstudio needs to be set up and connected through github</p></li>
+<li><p>Create a new github repository</p></li>
+<li><p>file <span class="math inline">\(\rightarrow\)</span> , and copy and paste <code>library(blogdown) new_site(theme "hugo-apero/hugo-apero", format = "toml", sample = FALSE, empty_dirs = TRUE)</code></p>
+<ul>
+<li>this is for hugo-apero</li>
+</ul></li>
+<li><p>config.toml has areas to change colors and fonts</p></li>
+</ul>
+</div>
+<div id="netlify" class="section level2">
+<h2>Netlify</h2>
+<ul>
+<li>import new project , connect to github</li>
+</ul>
+</div>
+<div id="distill" class="section level2">
+<h2>Distill</h2>
+<ul>
+<li><p>Check out distill blog <a href="https://distill.pub/">here</a>.</p></li>
+<li><p>wont be connected to github</p></li>
+<li><p>install distill</p></li>
+<li><p>File <span class="math inline">\(\rightarrow\)</span> New Project <span class="math inline">\(\rightarrow\)</span> New Distill Blog</p></li>
+<li><p>great for data science writing</p>
+<ul>
+<li>hover over text for footnotes</li>
+</ul></li>
+<li><p><code>distill::creat_post("New Post!")</code></p></li>
+<li><p>click knit to see what new website would look like</p></li>
+<li><p>default settings</p></li>
+<li><p>publish to RConnect : <code>distill::publish_website(account = "", server = "")</code></p></li>
+</ul>
+</div>
+<div id="overall-thoughts" class="section level2">
+<h2>Overall Thoughts</h2>
+<p>While this was called “Building a blog”, there wasn’t a lot of blog building. Similar to other RStudio presentations it was very business and product information heavy. I was hoping to learn some tips and tricks for my own blog, but mainly just learned about other types of blogs I can make with R.</p>
+</div>

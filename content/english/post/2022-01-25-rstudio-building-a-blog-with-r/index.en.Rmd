@@ -1,0 +1,165 @@
+---
+title: 'RStudio: Building a Blog with R'
+author: Randi Bolt
+date: '2022-01-25'
+slug: []
+categories:
+  - undergrad
+tags:
+  - rstudio
+  - blogdown
+---
+
+These are my notes from RStudio's "Building a Blog with R" tutorial, which was presented by Isabella Velasquez on January 25th, 2022. The recorded presentation will be posted to Youtube, and materials for this presentation can be found on their Github repository for this presentation [here](https://github.com/ivelasq/2022-01-25_building-a-blog-with-r). 
+
+For more links on RStudio meet-up, check out the link [here](https://www.meetup.com/RStudio-Enterprise-Community-Meetup/). 
+
+## Isabella Velasquez
+
+- isabella.velasquez@rstudio.com 
+
+- [Website](https://ivelasq.rbind.io/)
+
+- works on RStudio Blog 
+
+- reach out 
+
+- Seattle Lady Co-Organizer 
+
+- First R-Ladies talk was in 2018 
+
+## Intro Question 
+
+What is your favorite data science or technical blog? 
+
+## Agenda 
+
+- Why create a blog
+
+- Deciding on topics
+
+- Considerations 
+
+- Tools for building a blog 
+
+## Why create a blog 
+
+- when you've given the same advice 3 times, write a blog post 
+
+- share what you've learned
+
+- write your opinions 
+
+- give updates and news 
+
+- external blogs (for companies) 
+
+  - Rstudio has 4 different blogs
+  
+    - RStudio Blog
+    
+    - AI Blog (Distill)
+    
+    - tidyverse (Hugodown)
+    
+    - RViews (Blogdown)
+    
+- internal blog (for companies)
+
+  - share information more easily and effectively 
+  
+  - improve collaboration 
+  
+  - serving as a bulletin board for projects
+
+## Types of Posts
+
+- standard lists
+
+- how-t0 / tutorials
+
+- news posts
+
+- problem - and - solutions
+
+- FAQ
+
+- cheat sheets
+
+- checklists
+
+- infographics
+
+- presentations
+
+- debates
+
+- inspiration 
+
+- interviews 
+
+## Seperating posts
+
+- tutorials (learning oriented)
+
+- how-tos (task oriented)
+
+- explanation (understanding oriented)
+
+- reference (information oriented)
+
+## Building a Blog with R
+
+- Knowledge of R and R Markdown 
+
+- Version control (Github)
+
+## Today's Demos 
+
+- R blogdown
+
+- Distill 
+
+## Creating a New Blog 
+
+- Rstudio needs to be set up and connected through github
+
+- Create a new github repository 
+
+- file $\rightarrow$ , and copy and paste `library(blogdown) new_site(theme "hugo-apero/hugo-apero", format = "toml", sample = FALSE, empty_dirs = TRUE)`
+
+  - this is for hugo-apero
+
+- config.toml has areas to change colors and fonts 
+
+## Netlify 
+
+- import new project , connect to github
+
+## Distill 
+
+- Check out distill blog [here](https://distill.pub/). 
+
+- wont be connected to github
+
+- install distill 
+
+- File $\rightarrow$ New Project $\rightarrow$ New Distill Blog
+
+- great for data science writing 
+
+  - hover over text for footnotes
+  
+- `distill::creat_post("New Post!")`
+
+- click knit to see what new website would look like
+
+- default settings 
+
+- publish to RConnect : `distill::publish_website(account = "", server = "")`
+
+## Overall Thoughts 
+
+While this was called "Building a blog", there wasn't a lot of blog building. Similar to other RStudio presentations it was very business and product information heavy. I was hoping to learn some tips and tricks for my own blog, but mainly just learned about other types of blogs I can make with R. 
+
+
