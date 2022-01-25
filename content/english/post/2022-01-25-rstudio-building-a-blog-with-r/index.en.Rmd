@@ -160,6 +160,8 @@ What is your favorite data science or technical blog?
 
 ## Overall Thoughts 
 
-While this was called "Building a blog", there wasn't a lot of blog building. Similar to other RStudio presentations it was very business and product information heavy. I was hoping to learn some tips and tricks for my own blog, but mainly just learned about other types of blogs I can make with R. 
+While this was called "Building a blog", there wasn't a lot of blog building. Similar to other RStudio presentations it was very business and product information heavy. I was hoping to learn some tips and tricks for my own blog, but mainly just learned about other types of blogs I can make with R.
 
+## Recommended Blogs (in chat)
 
+- https://machinelearningmastery.com/ 
