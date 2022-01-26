@@ -28,7 +28,7 @@ Here is some short and simple latex that I often find helpful.
 
 - $\emptyset$ : `\emptyset`
 
-- $H\subseteq G$ : `H\subseteq G`
+- $\subseteq$ : `\subseteq`
 
 - $a\choose b$ : `a\choose b`
 
@@ -56,7 +56,7 @@ Here is some short and simple latex that I often find helpful.
 
 **Matrices and Matrix Equations** 
 
-- $\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}$ : `\{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}`
+- $\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}$ : `\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}`
 
   - $I=[\begin{smallmatrix} 1 & 0 \\ 0 & 1\end{smallmatrix}]$
   
