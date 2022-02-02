@@ -76,4 +76,12 @@ When proving supplementary angles add to $180^\circ$ we were able to say we were
 
 # Triangle Congruence Theorems 
 
-- SAS, AAS, SSS, SAS 
+- AAS, SSS, SAS, ASA
+
+### Remember 
+
+SSS is the most obvious and intuitive (and obviously not AAA). 
+
+ASA and SAS have one A or one S sandwhiched in the middle. 
+
+AAS not ASS (can't say that in school). 
