@@ -107,3 +107,13 @@ Here is some short and simple latex that I often find helpful.
 - Most latex backslashes work in google doc's equation boxes. If I have to do a "quick" homework, and dont want to spend a lot of time formatting a pdf in R, I will use google docs and latex in the equations boxes.  
 
 Note: This is how I began learning latex.
+
+**Why learn Latex?**
+
+When you type with latex instead of writting by hand: 
+
+- Generally speaking it looks nicer, especially on reports, projects, and presentations. 
+
+- Can spread any tension that is normally located in your dominate hand into both. 
+
+- It saves time in the long run updating a document on your computer than re-writting an entire problem or homework by hand. 
