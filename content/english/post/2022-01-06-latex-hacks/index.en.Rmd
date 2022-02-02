@@ -81,11 +81,25 @@ Here is some short and simple latex that I often find helpful.
   - `&= 1+2+3`
   
   - `&= 6` 
+  
+### Potential Errors : 
+
+**Spelling**
+
+- Ex: `\overlien{AB}` should be `\overline{AB}`
+
+**Space before final $**
+
+- Ex: `$\angle ABC $` should be `$\angle ABC$`
+
+**More $ on one side of equation than the other**
+
+- Ex: `$A^2+B^2=C^2$$` should be `$A^2+B^2=C^2$`
 
 ### Advice :
 
 **Google Docs Equations Boxes**
 
-- Most latex backslashes work in google doc's equation boxes. If I have to do a "quick" homework, and dont want to spend a lot of time formatting a pdf in R, I will use google docs, and these shortcuts in the equations boxes.  
+- Most latex backslashes work in google doc's equation boxes. If I have to do a "quick" homework, and dont want to spend a lot of time formatting a pdf in R, I will use google docs and latex in the equations boxes.  
 
-  - Note that before I started using R this is how I began learning latex.
+Note: This is how I began learning latex.
