@@ -1,0 +1,79 @@
+---
+title: 'Modern College Geometry Midterm Prep. '
+author: Randi Bolt
+date: '2022-02-02'
+slug: []
+categories:
+  - undergrad
+tags:
+  - geometry
+  - undergrad
+  - midterm
+  - logic
+  - Euclids 5th
+  - congruence
+---
+
+Notes consists of logic, Euclid's 5th, Congruence and Length Theorem, Congruence and Angle Theorem, angles and parallel lines, and triangle congruence theorems. 
+
+# Logic 
+
+Conditional Statement: $P\rightarrow Q$
+
+Inverse: $\exists P\Rightarrow \neg Q$
+
+Contrapositve: $\neg Q \Rightarrow \neg P$
+
+Converse: $Q\Rightarrow P$
+
+### Remember: 
+
+- Inverse applies to the conditional statement. 
+
+- Converse applies to the contrapositve. 
+
+- Conditional statement and contrapositive are logically equivalent. Hence why we can prove things by way of contradiction.
+
+- Inverse and converse are logically equivalent 
+
+### Example 
+
+Conditional Statement: If it is cloudy then it is raining. 
+
+Inverse: It could be cloudy and not raining. 
+
+Contrapositive: If it is not raining then it is not cloudy. 
+
+Converse. If it is rainy, then it is cloudy. 
+
+# Euclids 5th 
+
+If straight line falling on two straight lines makes the interior angles on the same side less than two right angles, the two straight lines, if produced indefinitely, meet on that side on which are the angles less than the two right angles.
+
+This relates to parallel lines, and helps us make statements about lines transverse to parallel lines. 
+
+### Example 
+
+When proving supplementary angles add to $180^\circ$ we were able to say we were able to use Euclids 5th element to say that the supplementary interior angles added up to $\geq 180^\circ$ because the lines are parallel (and don't intersect). 
+
+# Congruence and Length Theorem 
+
+- $\overline{AB}=\overline{CD}\Leftrightarrow AB=CD$
+
+# Congruence and Angle Theorem 
+
+- $\angle ABC\cong \angle DEF \Leftrightarrow m\angle ABC = m\angle DEF$
+
+# Angles and Parallel Lines
+
+- Vertical Angles are Congruent ([Proved Quiz 1](https://rbolt13.github.io/quiz_1/))
+
+- Alternative Interior Angles are Congruent 
+
+- Supplementary Angles add to 180
+
+- Corresponding Angles are Congruent
+
+# Triangle Congruence Theorems 
+
+- SAS, AAS, SSS, SAS 

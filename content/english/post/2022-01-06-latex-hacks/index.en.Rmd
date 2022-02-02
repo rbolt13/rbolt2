@@ -96,6 +96,10 @@ Here is some short and simple latex that I often find helpful.
 
 - Ex: `$A^2+B^2=C^2$$` should be `$A^2+B^2=C^2$`
 
+**Closing `{}`**
+
+- Ex: `$\int\limits_{1}^{2$` should be `$\int\limits_{1}^{2}$`
+
 ### Advice :
 
 **Google Docs Equations Boxes**
