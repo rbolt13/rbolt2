@@ -1,5 +1,5 @@
 ---
-title: UO ggplot2 p.2
+title: "UO: ggplot2 p.2"
 author: Randi Bolt
 date: '2022-01-20'
 slug: []

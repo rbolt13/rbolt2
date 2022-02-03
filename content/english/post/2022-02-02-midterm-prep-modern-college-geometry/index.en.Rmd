@@ -11,7 +11,10 @@ tags:
   - midterm
   - logic
   - Euclids 5th
-  - congruence
+  - congruence and length theorem
+  - congruence and angle theorem
+  - angles and parallel lines
+  - triangle congruence
 ---
 
 Notes consists of logic, Euclid's 5th, Congruence and Length Theorem, Congruence and Angle Theorem, angles and parallel lines, and triangle congruence theorems. 
@@ -60,9 +63,21 @@ When proving supplementary angles add to $180^\circ$ we were able to say we were
 
 - $\overline{AB}=\overline{CD}\Leftrightarrow AB=CD$
 
+### Proofs
+
+i) "bc ... are congruent then there is an isometry f that superimposes AB onto CD. Isometries preserve length, so AB and CD have the same length."
+
+ii) "Suppose a and b have the same length.", then explain what isometries would be needed to move AB to CD. "Translation, rotation, and reflection are all isometries, so we’ve shown AB and CD are congruent."
+
 # Congruence and Angle Theorem 
 
 - $\angle ABC\cong \angle DEF \Leftrightarrow m\angle ABC = m\angle DEF$
+
+### Proofs 
+
+i) "bc ... are congruent then there is an isometry f that superimposes angle ABC on angle DEF. Isometries preserve angle measure, so angles ABC and DEF must have had the same measure."
+
+ii) "Suppose angles ABC and DEF have the same measure.", then explain isometries needed to move angle ABC to angle DEF. "Translation, rotation, and reflection are all isometries, so we’ve shown angles ABC and DEF are congruent."
 
 # Angles and Parallel Lines
 
@@ -80,8 +95,8 @@ When proving supplementary angles add to $180^\circ$ we were able to say we were
 
 ### Remember 
 
-SSS is the most obvious and intuitive (bc its obviously not AAA). 
+SSS is the most obvious and intuitive (it also wouldn't be AAA). 
 
 ASA and SAS have one A or one S sandwhiched in the middle. 
 
-AAS not ASS (can't say that in school). 
+AAS not ASS (bc you can't say that in school). 
