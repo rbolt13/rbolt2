@@ -23,7 +23,9 @@ Notes consists of logic, Euclid's 5th, Congruence and Length Theorem, Congruence
 
 Conditional Statement: $P\rightarrow Q$
 
-Inverse: $\exists P\Rightarrow \neg Q$
+Negation: $\exists P\Rightarrow \neg Q$
+
+Inverse: $\neg P\Rightarrow \neg Q$
 
 Contrapositve: $\neg Q \Rightarrow \neg P$
 
@@ -38,6 +40,8 @@ Converse: $Q\Rightarrow P$
 - Conditional statement and contrapositive are logically equivalent. Hence why we can prove things by way of contradiction.
 
 - Inverse and converse are logically equivalent 
+
+- Negation is the only one where there could exist. 
 
 ### Example 
 
