@@ -47,7 +47,9 @@ Converse: $Q\Rightarrow P$
 
 Conditional Statement: If it is cloudy then it is raining. 
 
-Inverse: It could be cloudy and not raining. 
+Negation: It could be cloudy and not raining. 
+
+Inverse: If it is not cloudy then it is not raining. 
 
 Contrapositive: If it is not raining then it is not cloudy. 
 
@@ -61,7 +63,7 @@ This relates to parallel lines, and helps us make statements about lines transve
 
 ### Example 
 
-When proving supplementary angles add to $180^\circ$ we were able to say we were able to use Euclids 5th element to say that the supplementary interior angles added up to $\geq 180^\circ$ because the lines are parallel (and don't intersect). 
+When proving supplementary angles add to $180^\circ$ we were able to use Euclids 5th element to say that the supplementary interior angles added up to $\geq 180^\circ$ because the lines are parallel (and don't intersect). 
 
 # Congruence and Length Theorem 
 
