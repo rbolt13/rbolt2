@@ -10,7 +10,7 @@ tags:
   - undergrad
 ---
 
-Here is some short and simple latex that I often find helpful. 
+Here is some short and simple latex.
 
 ### Basic Symbols : 
 
@@ -26,11 +26,17 @@ Here is some short and simple latex that I often find helpful.
 
 - $\div$ : `\div`
 
+- $\nless$ : `\nless`
+
+- $\ngtr$ : `ngtr`
+
 - $\emptyset$ : `\emptyset`
 
 - $\subseteq$ : `\subseteq`
 
 - $a\choose b$ : `a\choose b`
+
+- $\underset{i\in I}U$ : `\underset{i\in I}U`
 
 - $\Leftrightarrow$ : `\Leftrightarrow`
 
@@ -102,7 +108,15 @@ Note: still haven't figured out how to get multiple lines of equations to work i
 
 - Ex: `$\int\limits_{1}^{2$` should be `$\int\limits_{1}^{2}$`
 
+**Underset on the wrong side**
+
+- Ex: `U\underset{i\in I}` should be `\underset{i\in I}U`
+
 ### Advice :
+
+**Detextify**
+
+- If you don't know what a symbol is, draw it in Detextify [here](http://detexify.kirelabs.org/classify.html). 
 
 **Google Docs Equations Boxes**
 
@@ -118,4 +132,4 @@ When you type with latex instead of writting by hand:
 
 - Can spread any tension that is normally located in your dominate hand into both. 
 
-- It saves time in the long run updating a document on your computer than re-writting an entire problem or homework by hand. 
+- It saves time in the long run updating a document on your computer than re-writing an entire problem by hand. 
