@@ -54,6 +54,24 @@ Here is some short and simple latex.
 
 - $\mathscr{F}$ : `\mathscr{F}`
 
+### Greek : 
+
+- $\tau$ : `\tau`
+
+- $\rho$ : `\rho`
+
+- $\alpha$ : `\alpha`
+
+- $\beta$ : `\beta`
+
+- $\Gamma$ : `\Gamma`
+
+- $\epsilon$ : `\epsilon`
+
+- $\mathcal{E}$ : `\mathcal{E}`
+
+- $\varepsilon$ : `\varepsilon`
+
 ### Inline : 
 
 **Limits above and below sums and integrals** 
