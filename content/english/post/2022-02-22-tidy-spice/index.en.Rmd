@@ -1,7 +1,7 @@
 ---
 title: Tidy Spice
 author: Randi Bolt
-date: '2022-02-22'
+date: '2022-02-21'
 slug: []
 categories:
   - undergrad
@@ -51,7 +51,7 @@ lyrics %>% distinct(album_name, song_name)
 
 # Tidy 
 
-- Change \x92 to '
+- Change `\x92` to '
 
 - Split words in line column into tokens
 
