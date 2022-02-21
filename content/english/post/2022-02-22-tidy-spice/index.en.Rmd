@@ -16,6 +16,8 @@ tags:
 
 This post is my reproduction of Julia Silge's blogpost [Topic Modeling for #TidyTuesday Spice Girls Lyrics](https://juliasilge.com/blog/spice-girls/), with some added inspiration from a blogpost by Ariane Aumaitre called [Tutorial: Text analysis and data visualization with Taylor Swift songs](https://arianeaumaitre.com/2019/09/15/tutorial-text-analysis-and-data-visualization-with-taylor-swift-songs/). 
 
+![](engflag.png)
+
 
 # Setup
 
