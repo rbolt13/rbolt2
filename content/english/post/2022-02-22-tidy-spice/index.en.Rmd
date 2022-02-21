@@ -1,0 +1,210 @@
+---
+title: Tidy Spice
+author: Randi Bolt
+date: '2022-02-22'
+slug: []
+categories:
+  - undergrad
+tags:
+  - R Studio
+  - Tidy2sday
+  - Spice Girls Lyrics
+  - tidyverse
+  - tidytext
+  - stm
+---
+
+This post is my reproduction of Julia Silge's blogpost [Topic Modeling for #TidyTuesday Spice Girls Lyrics](https://juliasilge.com/blog/spice-girls/), with some added inspiration from a blogpost by Ariane Aumaitre called [Tutorial: Text analysis and data visualization with Taylor Swift songs](https://arianeaumaitre.com/2019/09/15/tutorial-text-analysis-and-data-visualization-with-taylor-swift-songs/). 
+
+
+# Setup
+
+```{r setup, message=F, error=F}
+library(tidyverse) 
+library(tidytext)
+library(stm)
+library(scales) #will be needed for percentage scales in ggplot
+knitr::opts_chunk$set(error=FALSE, 
+                      message= FALSE,
+                      warning=FALSE)
+```
+
+# Load Data
+
+```{r load data}
+lyrics <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-14/lyrics.csv")
+```
+
+# Explore
+
+- First five rows of data 
+
+- Album and Song Names
+
+```{r explore}
+# Show 5 Rows
+head(lyrics, 5)
+lyrics %>% distinct(album_name, song_name)
+```
+
+# Tidy 
+
+- Change \x92 to '
+
+- Split words in line column into tokens
+
+- Anti-Join each word into it's own row
+
+```{r tidy}
+tidy_lyrics <-
+  lyrics %>%
+  mutate(song_name = str_replace_all(song_name, "\x92", "'")) %>%
+  unnest_tokens(word, line) %>%
+  anti_join(get_stopwords())
+tidy_lyrics
+```
+
+# Most Common Words
+
+**Long Way**
+
+```{r}
+tidy_lyrics %>%
+  group_by(word) %>%
+  summarise(n = n()) %>% 
+  arrange(-n)
+```
+
+**Short Way**
+
+```{r}
+tidy_lyrics %>%
+  count(word, sort = TRUE)
+```
+
+
+```{r}
+tidy_lyrics %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 80,
+         word != "la",
+         word != "oh") %>%
+  ggplot(aes(x = n, y = reorder(word, n), fill = word)) +
+  geom_col() + 
+  labs(y = "",
+       x = "Number of Times Mentioned",
+       title = "Most Frequent Words in Spice Girls Lyrics")
+```
+
+# Most Common Word Per Song
+
+```{r}
+# Most Common Word per Song
+tidy_lyrics %>%
+  count(song_name, word, sort = TRUE)
+```
+
+
+```{r}
+tidy_lyrics %>%
+  count(song_name, word, sort = TRUE) %>%
+  filter(n >40,
+         word != "la") %>%
+  ggplot(aes(x = n, y = reorder(word, n), fill = word)) +
+  geom_col() + 
+  labs(y = "",
+       x = "Number of Times Mentioned",
+       title = "Most Frequent Words in Spice Girls Lyrics in a Single Song") 
+
+```
+
+# Train a topic model
+
+(Analyze text data to determine cluster words)
+
+```{r train a topic model}
+lyrics_sparse <-
+  tidy_lyrics %>%
+  count(song_name, word) %>%
+  cast_sparse(song_name, word, n)
+dim(lyrics_sparse)
+```
+
+This means there are 31 songs (i.e. documents) and 979 different tokens (i.e. terms or words) in our dataset for modeling.
+
+"The most important parameter when training a topic modeling is K, the number of topics. This is like k in k-means in that it is a hyperparamter of the model and we must choose this value ahead of time. We could try multiple different values to find the best value for K, but this is a very small dataset so let’s just stick with K = 4."
+
+```{r}
+set.seed(123) # random number generator 
+topic_model <- stm(lyrics_sparse, K = 4, verbose = FALSE)
+summary(topic_model)
+```
+
+# Explore topic model results
+
+```{r}
+word_topics <- tidy(topic_model, matrix = "beta")
+word_topics 
+```
+
+# Visulaization
+
+```{r}
+word_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 10) %>%
+  ungroup() %>%
+  mutate(topic = paste("Topic", topic)) %>%
+  ggplot(aes(beta, reorder_within(term, beta, topic), fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(vars(topic), scales = "free_y") +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_reordered() +
+  labs(x = expression(beta), y = NULL)
+```
+
+## Gamma Matrix
+
+```{r}
+song_topics <- tidy(topic_model,
+  matrix = "gamma",
+  document_names = rownames(lyrics_sparse)
+)
+song_topics
+```
+
+
+```{r}
+song_topics %>%
+  mutate(
+    song_name = fct_reorder(document, gamma),
+    topic = factor(topic)
+  ) %>%
+  ggplot(aes(gamma, topic, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(vars(song_name), ncol = 4) +
+  scale_x_continuous(expand = c(0, 0)) +
+  labs(x = expression(gamma), y = "Topic")
+```
+
+# Estimate Regression 
+
+```{r}
+effects <-
+  estimateEffect(
+    1:4 ~ album_name,
+    topic_model,
+    tidy_lyrics %>% distinct(song_name, album_name) %>% arrange(song_name)
+  )
+```
+
+```{r}
+summary(effects)
+```
+
+
+
+
+
+
+
