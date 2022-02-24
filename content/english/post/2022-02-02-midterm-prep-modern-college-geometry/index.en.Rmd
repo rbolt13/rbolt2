@@ -1,5 +1,5 @@
 ---
-title: 'Modern College Geometry Midterm Prep. '
+title: 'Midterm Prep. Modern College Geometry'
 author: Randi Bolt
 date: '2022-02-02'
 slug: []

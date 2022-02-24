@@ -1,5 +1,5 @@
 ---
-title: Group Theory Midterm Prep.
+title: 'Midterm Prep. Group Theory' 
 author: Randi Bolt
 date: '2022-02-07'
 slug: []

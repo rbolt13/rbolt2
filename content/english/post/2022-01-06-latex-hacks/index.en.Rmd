@@ -24,6 +24,8 @@ Here is some short and simple latex.
 
 - $\cong$ : `\cong`
 
+- $\unlhd$ : `\unlhd`
+
 - $\div$ : `\div`
 
 - $\nless$ : `\nless`
@@ -113,6 +115,8 @@ Note: still haven't figured out how to get multiple lines of equations to work i
 **Spelling**
 
 - Ex: `\overlien{AB}` should be `\overline{AB}`
+
+  - label , table 
 
 **Space before final $**
 
