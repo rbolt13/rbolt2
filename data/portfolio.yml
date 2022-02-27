@@ -128,6 +128,24 @@ portfolioitems:
 # Class Notes
   - title: Class Notes
     portfolioitem:
+      - name: ~Mathematics 344~ Introduction to Group Theory Application
+        image: '/images/portfolio/mth344.png'
+        link: https://rbolt13.github.io/mth344/
+        status: 'Ongoing'
+        start: 'Winter 2022'
+        description: '**Topics Covered :** Set theory, operations, commutative, associative, identity, inverses, group, abelian, cancelation law, “shoes then socks” theorem, subgroups, cyclic subgroups, functions, injective, surjective, bijective, function composition, inverse function, permutation groups, symmetric groups, dihedral group, cycle function, cycle decomposition, cycle length and transposition, parity of transpositions, alternating group, isomorphism, symmetries of a square, Cayley’s Theorem, order, exponent laws for groups, the division algorithm, cyclic groups, partitions and equivalence relations, co-sets, Lagrange’s Theorem, homomorphism, normal subgroups, kernel, … ongoing'
+        tags:
+          - undergrad math
+          - cerulean theme
+      - name: ~Mathematics 338~ Modern College Geometry
+        image: '/images/portfolio/mth338.png'
+        link: https://rbolt13.github.io/mth338/
+        status: 'Ongoing'
+        start: 'Winter 2022'
+        description: '**Topics Covered :** Axioms, logic and basic proof writing, Euclid’s Elements and Postulates, axioms of length, axioms of angle measure, congruence, isometries, Euclid’s 5th Postulate (Parallel Lines), Supplementary Interior Angle Theorem, triangles and triangle congruences (SAS, ASA, AAS, SSS), quadrilaterals, parallelograms and Parallelogram Theorem, axioms of area, area proofs, similarity, dilation, AA and SAS Similarity Theorems, circles, central and inscribed angles, Power of the Point Theorem 1 and 2, isometries as functions, group theory for symmetries, Fixed Point Theorem, symmetry, symmetries of equilateral triangle, Euclidean distance (pythagorean theorem), taxi-cab geometry (distance, circles, triangles, congruence),  spherical geometry, and hyperbolic geometry.'
+        tags:
+          - undergrad math
+          - journal theme
       - name: ~Statistics 462~ Introduction to Mathematical Statistics II
         image: '/images/portfolio/stat462.png'
         link: https://rbolt13.github.io/stat462/
@@ -137,24 +155,6 @@ portfolioitems:
         tags:
           - undergrad stat
           - cosmo theme
-      - name: ~Mathematics 344~ Introduction to Group Theory Application
-        image: '/images/portfolio/mth344.png'
-        link: https://rbolt13.github.io/mth344/
-        status: 'Ongoing'
-        start: 'Winter 2022'
-        description: '**Topics Covered :** ...'
-        tags:
-          - undergrad math
-          - cerulean theme
-      - name: ~Mathematics 338~ Modern College Geometry
-        image: '/images/portfolio/mth338.png'
-        link: https://rbolt13.github.io/mth338/
-        status: 'Ongoing'
-        start: 'Winter 2022'
-        description: '**Topics Covered :** ...'
-        tags:
-          - undergrad math
-          - journal theme
       - name: ~Statistics 464~ Applied Regression Analysis
         image: '/images/portfolio/stat464.png'
         link: https://rbolt13.github.io/stat464/
@@ -201,3 +201,23 @@ portfolioitems:
           - congruence 
           - angles
           - flatly theme
+      - name: Quiz 2 
+        image: '/images/portfolio/quiz2.png'
+        link: https://rbolt13.github.io/quiz_2/
+        status: 'Complete'
+        start: 'Winter 2022'
+        end: 'Winter 2022'
+        description: 'Quiz 2 for Math-338 is a proof that first investigaes the symmetries of a non-square rhombus, then proves that group of symmetries is closed under composition.'
+        tags:
+          - undergrad math
+          - paralellograms
+          - rhombus
+          - symmetry
+          - isometry
+          - translation
+          - rotation
+          - reflection
+          - compostion 
+          - group
+          - gifs
+          - simplex theme

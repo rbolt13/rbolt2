@@ -117,6 +117,10 @@ Note: still haven't figured out how to get multiple lines of equations to work i
 - Ex: `\overlien{AB}` should be `\overline{AB}`
 
   - label , table 
+  
+**More than two backslashes**
+
+- Ex: Equation will work but `\end{equation}` will show at the end. One of the lines has more than two backslashes ending it. 
 
 **Space before final $**
 
