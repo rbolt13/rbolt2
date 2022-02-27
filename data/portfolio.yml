@@ -96,16 +96,16 @@ portfolioitems:
 # portfolio category
   - title: Blogs
     portfolioitem:
-      - name: rbolt2 (Personal Website) 
+      - name: rbolt.me 
         image: '/images/portfolio/rbolt2.png'
-        link: https://rbolt2.netlify.app/
+        link: https://www.rbolt.me/
         status: 'Ongoing'
         start: 'Winter 2022'
         description: 'My most current and up to date blog created using blogdown, github, and netlify. Posts are related to statistics, mathematics, and R.'
         tags:
           - blogdown 
           - Alexander Bilz ~ Anatole
-      - name: rbolt (First Undergrad Math/Stat Blog)
+      - name: rbolt 
         image: '/images/portfolio/rbolt.png'
         link: https://rbolt.netlify.app/
         status: 'Incomplete'
@@ -142,7 +142,7 @@ portfolioitems:
         link: https://rbolt13.github.io/mth338/
         status: 'Ongoing'
         start: 'Winter 2022'
-        description: '**Topics Covered :** Axioms, logic and basic proof writing, Euclid’s Elements and Postulates, axioms of length, axioms of angle measure, congruence, isometries, Euclid’s 5th Postulate (Parallel Lines), Supplementary Interior Angle Theorem, triangles and triangle congruences (SAS, ASA, AAS, SSS), quadrilaterals, parallelograms and Parallelogram Theorem, axioms of area, area proofs, similarity, dilation, AA and SAS Similarity Theorems, circles, central and inscribed angles, Power of the Point Theorem 1 and 2, isometries as functions, group theory for symmetries, Fixed Point Theorem, symmetry, symmetries of equilateral triangle, Euclidean distance (pythagorean theorem), taxi-cab geometry (distance, circles, triangles, congruence),  spherical geometry, and hyperbolic geometry.'
+        description: '**Topics Covered :** Axioms, logic and basic proof writing, Euclid’s Elements and Postulates, axioms of length, axioms of angle measure, congruence, isometries, Euclid’s 5th Postulate (Parallel Lines), Supplementary Interior Angle Theorem, triangles and triangle congruences (SAS, ASA, AAS, SSS), quadrilaterals, parallelograms and Parallelogram Theorem, axioms of area, area proofs, similarity, dilation, AA and SAS Similarity Theorems, circles, central and inscribed angles, Power of the Point Theorem 1 and 2, isometries as functions, group theory for symmetries, Fixed Point Theorem, symmetry, symmetries of equilateral triangle, Euclidean distance (pythagorean theorem), taxi-cab geometry (distance, circles, triangles, congruence),  spherical geometry, and hyperbolic geometry...'
         tags:
           - undergrad math
           - journal theme
@@ -151,7 +151,7 @@ portfolioitems:
         link: https://rbolt13.github.io/stat462/
         status: 'Ongoing'
         start: 'Winter 2022'
-        description: '**Topics Covered :** ...'
+        description: '**Topics Covered :** Pivot tables, marginal PDF’s, joint PDF’s and CDF’s, independence of random variables, bivariate probability distributions, conditional distributions, conditional expectations, covariance and correlation, functions of random variables and their distributions, univariate transformations using CDF’s, univariate transformations using PDF’s, bivariate transformations using Jacobians, the method of moment-generating functions, PDF’s of linear function of independent Normal random variables, sampling distributions and the central limit theorem, … '
         tags:
           - undergrad stat
           - cosmo theme

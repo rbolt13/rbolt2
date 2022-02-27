@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>maps on Randi Bolt</title>
+    <link>https://www.rbolt.me/tags/maps/</link>
+    <description>Recent content in maps on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/tags/maps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UO: ggplot2 p.2</title>
+      <link>https://www.rbolt.me/post/2022-01-20-uo-ggplot2-p-2/</link>
+      <pubDate>Thu, 20 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-01-20-uo-ggplot2-p-2/</guid>
+      
+        <description>These are my notes from the University of Oregon’s Data Service Consultants workshop on ggplot2, part 2.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

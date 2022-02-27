@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>subsets on Randi Bolt</title>
+    <link>https://www.rbolt.me/tags/subsets/</link>
+    <description>Recent content in subsets on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/tags/subsets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Midterm Prep. Group Theory</title>
+      <link>https://www.rbolt.me/post/2022-02-07-group-theory-midterm-prep/</link>
+      <pubDate>Mon, 07 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-02-07-group-theory-midterm-prep/</guid>
+      
+        <description>These notes are to help me prepare for MTH-344, Group Theory Applications midterm.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

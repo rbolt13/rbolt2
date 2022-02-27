@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blogdown on Randi Bolt</title>
+    <link>https://www.rbolt.me/tags/blogdown/</link>
+    <description>Recent content in blogdown on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RStudio: Building a Blog with R</title>
+      <link>https://www.rbolt.me/post/2022-01-25-rstudio-building-a-blog-with-r/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-01-25-rstudio-building-a-blog-with-r/</guid>
+      
+        <description>These are my notes from RStudio’s “Building a Blog with R” tutorial, which was presented by Isabella Velasquez on January 25th, 2022.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

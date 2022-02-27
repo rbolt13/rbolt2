@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Portfolio on Randi Bolt</title>
+    <link>https://www.rbolt.me/portfolio/</link>
+    <description>Recent content in Portfolio on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Portland R User Group: Aggregate making tables with gt package</title>
+      <link>https://www.rbolt.me/portfolio/2022-02-24-aggregate-making-tables-with-gt-package/</link>
+      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/portfolio/2022-02-24-aggregate-making-tables-with-gt-package/</guid>
+      
+        <description>Ted Landeras led this event for Portland R user Group where we watched Tich Lannone|| Making Beautiful Tables with {gt}|| RStudio as a group on Youtube, and then went through some other examples.</description>
+      
+    </item>
+    
+    <item>
+      <title>Probability Distributions</title>
+      <link>https://www.rbolt.me/portfolio/2022-01-19-probability-distributions/</link>
+      <pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/portfolio/2022-01-19-probability-distributions/</guid>
+      
+        <description>Probability Distributions and equations.
+This post is under construction.</description>
+      
+    </item>
+    
+    <item>
+      <title>ggplot2 UO Workshop</title>
+      <link>https://www.rbolt.me/portfolio/2022-01-18-ggplot2-uo-workshop/</link>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/portfolio/2022-01-18-ggplot2-uo-workshop/</guid>
+      
+        <description>These are my notes from the University of Oregon’s Data Service Consultants workshop on ggplot2.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

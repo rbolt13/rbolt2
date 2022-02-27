@@ -1,0 +1,90 @@
+---
+title: LearnGeom
+author: Randi Bolt
+date: '2022-01-17'
+slug: []
+categories:
+  - undergrad
+
+tags:
+  - geometry
+  - LearnGeom
+  - package
+  - r studio
+---
+
+Code and plots using the LearnGeom package. 
+
+For more information about LearnGeom, check out the package details  [here](https://cran.r-project.org/web/packages/LearnGeom/LearnGeom.pdf). 
+
+## Load Libraries and Set Global Chunk Options
+
+```{r setup}
+library(LearnGeom)
+knitr::opts_chunk$set(error=FALSE, 
+                      message= FALSE,
+                      warning=FALSE)
+```
+
+## Coordinate Plane
+
+```{r coordinate plane}
+# Coordinate Plane 
+# plots an empty coordinate (cartesian) plane with customizable limits for the X and Y axis.
+# CoordinatePlane(x_min, x_max, y_min, y_max)
+# Note: 
+# can't save cPlane <- CoordinatePlane() as an object
+# will get error: Error in polygon(xx, yy, col = color, border = border) : plot.new has not been called yet
+x_min <- 0
+x_max <- 10
+y_min <- 0
+y_max <- 10
+CoordinatePlane(x_min, x_max, y_min, y_max)
+# can't save coordPlan <- CoordinatePlane() as an object
+# will get error: Error in polygon(xx, yy, col = color, border = border) : plot.new has not been called yet
+```
+
+## Polygons 
+
+```{r}
+# plane 
+CoordinatePlane(x_min, x_max, y_min, y_max)
+# polygon 1 
+P1 <- c(1,4)
+P2 <- c(3,7)
+P3 <- c(4, 1)
+Poly <- CreatePolygon(P1, P2, P3)
+Draw(Poly, c("light blue"), label = TRUE)
+# polygon 2 
+P4 <- c(6, 3)
+P5 <- c(8, 3)
+P6 <- c(7, 8)
+Poly2 <- CreatePolygon(P4, P5, P6)
+Draw(Poly2, c("light green"))
+```
+
+## Angle and Point Line Segments
+
+```{r segment angle and segment point}
+# plane 
+CoordinatePlane(x_min, x_max, y_min, y_max)
+# Create Segment Angle
+P <- c(1,1)
+angle <- 30
+l <- 5
+Segment <- CreateSegmentAngle(P, angle, l)
+Draw(Segment, "pink")
+# Segment point
+P1 <- c(2,8)
+P2 <- c(8,6)
+Segment <- CreateSegmentPoints(P1, P2)
+Draw(Segment, "purple")
+```
+
+
+```{r, echo=F}
+# CreateArcAngles()
+# CreateArcPointsDist()
+# ReflectedPoint()
+# ReflectedPolygon()
+```

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spice Girls Lyrics on Randi Bolt</title>
+    <link>https://www.rbolt.me/tags/spice-girls-lyrics/</link>
+    <description>Recent content in Spice Girls Lyrics on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/tags/spice-girls-lyrics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tidy Spice</title>
+      <link>https://www.rbolt.me/post/2022-02-22-tidy-spice/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-02-22-tidy-spice/</guid>
+      
+        <description>This post is my reproduction of Julia Silge’s blogpost Topic Modeling for #TidyTuesday Spice Girls Lyrics, with some added inspiration from a blogpost by Ariane Aumaitre called Tutorial: Text analysis and data visualization with Taylor Swift songs.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

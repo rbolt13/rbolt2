@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Randi Bolt</title>
+    <link>https://www.rbolt.me/post/</link>
+    <description>Recent content in Posts on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tidy Spice</title>
+      <link>https://www.rbolt.me/post/2022-02-22-tidy-spice/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-02-22-tidy-spice/</guid>
+      
+        <description>This post is my reproduction of Julia Silge’s blogpost Topic Modeling for #TidyTuesday Spice Girls Lyrics, with some added inspiration from a blogpost by Ariane Aumaitre called Tutorial: Text analysis and data visualization with Taylor Swift songs.</description>
+      
+    </item>
+    
+    <item>
+      <title>Midterm Prep. Group Theory</title>
+      <link>https://www.rbolt.me/post/2022-02-07-group-theory-midterm-prep/</link>
+      <pubDate>Mon, 07 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-02-07-group-theory-midterm-prep/</guid>
+      
+        <description>These notes are to help me prepare for MTH-344, Group Theory Applications midterm.</description>
+      
+    </item>
+    
+    <item>
+      <title>Midterm Prep. Modern College Geometry</title>
+      <link>https://www.rbolt.me/post/2022-02-02-midterm-prep-modern-college-geometry/</link>
+      <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-02-02-midterm-prep-modern-college-geometry/</guid>
+      
+        <description>Notes consists of logic, Euclid’s 5th, Congruence and Length Theorem, Congruence and Angle Theorem, angles and parallel lines, and triangle congruence theorems.</description>
+      
+    </item>
+    
+    <item>
+      <title>RStudio: Building a Blog with R</title>
+      <link>https://www.rbolt.me/post/2022-01-25-rstudio-building-a-blog-with-r/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-01-25-rstudio-building-a-blog-with-r/</guid>
+      
+        <description>These are my notes from RStudio’s “Building a Blog with R” tutorial, which was presented by Isabella Velasquez on January 25th, 2022.</description>
+      
+    </item>
+    
+    <item>
+      <title>UO: ggplot2 p.2</title>
+      <link>https://www.rbolt.me/post/2022-01-20-uo-ggplot2-p-2/</link>
+      <pubDate>Thu, 20 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-01-20-uo-ggplot2-p-2/</guid>
+      
+        <description>These are my notes from the University of Oregon’s Data Service Consultants workshop on ggplot2, part 2.</description>
+      
+    </item>
+    
+    <item>
+      <title>LearnGeom</title>
+      <link>https://www.rbolt.me/post/2022-01-17-learngeom/</link>
+      <pubDate>Mon, 17 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-01-17-learngeom/</guid>
+      
+        <description>Code and plots using the LearnGeom package.
+For more information about LearnGeom, check out the package details here.</description>
+      
+    </item>
+    
+    <item>
+      <title>Latex</title>
+      <link>https://www.rbolt.me/post/latex-hacks/</link>
+      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/latex-hacks/</guid>
+      
+        <description>Here is some short and simple latex.
+Basic Symbols :  \(\sim\) : \sim</description>
+      
+    </item>
+    
+  </channel>
+</rss>

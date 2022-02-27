@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+><head>
+  <title>
+    
+      
+        Portland R User Group: Aggregate making tables with gt package |
+
+      
+      Randi Bolt
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.86.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      statistics, mathematics, and R
+
+
+    "
+  />
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.861c630407a306e1a79890bffbab9b381c5a0b03cd0c3b79755cc5eeea04b6b0.css"
+    integrity="sha256-hhxjBAejBuGnmJC/&#43;6ubOBxaCwPNDDt5dVzF7uoEtrA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css"
+    integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://www.rbolt.me/portfolio/2022-02-24-aggregate-making-tables-with-gt-package/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.rbolt.me/images/profile.PNG"/>
+
+<meta name="twitter:title" content="Portland R User Group: Aggregate making tables with gt package"/>
+<meta name="twitter:description" content="Ted Landeras led this event for Portland R user Group where we watched Tich Lannone|| Making Beautiful Tables with {gt}|| RStudio as a group on Youtube, and then went through some other examples."/>
+
+
+
+  
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "portfolio",
+        "name": "Portland R User Group: Aggregate making tables with gt package",
+        "headline": "Portland R User Group: Aggregate making tables with gt package",
+        "alternativeHeadline": "",
+        "description": "
+      
+        Ted Landeras led this event for Portland R user Group where we watched Tich Lannone|| Making Beautiful Tables with {gt}|| RStudio as a group on Youtube, and then went through some other examples.
+
+
+      
+
+
+    ",
+        "inLanguage": "en-us",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.rbolt.me\/portfolio\/2022-02-24-aggregate-making-tables-with-gt-package\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-02-24T00:00:00.00Z",
+        "datePublished": "2022-02-24T00:00:00.00Z",
+        "dateModified": "2022-02-24T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Randi Bolt",
+            "url": "https://www.rbolt.me/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/www.rbolt.me\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://www.rbolt.me/images/profile.PNG"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/www.rbolt.me\/portfolio\/2022-02-24-aggregate-making-tables-with-gt-package\/",
+        "wordCount" : "1135",
+        "genre" : [ 
+      
+      "undergrad"
+
+    ],
+        "keywords" : [ 
+      
+      "rstudio"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+      </div>
+      <ul>
+        
+        
+          <li>
+            <a class="theme-switch" title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </li>
+
+        
+      </ul>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.PNG" alt="profile picture" />
+        <h3 title=""><a href="/">Randi Bolt</a></h3>
+        <div class="description">
+          <p>statistics, mathematics, and R</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="https://github.com/rbolt13/" rel="me" aria-label="GitHub" title="GitHub">
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li>
+          <a href="rbolt@pdx.edu" rel="me" aria-label="e-mail" title="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Randi Bolt
+          2022
+
+
+        
+      </li>
+      
+        <li class="footer__item">
+          <a
+            href="https://github.com/rbolt13"
+            
+              target="_blank" rel="noopener noreferrer"
+
+            
+            title=""
+          >
+            Github
+          </a>
+        </li>
+
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Portland R User Group: Aggregate making tables with gt package</h1>
+        
+      </div>
+<script src="https://www.rbolt.me/portfolio/2022-02-24-aggregate-making-tables-with-gt-package/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Ted Landeras led this event for <a href="https://pdxrlang.com/">Portland R user Grou</a>p where we watched <a href="https://www.youtube.com/watch?v=z0UGmMOxl-c">Tich Lannone|| Making Beautiful Tables with <code>{gt}</code>|| RStudio</a> as a group on Youtube, and then went through some other examples.</p>
+<pre class="r"><code>library(gt)</code></pre>
+<pre><code>## Warning: package &#39;gt&#39; was built under R version 4.0.5</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.0.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(palmerpenguins)</code></pre>
+<p>use markdown with <code>md()</code></p>
+<p>pixel size <code>px()</code></p>
+<pre class="r"><code>penguins %&gt;%
+  group_by(species) %&gt;%
+  summarize_at(
+    .vars = c(
+      &quot;bill_length_mm&quot;, 
+      &quot;bill_depth_mm&quot;,
+      &quot;flipper_length_mm&quot;,
+      &quot;body_mass_g&quot;
+      ),
+            .funs = ~ mean(.,na.rm = TRUE)) %&gt;%
+  gt() %&gt;%
+  tab_header(
+    title = md(&quot;The penguins dataset&quot;),
+    subtitle = md(&quot;**Three** years of data on penguins on _three_ islands.&quot;)
+  ) %&gt;%
+  cols_label(
+    bill_length_mm = md(&quot;Bill Length,&lt;br&gt;mm&quot;),
+    bill_depth_mm = md(&quot;Bill Depth,&lt;br&gt;mm&quot;),
+    flipper_length_mm = md(&quot;Flipper Length,&lt;br&gt;mm&quot;),
+    body_mass_g = md(&quot;Body Mass,&lt;br&gt;g&quot;)
+  ) %&gt;%
+  opt_align_table_header(align = &quot;left&quot;) %&gt;% 
+#   fmt_number(columns = everything()) %&gt;%
+#   fmt_number(columns = body_mass_g, scale_by = 1/1000) %&gt;%
+  cols_width(
+    bill_length_mm ~ px(120),
+    bill_depth_mm ~ px(120),
+    flipper_length_mm ~ px(120),
+    body_mass_g ~ px(120),
+    everything() ~ px(100)
+  ) %&gt;% 
+  tab_source_note(source_note = md(&quot;Dataset is from the `palmerpenguins` **R** package.&quot;)
+                  ) %&gt;%
+  # tab_footnote(
+  #   footnote = &quot;The Largest of the three penguins studied.&quot;,
+  #   locations = cells_stub(rows = &quot;Gentoo&quot;)
+  # )
+  tab_footnote(
+    footnote = &quot;Flipper Length was measured with a tape measure.&quot;,
+    locations = cells_column_labels(columns = flipper_length_mm)
+  ) %&gt;%
+  tab_footnote(
+    footnote = &quot;Tap measure suffered some frost damage.&quot;,
+    locations = list(
+      cells_column_labels(columns = flipper_length_mm),
+      cells_body(columns = flipper_length_mm)
+  )
+  ) %&gt;%
+  tab_style(
+    locations = cells_body(
+      columns = everything()
+      ),
+    style = list(
+      cell_fill(color = &quot;steelblue&quot;),
+      cell_text(color = &quot;white&quot;)
+      )
+  ) %&gt;%
+  tab_stubhead(label = md(&quot;Penguin *Species*&quot;))</code></pre>
+<div id="feinczlwat" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#feinczlwat .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#feinczlwat .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#feinczlwat .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#feinczlwat .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#feinczlwat .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#feinczlwat .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#feinczlwat .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#feinczlwat .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#feinczlwat .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#feinczlwat .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#feinczlwat .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#feinczlwat .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#feinczlwat .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#feinczlwat .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#feinczlwat .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#feinczlwat .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#feinczlwat .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#feinczlwat .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#feinczlwat .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#feinczlwat .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#feinczlwat .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#feinczlwat .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#feinczlwat .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#feinczlwat .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#feinczlwat .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#feinczlwat .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#feinczlwat .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#feinczlwat .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#feinczlwat .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#feinczlwat .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#feinczlwat .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#feinczlwat .gt_left {
+  text-align: left;
+}
+
+#feinczlwat .gt_center {
+  text-align: center;
+}
+
+#feinczlwat .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#feinczlwat .gt_font_normal {
+  font-weight: normal;
+}
+
+#feinczlwat .gt_font_bold {
+  font-weight: bold;
+}
+
+#feinczlwat .gt_font_italic {
+  font-style: italic;
+}
+
+#feinczlwat .gt_super {
+  font-size: 65%;
+}
+
+#feinczlwat .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#feinczlwat .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#feinczlwat .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#feinczlwat .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#feinczlwat .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:100px;"/>
+    <col style="width:120px;"/>
+    <col style="width:120px;"/>
+    <col style="width:120px;"/>
+    <col style="width:120px;"/>
+  </colgroup>
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>The penguins dataset</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style><strong>Three</strong> years of data on penguins on <em>three</em> islands.</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">species</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Bill Length,<br>mm</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Bill Depth,<br>mm</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Flipper Length,<br>mm<sup class="gt_footnote_marks">1,2</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Body Mass,<br>g</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_center" style="background-color: #4682B4; color: #FFFFFF;">Adelie</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">38.79139</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">18.34636</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">189.9536<sup class="gt_footnote_marks">2</sup></td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">3700.662</td></tr>
+    <tr><td class="gt_row gt_center" style="background-color: #4682B4; color: #FFFFFF;">Chinstrap</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">48.83382</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">18.42059</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">195.8235<sup class="gt_footnote_marks">2</sup></td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">3733.088</td></tr>
+    <tr><td class="gt_row gt_center" style="background-color: #4682B4; color: #FFFFFF;">Gentoo</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">47.50488</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">14.98211</td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">217.1870<sup class="gt_footnote_marks">2</sup></td>
+<td class="gt_row gt_right" style="background-color: #4682B4; color: #FFFFFF;">5076.016</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Dataset is from the <code>palmerpenguins</code> <strong>R</strong> package.</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> Flipper Length was measured with a tape measure.</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">2</sup> Tap measure suffered some frost damage.</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<div id="practice" class="section level1">
+<h1>Practice</h1>
+</div>
+<div id="what-can-gt-do-for-you" class="section level1">
+<h1>What can {gt} do for you?</h1>
+<p>The following are taken from a number of different examples. Where possible, I’ve tried to notate the source.</p>
+<div id="gt-parts-reference" class="section level2">
+<h2>{gt} parts reference</h2>
+<pre class="r"><code>url &lt;- &quot;gt_parts_of_a_table.svg&quot;
+knitr::include_graphics(url)</code></pre>
+<p><img src="gt_parts_of_a_table.svg" /><!-- --></p>
+</div>
+</div>
+</div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/undergrad/">undergrad</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/rstudio/">rstudio</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Randi Bolt
+          2022
+
+
+        
+      </li>
+      
+        <li class="footer__item">
+          <a
+            href="https://github.com/rbolt13"
+            
+              target="_blank" rel="noopener noreferrer"
+
+            
+            title=""
+          >
+            Github
+          </a>
+        </li>
+
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></body>
+</html>

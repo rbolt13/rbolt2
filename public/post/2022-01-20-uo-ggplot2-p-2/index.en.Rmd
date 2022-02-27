@@ -1,0 +1,290 @@
+---
+title: "UO: ggplot2 p.2"
+author: Randi Bolt
+date: '2022-01-20'
+slug: []
+categories:
+  - undergrad
+tags:
+  - ggplot2
+  - package
+  - r studio
+  - undergrad
+  - plotly
+  - rcookbook
+  - maps
+  - sf
+  - rmapshaper
+  - flametree 
+---
+
+These are my notes from the University of Oregon's Data Service Consultants workshop on ggplot2, part 2. 
+
+Cameron Mulder ran this workshop. He can be contacted via their consultation page [here](https://library.uoregon.edu/research-data-management/consultations). 
+
+```{r set up, error=FALSE}
+# library(ggplot2)
+# install all of tidyverse 
+# install.packages("tidyverse")
+# loads entire tidyverse which inclused ggplot, dyply, and so on 
+library(tidyverse)
+```
+
+
+## ggplot2 review 
+
+`ggplot(data= <DATA>, mapping = aes(<MAPPING>))+ <GEOM FUNCTION>()`
+
+```{r ggplot review}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point()
+```
+
+```{r scatterplot}
+# base R
+plot(mpg$displ, mpg$hwy)
+```
+
+Note : the `$` is how we id the specific variable we are wanting to work with. 
+
+## Line Graph (Base R)
+
+```{r line graph }
+# help(pressure) , is the same as ?pressure
+plot(pressure$temperature, pressure$pressure, type = "l")
+# add points
+points(pressure$temperature, pressure$pressure)
+# add lines (and points)
+lines(pressure$temperature, pressure$pressure/2, col = "red")
+points(pressure$temperature, pressure$pressure/2, col = "red")
+```
+
+
+## Line Graph (ggplot)
+
+```{r line graph ggplot}
+ggplot(pressure, aes(x = temperature, y = pressure)) + 
+  geom_line() + 
+  geom_point()
+```
+
+## Bar Graphs (base R)
+
+```{r bar graph base r}
+# using the BOD dataset 
+# Biochemical Oxygen Demand Dataset 
+barplot(BOD$demand, names.arg = BOD$Time)
+```
+
+```{r}
+# using mtcars to look at count 
+# look at some stats 
+table(mtcars$cyl)
+# barplot 
+barplot(table(mtcars$cyl))
+```
+
+## Bar Graphs (ggplot)
+
+```{r bar graph BOD}
+# need to change time into a factor() because otherwise it is continuous 
+ggplot(BOD, aes(x = factor(Time), y = demand)) + 
+  geom_col()
+```
+
+Notice that the 6 isn't there, that is because of factor(). 
+
+Note : geom_bar does counts, but column has the height of the bar based on the data. 
+
+```{r bargraph ggplot cars}
+# don't need to id the y becasue the y will be the count.
+ggplot(mtcars, aes(x=cyl)) +
+  geom_bar()
+```
+
+## Histogram (Base R)
+
+```{r base r histogram}
+hist(mtcars$mpg)
+hist(mtcars$mpg, breaks = 4)
+```
+
+## Histogram (ggplot)
+
+```{r}
+ggplot(mtcars, aes(x=mpg)) +
+  geom_histogram(binwidth = 4)
+```
+
+## Boxplot (base r)
+
+```{r}
+# ?ToothGrowth
+plot(ToothGrowth$supp, ToothGrowth$len)
+# formula syntax
+plot(len ~ supp, data = ToothGrowth)
+plot(len ~ supp + dose, data = ToothGrowth)
+```
+
+## Challenge 1 
+
+Create a boxplot of toothgrowth using len and supp from ToothGrowth data set. 
+
+Hint: geom_boxplot
+
+```{r challenge 1}
+ggplot(ToothGrowth, aes(x= supp, y = len)) +
+  geom_boxplot()
+```
+
+## Time Series 
+
+ggplot will automatically recognize the variable as a date as long as the variable is imported as a date. 
+
+```{r time series}
+# dummy data
+data <- data.frame(
+  day = as.Date("2017-06-14")-0:364,
+  value = runif(365)
+)
+head(data)
+# plot 
+p <- ggplot(data, aes(x = day, y = value)) +
+  geom_line()
+p
+```
+
+Now lets use the economics data set 
+
+```{r}
+# ?economics
+ggplot(data = economics, aes(x = date, y = pop)) +
+  geom_line()
+# subset of data
+subset <- economics %>%
+  filter(date>as.Date("2006-1-1"))
+ggplot(subset, aes(x = date, y = pop)) +
+  geom_line()
+# chart differet data over time
+ggplot(economics, aes(x = date, y = pop)) +
+  geom_line(aes(size = unemploy), color = "red")
+```
+
+The size of the line is based on the value of unemployment (which is the number of unemployment in thousands). 
+
+```{r reshape data}
+# psavert is the personal savings rate 
+# unemployment median duration
+econ_long <- economics %>% 
+  select(date, psavert, uempmed) %>%
+  pivot_longer(col = c('psavert', 'uempmed'),
+               names_to = "variable",
+               values_to = "values")
+head(econ_long)
+# data 
+ggplot(data = econ_long, aes(x = date, y = values)) +
+  geom_line(aes(color = variable), size = 1)
+```
+
+R is a great tool for plotting time series. 
+
+## Maps!!
+
+Polygon maps
+
+```{r polygon maps}
+mi_counties <- map_data("county", "michigan") %>%
+  select(lon = long, lat, group, id = subregion)
+head(mi_counties)
+# map 1 
+ggplot(mi_counties, aes(lon, lat))+
+  geom_point() +
+  coord_quickmap()
+# nicer map (still not that common)
+ggplot(mi_counties, aes(lon, lat, group = group))+
+  geom_polygon(fill = "white", color = "grey") +
+  coord_quickmap()
+```
+
+## Simple Features 
+
+```{r}
+# australlian maps
+# install.packages('ozmaps')
+library(ozmaps)
+library(sf)
+```
+
+```{r}
+# use :: to pull from specific packages
+oz_stats <- ozmaps::ozmap_states
+oz_stats
+# map of australlia 
+ggplot(oz_stats)+
+  geom_sf() +
+  coord_sf()
+```
+
+```{r rmapshaper}
+# install.packages('rmapshaper')
+library(rmapshaper)
+```
+
+```{r map}
+oz_stats <- ozmaps::ozmap_states %>% filter(NAME != "Other Territories")
+oz_votes <- rmapshaper::ms_simplify(ozmaps::abs_ced)
+# map 
+ggplot()+
+  geom_sf(data = oz_stats, mapping = aes(fill = NAME)) +
+  geom_sf(data = oz_votes, fill = NA) +
+  coord_sf()
+```
+
+## Plotly
+
+```{r plotly}
+# install.packages("plotly")
+library(plotly)
+```
+
+
+```{r interactive}
+fig <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
+fig
+```
+
+```{r plotly in tidyverse}
+mpg %>% plot_ly(x = ~displ, y = ~mpg, color = ~class)
+```
+
+You can double click on the legend to see a subset of the data. 
+
+```{r ggplot and plotly}
+plot <- ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) +
+  geom_smooth()
+plot
+ggplotly(plot)
+```
+
+## Art 
+
+```{r art}
+# install.packages("flametree")
+library(flametree)
+# pick some colors 
+shades <- c("blue", "green", "red", "orange")
+data <- flametree_grow(time = 10, trees = 10)
+data %>% flametree_plot(
+  background = "white",
+  palette = shades,
+  style = "nativeflora"
+)
+```
+
+Package by Danielle Navarro. Check out her art [here](https://art.djnavarro.net/). 
+
+Next week we are going over rmd. 
+
+
+

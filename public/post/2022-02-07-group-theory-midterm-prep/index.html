@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+><head>
+  <title>
+    
+      
+        Midterm Prep. Group Theory |
+
+      
+      Randi Bolt
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.86.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      statistics, mathematics, and R
+
+
+    "
+  />
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.861c630407a306e1a79890bffbab9b381c5a0b03cd0c3b79755cc5eeea04b6b0.css"
+    integrity="sha256-hhxjBAejBuGnmJC/&#43;6ubOBxaCwPNDDt5dVzF7uoEtrA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css"
+    integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://www.rbolt.me/post/2022-02-07-group-theory-midterm-prep/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.rbolt.me/images/profile.PNG"/>
+
+<meta name="twitter:title" content="Midterm Prep. Group Theory"/>
+<meta name="twitter:description" content="These notes are to help me prepare for MTH-344, Group Theory Applications midterm."/>
+
+
+
+  
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Midterm Prep. Group Theory",
+        "headline": "Midterm Prep. Group Theory",
+        "alternativeHeadline": "",
+        "description": "
+      
+        These notes are to help me prepare for MTH-344, Group Theory Applications midterm.
+
+
+      
+
+
+    ",
+        "inLanguage": "en-us",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.rbolt.me\/post\/2022-02-07-group-theory-midterm-prep\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-02-07T00:00:00.00Z",
+        "datePublished": "2022-02-07T00:00:00.00Z",
+        "dateModified": "2022-02-07T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Randi Bolt",
+            "url": "https://www.rbolt.me/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/www.rbolt.me\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://www.rbolt.me/images/profile.PNG"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/www.rbolt.me\/post\/2022-02-07-group-theory-midterm-prep\/",
+        "wordCount" : "1763",
+        "genre" : [ 
+      
+      "undergrad"
+
+    ],
+        "keywords" : [ 
+      
+      "math"
+
+    
+      
+        ,
+
+      
+      "sets"
+
+    
+      
+        ,
+
+      
+      "subsets"
+
+    
+      
+        ,
+
+      
+      "operations"
+
+    
+      
+        ,
+
+      
+      "commutative"
+
+    
+      
+        ,
+
+      
+      "associative"
+
+    
+      
+        ,
+
+      
+      "identity"
+
+    
+      
+        ,
+
+      
+      "inverses"
+
+    
+      
+        ,
+
+      
+      "groups"
+
+    
+      
+        ,
+
+      
+      "abelian groups"
+
+    
+      
+        ,
+
+      
+      "cancellation law"
+
+    
+      
+        ,
+
+      
+      "propositions and theorems on group"
+
+    
+      
+        ,
+
+      
+      "subgroups, functions, injective"
+
+    
+      
+        ,
+
+      
+      "surjective, bijective, permutation"
+
+    
+      
+        ,
+
+      
+      "symmetric groups, cycles"
+
+    
+      
+        ,
+
+      
+      "cycle decomposition"
+
+    
+      
+        ,
+
+      
+      "disjoint cycles"
+
+    
+      
+        ,
+
+      
+      "inverse of a cycle"
+
+    
+      
+        ,
+
+      
+      "length and transposition"
+
+    
+      
+        ,
+
+      
+      "Transposition Parity Theorem"
+
+    
+      
+        ,
+
+      
+      "isomorphisms"
+
+    
+      
+        ,
+
+      
+      "Cayley\u0027s Theorem"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+      </div>
+      <ul>
+        
+        
+          <li>
+            <a class="theme-switch" title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </li>
+
+        
+      </ul>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.PNG" alt="profile picture" />
+        <h3 title=""><a href="/">Randi Bolt</a></h3>
+        <div class="description">
+          <p>statistics, mathematics, and R</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="https://github.com/rbolt13/" rel="me" aria-label="GitHub" title="GitHub">
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li>
+          <a href="rbolt@pdx.edu" rel="me" aria-label="e-mail" title="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Randi Bolt
+          2022
+
+
+        
+      </li>
+      
+        <li class="footer__item">
+          <a
+            href="https://github.com/rbolt13"
+            
+              target="_blank" rel="noopener noreferrer"
+
+            
+            title=""
+          >
+            Github
+          </a>
+        </li>
+
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Midterm Prep. Group Theory</h1>
+        
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                7/2/2022
+
+
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">9-minute read</span>
+          </div>
+
+        
+      </div>
+<script src="https://www.rbolt.me/post/2022-02-07-group-theory-midterm-prep/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>These notes are to help me prepare for MTH-344, Group Theory Applications midterm.</p>
+<div id="set" class="section level1">
+<h1>Set</h1>
+<p>A set is an un-ordered collection on objects.</p>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<ul>
+<li><p><span class="math inline">\(\mathbb{N}=\{1,2,3,...\}\)</span> : they exist naturally</p></li>
+<li><p><span class="math inline">\(\mathbb{Z}=\{...,-3,-2,-1,0,1,2,3,...\}\)</span> : includes zero and negatives</p></li>
+<li><p><span class="math inline">\(\mathbb{Q}=\{\frac{m}{n}|m,n\in \mathbb{Z}\text{ and }n\ne 0\}\)</span> : integer fractions</p></li>
+<li><p><span class="math inline">\(\mathbb{R}\)</span> : includes square roots and pie, real analysis starts with <span class="math inline">\(\sqrt{2}\)</span></p></li>
+<li><p><span class="math inline">\(\mathbb{C}\)</span> : includes imaginary numbers</p></li>
+<li><p>Asterisk in the superscript means delete zero</p></li>
+<li><p>Plus sign in the superscript means only positive values (&gt;0)</p></li>
+</ul>
+</div>
+</div>
+<div id="subset" class="section level1">
+<h1>Subset</h1>
+<p>A set B is a subset of A, <span class="math inline">\(B\subseteq A\)</span> if every element of B is an element of A.</p>
+</div>
+<div id="operations" class="section level1">
+<h1>Operations</h1>
+<p>An operation <span class="math inline">\(*\)</span> on a set A is a rule which assigns to each ordered pair (a,b) of elements A exactly one element <span class="math inline">\(a*b\)</span> of A.</p>
+<div id="properties" class="section level2">
+<h2>Properties</h2>
+<ol style="list-style-type: decimal">
+<li><p><code>*</code> is <strong>commutative</strong> if <span class="math inline">\(a\ne b\)</span>, <span class="math inline">\(a*b=b*a\)</span> <span class="math inline">\(\forall\)</span> a,b <span class="math inline">\(\in A\)</span>.</p>
+<ul>
+<li><p><code>+</code> and <span class="math inline">\(\cdot\)</span> are commutative</p></li>
+<li><p><code>-</code> , <span class="math inline">\(\div\)</span> , funtion composition and matrix multiplication are not commutative</p></li>
+</ul></li>
+<li><p><code>*</code> is <strong>associative</strong> if <span class="math inline">\((a*b)*c=a*(b*c)\)</span> <span class="math inline">\(\forall\)</span> a,b,c, <span class="math inline">\(\in A\)</span>.</p>
+<ul>
+<li>addition is associative, subtraction is not associative</li>
+</ul></li>
+<li><p>If <span class="math inline">\(\exists\)</span> <span class="math inline">\(e\in A\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(e*a=a*e=a\)</span> <span class="math inline">\(\forall\)</span> <span class="math inline">\(a\in A\)</span>, the we call e the <strong>identity element</strong> in A w.r.t. <code>*</code>.</p>
+<ul>
+<li><p>0=e w.r.t. addition</p></li>
+<li><p>1=e w.r.t. multiplication</p></li>
+</ul></li>
+<li><p>If <span class="math inline">\(e\in A\)</span> is the identity w.r.t. <code>*</code> and <span class="math inline">\(a,b\in A\Rightarrow\)</span> <span class="math inline">\(a*b=b*a=e\)</span> we call a and b <strong>inverses</strong> of one another.</p>
+<ul>
+<li><p>the inverse of <span class="math inline">\(a\in \mathbb{R}\)</span> w.r.t. addition is -a since <span class="math inline">\(a+(-a)=(-a)+a=0\)</span></p></li>
+<li><p>the inverse of <span class="math inline">\(a\in\mathbb{R}^*\)</span> w.r.t. multiplication is <span class="math inline">\(\frac{1}{a}\)</span> since <span class="math inline">\(a(\frac{1}{a})=(\frac{1}{a})a=1\)</span></p></li>
+</ul></li>
+</ol>
+</div>
+<div id="proof-outlines" class="section level2">
+<h2>Proof Outlines</h2>
+<ol style="list-style-type: decimal">
+<li><p>Commutative:</p>
+<p><span class="math inline">\(\underline{\text{No}}\)</span>: Give an example, “Let a = 1, and b =2”, and then show <span class="math inline">\(a*b\ne b*a\)</span>.</p>
+<p><span class="math inline">\(\underline{\text{Yes}}\)</span>: “For any a,b in the set” and then show <span class="math inline">\(a*b=b*a\)</span>.</p></li>
+<li><p>Associative</p>
+<p><span class="math inline">\(\underline{\text{No}}\)</span>: Give an example, “Let a=1, b=2, c=3” and then show <span class="math inline">\(a*(b*c)\ne (a*b)*c\)</span>.</p>
+<p><span class="math inline">\(\underline{\text{Yes}}\)</span>: “For any a,b,c in the set” and then show <span class="math inline">\(a*(b*c)=(a*b)*c\)</span>.</p></li>
+<li><p>Identity</p>
+<p><span class="math inline">\(\underline{\text{No}}\)</span>: Suppose that <span class="math inline">\(e\in\)</span> the given set <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(a*e=a\)</span> <span class="math inline">\(\forall a\in\)</span> the given set. Then show <span class="math inline">\(a*e=a\)</span> by plugging e in for b and solving for e. “Since the identity element must be a constant then there is no identiy w.r.t.” the given set. (can’t involve variables)</p>
+<p><span class="math inline">\(\underline{\text{Yes}}\)</span>: State what the identity element is w.r.t. the orperation and show that <span class="math inline">\(a*e=a\)</span> and <span class="math inline">\(e*a=a\)</span>.</p></li>
+<li><p>Inverses</p>
+<p><span class="math inline">\(\underline{\text{No}}\)</span>: Given an example of an element who doesn’t have an inverse.</p>
+<p>Note: If there is not identity element then there is no inverse.</p>
+<p><span class="math inline">\(\underline{\text{Yes}}\)</span>: “Suppose b=<span class="math inline">\(a^{-1}\)</span>. Then <span class="math inline">\(a*b=e\)</span>” (where e is the identity found in 3), and then try to solve the eqation for b. Then check <span class="math inline">\(b*a=e\)</span> as well.</p>
+<p>Note: Do not need to check <span class="math inline">\(b*a=e\)</span> if we know <code>*</code> is commutative.</p></li>
+</ol>
+</div>
+</div>
+<div id="group" class="section level1">
+<h1>Group</h1>
+<p>Let G be a set and <code>*</code> be an operation on G. Suppose</p>
+<ol style="list-style-type: lower-roman">
+<li><p><code>*</code> is associative</p></li>
+<li><p><span class="math inline">\(\exists\)</span> <span class="math inline">\(e\in G\)</span></p></li>
+<li><p><span class="math inline">\(\forall\)</span> <span class="math inline">\(a\in G\Rightarrow a^{-1}\in G\)</span>.</p></li>
+</ol>
+<ul>
+<li>for finite groups <span class="math inline">\(|G|&lt;\infty\)</span></li>
+</ul>
+</div>
+<div id="abelian-group" class="section level1">
+<h1>Abelian Group</h1>
+<p>A group that is also commutative.</p>
+<ul>
+<li>If G is abelian, then <span class="math inline">\((ab)^n=a^nb^n\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span>.</li>
+</ul>
+</div>
+<div id="propositions-and-theorems-for-groups" class="section level1">
+<h1>Propositions and Theorems for Groups</h1>
+<div id="proposition-1" class="section level2">
+<h2>Proposition 1</h2>
+<p>Let G be a group, then G has exactly one idently element.</p>
+</div>
+<div id="proposition-2" class="section level2">
+<h2>Proposition 2</h2>
+<p>Every element of G has exactly one inverse.</p>
+</div>
+<div id="theorem-1-cancellation-law" class="section level2">
+<h2>Theorem 1 (Cancellation Law)</h2>
+<p>Let G be a group and let <span class="math inline">\(a,b,c\in G\)</span>, then <span class="math inline">\(ab=ac\Rightarrow b=c\)</span> and <span class="math inline">\(ba=ca\Rightarrow b=c\)</span>.</p>
+</div>
+<div id="theorem-2" class="section level2">
+<h2>Theorem 2</h2>
+<p>Let G be a group and let <span class="math inline">\(a,b\in G\)</span>. If <span class="math inline">\(ab=e\)</span>, then a and b are inverses, i.e. <span class="math inline">\(a=b^{-1}\)</span> and <span class="math inline">\(b=a^{-1}\)</span>.</p>
+</div>
+<div id="theorem-3" class="section level2">
+<h2>Theorem 3</h2>
+<p>Let G be a group and let <span class="math inline">\(a,b\in G\)</span> then <span class="math inline">\((ab)^{-1}=b^{-1}a^{-1}\)</span> and <span class="math inline">\((a^{-1})^{-1}=a\)</span>.</p>
+<ul>
+<li>to show a and b are inverses, show their product is e.</li>
+</ul>
+<div id="klein-4-goup" class="section level3">
+<h3>Klein 4 Goup</h3>
+<p>(for fintie groups) : <span class="math inline">\(a^2=b^2=c^2=e\)</span></p>
+</div>
+</div>
+</div>
+<div id="homework-1-questions" class="section level1">
+<h1>Homework 1 Questions</h1>
+<ol style="list-style-type: decimal">
+<li><code>b)</code> Do the following operations define a given set: <span class="math inline">\(a*b=3^b\)</span> on <span class="math inline">\(\mathbb{Q}\)</span>?</li>
+</ol>
+<p>No, this does not define an operation on <span class="math inline">\(\mathbb{Q}\)</span> because <span class="math inline">\(a*b\)</span> is not always in <span class="math inline">\(\mathbb{Q}\)</span>. For example, let <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=\frac{1}{2}\)</span>. Then <span class="math inline">\(a*b=1*\frac{1}{2}=3^{\frac{1}{2}}=\sqrt{3}\not\in\mathbb{Q}\)</span>.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Suppose a,b and x are element of a non-abelian group G, and that we want to solve the equation ax=b for x. Why would it be incorrect and unclear to say that the solution is <span class="math inline">\(x=\frac{b}{a}\)</span>?</li>
+</ol>
+<p>When we write <span class="math inline">\(x=\frac{b}{a}\)</span> it is unclear if we mean <span class="math inline">\(x=a^{-1}b\)</span> or <span class="math inline">\(x=ba^{-1}\)</span>. Since G is a nonabelian group, <span class="math inline">\(a^{-1}b\)</span> and <span class="math inline">\(ba^{-1\)</span> are not necessarily equal. The correct answer to <span class="math inline">\(ax=b\)</span> is <span class="math inline">\(x=a^{-1}b\)</span>.</p>
+</div>
+<div id="subgroups" class="section level1">
+<h1>Subgroups</h1>
+<p>Let G be a group. A subset <span class="math inline">\(H\subseteq G\)</span> is called a subgroup if:</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(e\in H\)</span> (same e as G)</p></li>
+<li><p><span class="math inline">\(\forall\)</span> a,b <span class="math inline">\(\in H\)</span> <span class="math inline">\(ab\in H\)</span>. (we say H is closed under the operation)</p></li>
+<li><p><span class="math inline">\(\forall\)</span> <span class="math inline">\(a\in H\)</span> , <span class="math inline">\(a^{-1}\in H\)</span>. (we say H is closed under inverses)</p></li>
+</ol>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>Addition: i) <span class="math inline">\(0\in H\)</span>. ii) <span class="math inline">\(\forall\)</span> a,b <span class="math inline">\(\in H\)</span> <span class="math inline">\(a+b=H\)</span>. iii) <span class="math inline">\(\forall\)</span> <span class="math inline">\(a\in H\)</span> , <span class="math inline">\(-a\in H\)</span>.</p>
+</div>
+<div id="proof-outlines-two-step-subgroup-test" class="section level2">
+<h2>Proof Outlines (Two-Step Subgroup Test)</h2>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(e\in H\)</span></p></li>
+<li><p>for all a,b <span class="math inline">\(\in H\)</span>, <span class="math inline">\(ab^{-1}\in H\)</span>.</p></li>
+</ol>
+<p>Prove something is a subgroup of G.</p>
+<ol style="list-style-type: lower-roman">
+<li><p>“Suppose” then show e is 0 or 1 for the subgroup in a short series of equalities, “the additive or multiplicative element 0 or 1 is in” the subgroup.</p></li>
+<li><p>“Now take any a,b <span class="math inline">\(\in\)</span> the subgroup.” Then define a and b potentially for some other integers. Then show <span class="math inline">\(ab^{-1}=\)</span> something identifiably in the subgroup.</p></li>
+</ol>
+<p>“Therefore we’ve shown that” our subgroup “contains the identity element and for all a,b <span class="math inline">\(\in H\)</span> , <span class="math inline">\(ab^{-1}\in\)</span>” our subgroup. Thus our subgroup is a subgroup of G.</p>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+<p>Addition:</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(0\in H\)</span>.</p></li>
+<li><p>for all <span class="math inline">\(a,b\in H\)</span>, <span class="math inline">\(a+(-b)=a-b\in H\)</span>.</p></li>
+</ol>
+</div>
+</div>
+<div id="added-notes" class="section level2">
+<h2>Added Notes</h2>
+<ol style="list-style-type: decimal">
+<li><p>If G is abelian, then <span class="math inline">\((ab)^n=a^nb^n\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span>.</p></li>
+<li><p>In any group <span class="math inline">\((a^{-1})^n=(a^n)^{-1}\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span>.</p></li>
+<li><p>In any group <span class="math inline">\(e^{-1}=e\)</span>.</p></li>
+</ol>
+</div>
+<div id="two-step-subgroup-test" class="section level2">
+<h2>Two-step subgroup test</h2>
+<p>Let G be a group. A subset H <span class="math inline">\(\subseteq G\)</span> is a subgroup of G if</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(e\in H\)</span></li>
+</ol>
+<ul>
+<li>addition: show 0 <span class="math inline">\(\in H\)</span></li>
+</ul>
+<ol start="2" style="list-style-type: lower-roman">
+<li><span class="math inline">\(\forall a,b,\in H\)</span>, <span class="math inline">\(ab^{-1}\in H\)</span>.</li>
+</ol>
+<ul>
+<li>addition: <span class="math inline">\(\forall\)</span> a,b <span class="math inline">\(\in H\)</span>, <span class="math inline">\(a+(-b)=a-b\in H\)</span></li>
+</ul>
+</div>
+</div>
+<div id="hw-2-questions" class="section level1">
+<h1>HW 2 Questions</h1>
+<ol start="2" style="list-style-type: decimal">
+<li>Prove H is a subgroup of G for: <span class="math inline">\(H=\{3^m4^n|m,n\in\mathbb{Z}\}\)</span>, <span class="math inline">\(G=\mathbb{R}^*\)</span></li>
+</ol>
+<p>Since <span class="math inline">\(1=3^04^0\)</span>, the multiplicative identity element 1 is in H.</p>
+<p>Now take any a,b <span class="math inline">\(\in H\)</span>. Then <span class="math inline">\(a=3^{m_1}4^{n_1}\)</span> and <span class="math inline">\(b=3^{m_2}4^{n_2}\)</span> for some <span class="math inline">\(m_1, m_2, n_1, n_2 \in \mathbb{Z}\)</span>. So,</p>
+<p><span class="math inline">\(ab^{-1} = 3^{m_1}4^{n_1}(3^{m_2}4^{n_2})^{-1}\)</span></p>
+<p><span class="math inline">\(\quad\quad= 3^{m_1}4^{n_1}\cdot \frac{1}{3^{m_2}4^{n_2}}\)</span></p>
+<p><span class="math inline">\(\quad\quad= \frac{3^{m_1}}{3^{m_2}}\cdot\frac{4^n_1}{4^n_2}\quad\quad\quad\quad\text{, since multiplication is commutative}\)</span></p>
+<p><span class="math inline">\(\quad\quad= 3^{m_1-m_2}4^{n_1-n_2}\)</span></p>
+<p>Since <span class="math inline">\(\mathbb{Z}\)</span> is closed under subtraction, <span class="math inline">\(m_1-m_2\)</span> and <span class="math inline">\(n_1-n_2\)</span> are in <span class="math inline">\(\mathbb{Z}\)</span>. Therefore,</p>
+<p><span class="math display">\[ab^{-1}=3^{m_1-m_2}4^{n_1-n_2}\in H\]</span></p>
+<p>We’ve shown that H contains the identity element and for all a,b <span class="math inline">\(\in H\)</span>, <span class="math inline">\(ab^{-1}\in H\)</span>. Thus, H is a subgroup of <span class="math inline">\(\mathbb{R}^*\)</span>. <span class="math inline">\(\quad\quad\square\)</span></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Let H be a subgroup of group G and let <span class="math inline">\(a\in G\)</span> be a constant. Show that <span class="math inline">\(K=\{aha^{-1}|h\in H\}\)</span> is also a subgroup of G.</li>
+</ol>
+<p>Since H is a subgroup of G, the idnetity element e is in H. Hence, <span class="math inline">\(aea^{-1}\in K\)</span>.</p>
+<p>Since, <span class="math inline">\(aea^{-1}=aa^{-1}=e\)</span>, this implies that <span class="math inline">\(e\in K\)</span>.</p>
+<p>Now take any elements <span class="math inline">\(ah_1a^{-1}\)</span> and <span class="math inline">\(ah_2a^{-1}\)</span> in K. Then <span class="math inline">\(h_1\)</span>, <span class="math inline">\(h_2\)</span> <span class="math inline">\(\in H\)</span> and</p>
+<p><span class="math inline">\(ah_1a^{-1}(ah_2a^{-1})^{-1}=ah_1a^{-1}(a^{-1})^{-1}h_2^{-1}a^{-1}\quad\quad\quad\text{, by T. 3(i) form Ch. 4}\)</span></p>
+<p><span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad=ah_1a^{-1}ah_2^{-1}a^{-1}\quad\quad\quad\quad\quad\text{ , by T.3(ii) from Ch. 4}\)</span></p>
+<p><span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad=ah_1h_2^{-1}a^{-1}\quad\quad\quad\quad\quad\quad\quad\text{, since }a^{-1}a=e\)</span></p>
+<p>Since H is a subgroup of G and <span class="math inline">\(h_1\)</span>, <span class="math inline">\(h_2\)</span> <span class="math inline">\(\in H\)</span>, the element <span class="math inline">\(h_1h_2^{-1}\)</span> is in H. Hence</p>
+<p><span class="math display">\[ah_1a^{-1}(ah_2a^{-1})^{-1}=ah_1h_2^{-1}a^{-1}\in K\]</span></p>
+<p>Completing the proof that K is ia subgroup of H.</p>
+</div>
+<div id="functions" class="section level1">
+<h1>Functions</h1>
+<p>Let A and B be sets. A function <span class="math inline">\(f\)</span> from A to B is a rule that assigns to each element <span class="math inline">\(a\in A\)</span> exactly one element in <span class="math inline">\(f(a)\in B\)</span>.</p>
+<p>For f to transform <span class="math inline">\(G_1\)</span> to <span class="math inline">\(G_2\)</span> then <span class="math inline">\(\forall\)</span> a,b <span class="math inline">\(\in G\)</span> we want f to take <span class="math inline">\(ab\in G\)</span> to the element <span class="math inline">\(f(a)f(b)\in G_2\)</span>.</p>
+<div id="injective" class="section level2">
+<h2>Injective</h2>
+<p>A function <span class="math inline">\(f:A\rightarrow B\)</span> is injective or one-to-one if <span class="math inline">\(f(x_1)=f(x_2)\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(x_1=x_2\)</span>.</p>
+</div>
+<div id="surjective" class="section level2">
+<h2>Surjective</h2>
+<p>A function <span class="math inline">\(f:A\rightarrow B\)</span> is surjectie or onto if for all <span class="math inline">\(y\in B\)</span> there exists <span class="math inline">\(x\in A\)</span> such that <span class="math inline">\(f(x)=y\)</span>.</p>
+</div>
+<div id="bijective" class="section level2">
+<h2>Bijective</h2>
+<p>A function <span class="math inline">\(f:A\Rightarrow B\)</span> is bijectie because f is both one-to-one and onto.</p>
+</div>
+<div id="proof-outline-bijection-proving-injective-and-surjective" class="section level2">
+<h2>Proof Outline : Bijection, proving injective and surjective</h2>
+<ol style="list-style-type: decimal">
+<li>Injective</li>
+</ol>
+<p>“Suppose for some <span class="math inline">\(x_1, x_2\in G\)</span>,” then show <span class="math inline">\(f(x_1)=f(x_2)\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(x_1=x_2\)</span>. “So, f is one-to-one”.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Surjective</li>
+</ol>
+<p>“Take any y <span class="math inline">\(\in G\)</span>. We need to find <span class="math inline">\(x\in G\Rightarrow f(x)=y\)</span>.” Then solve for x, and check that the x you found works for <span class="math inline">\(f(x)=y\)</span>. “Therefore f is also onto”.</p>
+<p>“We’ve shown that <span class="math inline">\(f\)</span> is injective and surjective. So by definition, f is a bijection from G to G”.</p>
+</div>
+</div>
+<div id="composition" class="section level1">
+<h1>Composition</h1>
+<p>Let <span class="math inline">\(f:A\rightarrow B\)</span> and <span class="math inline">\(a:B\rightarrow C\)</span>. The composition of f with g is the function <span class="math inline">\(g\circ f:A\rightarrow C\)</span> defined <span class="math inline">\((g\circ f)(x)=g(f(x))\)</span>.</p>
+</div>
+<div id="inverse" class="section level1">
+<h1>Inverse</h1>
+<p>The inverse of a function <span class="math inline">\(f:A\rightarrow B\)</span> is the function <span class="math inline">\(f^{-1}:B\rightarrow A\)</span> satisfying <span class="math inline">\(f(x)=y\Leftrightarrow f^{-1}(y)=x\)</span>.</p>
+<p>A function <span class="math inline">\(f:A\rightarrow B\)</span> has an inverse <span class="math inline">\(f^{-1}:B\rightarrow A\)</span> if and only if f is bijective.</p>
+<p>To find an inverse function write <span class="math inline">\(y=f(x)\)</span>, solve for x, and switch the x’s and y’s to get the formula for <span class="math inline">\(f^{-1}\)</span>.</p>
+</div>
+<div id="permutation" class="section level1">
+<h1>Permutation</h1>
+<p>A permutation of a set A is a bijection from A to A.</p>
+<p>Another way to think of it is as a rearrangement of the order of elements in a set.</p>
+</div>
+<div id="symmetric-group" class="section level1">
+<h1>Symmetric Group</h1>
+<p>Let A be a set. The symmetric group on A, denoted <span class="math inline">\(S_A\)</span> is the group of all permutation of A with the operation of function composition.</p>
+</div>
+<div id="permuation-group" class="section level1">
+<h1>Permuation Group</h1>
+<p>A permutation group is any symmetric group or any subgroup of a symmetric group.</p>
+</div>
+<div id="identity-permutation-epsilon" class="section level1">
+<h1>Identity Permutation <span class="math inline">\(\epsilon\)</span></h1>
+<p>The identity permutation is the function <span class="math inline">\(\epsilon : A\rightarrow A\)</span> define <span class="math inline">\(\epsilon(x)=x\)</span>.</p>
+</div>
+<div id="cycle" class="section level1">
+<h1>Cycle</h1>
+<p>Example: <span class="math inline">\(f=(\begin{smallmatrix} 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7\\ 5 &amp; 3 &amp; 1 &amp; 7 &amp; 2 &amp; 6 &amp; 4\end{smallmatrix})\in S_7\)</span></p>
+<div id="cycle-decomposition" class="section level2">
+<h2>Cycle Decomposition</h2>
+<p>Example: <span class="math inline">\(\Rightarrow f=(1523)(47)\)</span></p>
+</div>
+<div id="disjoint-cyccle" class="section level2">
+<h2>Disjoint Cyccle</h2>
+<p>We call two cycles disjoint if they have no numbers in common.</p>
+<p>Disjoint cycles in <span class="math inline">\(S_n\)</span> commute.</p>
+</div>
+<div id="inverse-of-a-cycle" class="section level2">
+<h2>Inverse of a Cycle</h2>
+<p>Example: <span class="math inline">\(f^{-1}=(\begin{smallmatrix} 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7\\ 3 &amp; 5 &amp; 2 &amp; 7 &amp; 1 &amp; 6 &amp; 4\end{smallmatrix})\)</span></p>
+</div>
+<div id="length-and-transposition" class="section level2">
+<h2>Length and Transposition</h2>
+<p>The number of integers in a cycle is called its length.</p>
+<p>A cycle of length 2 is called a transposition.</p>
+</div>
+</div>
+<div id="theorem-8.2-transpoision-parity" class="section level1">
+<h1>Theorem 8.2 Transpoision Parity</h1>
+<p>When writing a permutation as a composition of trasnpositions, the parity (even/ odd) of the number of transpositions is unique.</p>
+<ul>
+<li><p>even length implies odd permutation</p></li>
+<li><p>even + odd = odd</p></li>
+</ul>
+</div>
+<div id="isomorphism" class="section level1">
+<h1>Isomorphism</h1>
+<p>A function <span class="math inline">\(f:G_1\rightarrow G_2\)</span> is called an isomorphism if f is a bijection and for all <span class="math inline">\(a,b\in G\)</span> <span class="math inline">\(f(ab)=f(a)f(b)\)</span>.</p>
+<div id="isomorphism-proposition-1" class="section level2">
+<h2>Isomorphism Proposition 1</h2>
+<p>Let f: <span class="math inline">\(G_1\rightarrow G_2\)</span> be an isomorphism. Then</p>
+<ol style="list-style-type: lower-roman">
+<li><p><span class="math inline">\(f(e_1)=e_2\)</span></p></li>
+<li><p><span class="math inline">\(\forall a\in G\)</span>, f(a) and <span class="math inline">\(f(a)^{-1}\)</span> are inverese in <span class="math inline">\(G_2\)</span>, i.e. <span class="math inline">\(f(a^{-1})=[f(a)]^{-1}\)</span></p></li>
+<li><p>If <span class="math inline">\(G_1=\langle a\rangle\)</span>, then <span class="math inline">\(G_2=\langle f(a)\rangle\)</span>.</p></li>
+</ol>
+</div>
+<div id="cong-groups-have-the-same-algebraic-properties" class="section level2">
+<h2><span class="math inline">\(\cong\)</span> Groups have the same algebraic properties</h2>
+<p>Suppose <span class="math inline">\(G_1\cong G_2\)</span>. Then,</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(|G_1|=|G_2|\)</span> (they have the same size)</p></li>
+<li><p><span class="math inline">\(G_1\)</span> is abelian <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(G_2\)</span> is abelian.</p></li>
+<li><p><span class="math inline">\(G_1\)</span> is cyclic <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(G_2\)</span> is cyclic.</p></li>
+<li><p><span class="math inline">\(G_1\)</span> has the property that every element squared equals e <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(G_2\)</span> has the same property.</p></li>
+<li><p>Every subgroup of <span class="math inline">\(G_1\)</span> is isomorphic to a subgroup of <span class="math inline">\(G_2\)</span>.</p></li>
+</ol>
+<p>and so on…</p>
+</div>
+<div id="groups-size-4" class="section level2">
+<h2>Groups Size 4</h2>
+<p>Every group of size 4 is isomorphic to <span class="math inline">\(\mathbb{Z_}_4\)</span> or <span class="math inline">\(\mathbb{Z}_2\times\mathbb{Z}_2\)</span>. (We proved that those two are not isomorphic to each other)</p>
+</div>
+</div>
+<div id="cayleys-theorem" class="section level1">
+<h1>Cayley’s Theorem</h1>
+<p>Every group is ismorphic to a permutation group.</p>
+</div>
+</div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/undergrad/">undergrad</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/math/">math</a><a class="tag" href="/tags/sets/">sets</a><a class="tag" href="/tags/subsets/">subsets</a><a class="tag" href="/tags/operations/">operations</a><a class="tag" href="/tags/commutative/">commutative</a><a class="tag" href="/tags/associative/">associative</a><a class="tag" href="/tags/identity/">identity</a><a class="tag" href="/tags/inverses/">inverses</a><a class="tag" href="/tags/groups/">groups</a><a class="tag" href="/tags/abelian-groups/">abelian groups</a><a class="tag" href="/tags/cancellation-law/">cancellation law</a><a class="tag" href="/tags/propositions-and-theorems-on-group/">propositions and theorems on group</a><a class="tag" href="/tags/subgroups-functions-injective/">subgroups, functions, injective</a><a class="tag" href="/tags/surjective-bijective-permutation/">surjective, bijective, permutation</a><a class="tag" href="/tags/symmetric-groups-cycles/">symmetric groups, cycles</a><a class="tag" href="/tags/cycle-decomposition/">cycle decomposition</a><a class="tag" href="/tags/disjoint-cycles/">disjoint cycles</a><a class="tag" href="/tags/inverse-of-a-cycle/">inverse of a cycle</a><a class="tag" href="/tags/length-and-transposition/">length and transposition</a><a class="tag" href="/tags/transposition-parity-theorem/">Transposition Parity Theorem</a><a class="tag" href="/tags/isomorphisms/">isomorphisms</a><a class="tag" href="/tags/cayleys-theorem/">Cayley&#39;s Theorem</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Randi Bolt
+          2022
+
+
+        
+      </li>
+      
+        <li class="footer__item">
+          <a
+            href="https://github.com/rbolt13"
+            
+              target="_blank" rel="noopener noreferrer"
+
+            
+            title=""
+          >
+            Github
+          </a>
+        </li>
+
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></body>
+</html>

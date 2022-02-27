@@ -1,0 +1,77 @@
+---
+title: Probability Distributions
+author: 'Randi Bolt '
+date: '2022-01-19'
+slug: []
+categories:
+  - undergrad
+tags:
+  - probability
+  - distributions
+  - probability distribution
+  - undergrad
+  - exponential
+  - normal
+  - Poisson
+  - Uniform
+  - Gamma
+  - Binomial
+  - Geometric
+  - Negative Binomial
+  - Hypergeometric
+---
+
+Probability Distributions and equations. 
+
+This post is under construction.
+
+## Exponential 
+
+$$Y\sim\text{Exp}(\mu)=\frac{1}{\mu}e^{-\frac{y}{\mu}}$$
+
+$$Y\sim\text{Exp}(\lambda)=\lambda e^{-\lambda y}$$
+
+## Normal 
+
+$$Y\sim\text{N}(\mu,\sigma)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y-\mu}{\sigma})}$$
+
+## Poisson
+
+$$Y\sim\text{Pois}(\lambda)=\begin{cases}\frac{\lambda^y}{y!}e^{-\lambda} & y\geq 0 \\ 0 & \text{Otherwise}\end{cases}$$
+
+## Uniform  
+
+$$Y\sim U(a,b)=\frac{1}{b-a}$$
+
+## Geometric 
+
+$$Y\sim Geom(p) = \begin{cases}p(1-p)^y & y\geq 0\\0& \text{Otherwise}\end{cases}$$
+
+## Gamma 
+
+$$Y\sim \text{Gamma}(\alpha,\beta)=\begin{cases}\frac{y^{\alpha-1}e^{\frac{-y}{\beta}}}{\beta^\alpha \Gamma(\alpha)}&y\geq 0\\0& \text{Otherwise}\end{cases}$$
+
+Note:
+
+- Standard Gamma Distribution has $\beta = 1$
+
+- $\Gamma(\alpha =1)=1$
+
+- $\Gamma(\alpha =2)=1$
+
+- $\Gamma(\alpha =3)=2$
+
+- $\Gamma(\alpha =4)=6$
+
+## Chi-squared 
+
+$$Y\sim \chi^2(k)=\begin{cases}\frac{y^{\frac{1}{2}k-1}e^{-\frac{1}{2}y}}{2^{\frac{1}{2}k}\Gamma (\frac{1}{2}k)}&y>0\\0&\text{Otherwise}\end{cases}$$
+
+
+
+
+
+
+
+
+

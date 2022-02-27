@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>undergrad on Randi Bolt</title>
+    <link>https://www.rbolt.me/tags/undergrad/</link>
+    <description>Recent content in undergrad on Randi Bolt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.rbolt.me/tags/undergrad/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Midterm Prep. Modern College Geometry</title>
+      <link>https://www.rbolt.me/post/2022-02-02-midterm-prep-modern-college-geometry/</link>
+      <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-02-02-midterm-prep-modern-college-geometry/</guid>
+      
+        <description>Notes consists of logic, Euclid’s 5th, Congruence and Length Theorem, Congruence and Angle Theorem, angles and parallel lines, and triangle congruence theorems.</description>
+      
+    </item>
+    
+    <item>
+      <title>UO: ggplot2 p.2</title>
+      <link>https://www.rbolt.me/post/2022-01-20-uo-ggplot2-p-2/</link>
+      <pubDate>Thu, 20 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/2022-01-20-uo-ggplot2-p-2/</guid>
+      
+        <description>These are my notes from the University of Oregon’s Data Service Consultants workshop on ggplot2, part 2.</description>
+      
+    </item>
+    
+    <item>
+      <title>Probability Distributions</title>
+      <link>https://www.rbolt.me/portfolio/2022-01-19-probability-distributions/</link>
+      <pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/portfolio/2022-01-19-probability-distributions/</guid>
+      
+        <description>Probability Distributions and equations.
+This post is under construction.</description>
+      
+    </item>
+    
+    <item>
+      <title>ggplot2 UO Workshop</title>
+      <link>https://www.rbolt.me/portfolio/2022-01-18-ggplot2-uo-workshop/</link>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/portfolio/2022-01-18-ggplot2-uo-workshop/</guid>
+      
+        <description>These are my notes from the University of Oregon’s Data Service Consultants workshop on ggplot2.</description>
+      
+    </item>
+    
+    <item>
+      <title>Latex</title>
+      <link>https://www.rbolt.me/post/latex-hacks/</link>
+      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.rbolt.me/post/latex-hacks/</guid>
+      
+        <description>Here is some short and simple latex.
+Basic Symbols :  \(\sim\) : \sim</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+><head>
+  <title>
+    
+      
+        Tidy Spice |
+
+      
+      Randi Bolt
+
+
+    
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.86.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta
+    name="description"
+    content="
+      statistics, mathematics, and R
+
+
+    "
+  />
+  
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/main.min.861c630407a306e1a79890bffbab9b381c5a0b03cd0c3b79755cc5eeea04b6b0.css"
+    integrity="sha256-hhxjBAejBuGnmJC/&#43;6ubOBxaCwPNDDt5dVzF7uoEtrA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css"
+    integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://www.rbolt.me/post/2022-02-22-tidy-spice/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js"
+    integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js"
+      integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus="
+      crossorigin="anonymous"
+    ></script>
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.rbolt.me/images/profile.PNG"/>
+
+<meta name="twitter:title" content="Tidy Spice"/>
+<meta name="twitter:description" content="This post is my reproduction of Julia Silge’s blogpost Topic Modeling for #TidyTuesday Spice Girls Lyrics, with some added inspiration from a blogpost by Ariane Aumaitre called Tutorial: Text analysis and data visualization with Taylor Swift songs."/>
+
+
+
+  
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Tidy Spice",
+        "headline": "Tidy Spice",
+        "alternativeHeadline": "",
+        "description": "
+      
+        This post is my reproduction of Julia Silge’s blogpost Topic Modeling for #TidyTuesday Spice Girls Lyrics, with some added inspiration from a blogpost by Ariane Aumaitre called Tutorial: Text analysis and data visualization with Taylor Swift songs.
+
+
+      
+
+
+    ",
+        "inLanguage": "en-us",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.rbolt.me\/post\/2022-02-22-tidy-spice\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Randi Bolt"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-02-22T00:00:00.00Z",
+        "datePublished": "2022-02-22T00:00:00.00Z",
+        "dateModified": "2022-02-22T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Randi Bolt",
+            "url": "https://www.rbolt.me/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/www.rbolt.me\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://www.rbolt.me/images/profile.PNG"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/www.rbolt.me\/post\/2022-02-22-tidy-spice\/",
+        "wordCount" : "1568",
+        "genre" : [ 
+      
+      "undergrad"
+
+    ],
+        "keywords" : [ 
+      
+      "R Studio"
+
+    
+      
+        ,
+
+      
+      "Tidy2sday"
+
+    
+      
+        ,
+
+      
+      "Spice Girls Lyrics"
+
+    
+      
+        ,
+
+      
+      "tidyverse"
+
+    
+      
+        ,
+
+      
+      "tidytext"
+
+    
+      
+        ,
+
+      
+      "stm"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body>
+    <header><div
+  class="page-top 
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <nav>
+    <ul class="nav__list" id="navMenu">
+      <div class="nav__links">
+        
+        
+          
+          <li>
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+          
+          <li>
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+      </div>
+      <ul>
+        
+        
+          <li>
+            <a class="theme-switch" title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </li>
+
+        
+      </ul>
+    </ul>
+  </nav>
+</div>
+</header>
+    <div class="wrapper">
+      <aside><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="logo-title">
+      <div class="title">
+        <img src="/images/profile.PNG" alt="profile picture" />
+        <h3 title=""><a href="/">Randi Bolt</a></h3>
+        <div class="description">
+          <p>statistics, mathematics, and R</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+      
+        <li>
+          <a href="https://github.com/rbolt13/" rel="me" aria-label="GitHub" title="GitHub">
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li>
+          <a href="rbolt@pdx.edu" rel="me" aria-label="e-mail" title="e-mail">
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer--sidebar">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Randi Bolt
+          2022
+
+
+        
+      </li>
+      
+        <li class="footer__item">
+          <a
+            href="https://github.com/rbolt13"
+            
+              target="_blank" rel="noopener noreferrer"
+
+            
+            title=""
+          >
+            Github
+          </a>
+        </li>
+
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></div>
+</aside>
+      <main>
+        <div class="autopagerize_page_element">
+          <div class="content">
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    <div class="post-content">
+      
+      <div class="post-title">
+        <h1>Tidy Spice</h1>
+        
+          <div class="info">
+            <em class="fas fa-calendar-day"></em>
+            <span class="date"
+              >
+                22/2/2022
+
+
+              </span
+            >
+            <em class="fas fa-stopwatch"></em>
+            <span class="reading-time">8-minute read</span>
+          </div>
+
+        
+      </div>
+<script src="https://www.rbolt.me/post/2022-02-22-tidy-spice/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>This post is my reproduction of Julia Silge’s blogpost <a href="https://juliasilge.com/blog/spice-girls/">Topic Modeling for #TidyTuesday Spice Girls Lyrics</a>, with some added inspiration from a blogpost by Ariane Aumaitre called <a href="https://arianeaumaitre.com/2019/09/15/tutorial-text-analysis-and-data-visualization-with-taylor-swift-songs/">Tutorial: Text analysis and data visualization with Taylor Swift songs</a>.</p>
+<p><img src="engflag.png" /></p>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<pre class="r"><code>library(tidyverse) </code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
+<pre class="r"><code>library(tidytext)
+library(stm)
+library(scales) #will be needed for percentage scales in ggplot
+knitr::opts_chunk$set(error=FALSE, 
+                      message= FALSE,
+                      warning=FALSE)</code></pre>
+</div>
+<div id="load-data" class="section level1">
+<h1>Load Data</h1>
+<pre class="r"><code>lyrics &lt;- read_csv(&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-14/lyrics.csv&quot;)</code></pre>
+</div>
+<div id="explore" class="section level1">
+<h1>Explore</h1>
+<ul>
+<li><p>First five rows of data</p></li>
+<li><p>Album and Song Names</p></li>
+</ul>
+<pre class="r"><code># Show 5 Rows
+head(lyrics, 5)</code></pre>
+<pre><code>## # A tibble: 5 × 9
+##   artist_name album_name track_number song_id song_name line_number section_name
+##   &lt;chr&gt;       &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       
+## 1 Spice Girls Spice                 1   89740 Wannabe             1 Intro       
+## 2 Spice Girls Spice                 1   89740 Wannabe             2 Intro       
+## 3 Spice Girls Spice                 1   89740 Wannabe             3 Intro       
+## 4 Spice Girls Spice                 1   89740 Wannabe             4 Intro       
+## 5 Spice Girls Spice                 1   89740 Wannabe             5 Intro       
+## # … with 2 more variables: line &lt;chr&gt;, section_artist &lt;chr&gt;</code></pre>
+<pre class="r"><code>lyrics %&gt;% distinct(album_name, song_name)</code></pre>
+<pre><code>## # A tibble: 31 × 2
+##    album_name song_name                 
+##    &lt;chr&gt;      &lt;chr&gt;                     
+##  1 Spice      &quot;Wannabe&quot;                 
+##  2 Spice      &quot;Say You\x92ll Be There&quot;  
+##  3 Spice      &quot;2 Become 1&quot;              
+##  4 Spice      &quot;Love Thing&quot;              
+##  5 Spice      &quot;Last Time Lover&quot;         
+##  6 Spice      &quot;Mama&quot;                    
+##  7 Spice      &quot;Who Do You Think You Are&quot;
+##  8 Spice      &quot;Something Kinda Funny&quot;   
+##  9 Spice      &quot;Naked&quot;                   
+## 10 Spice      &quot;If U Can\x92t Dance&quot;     
+## # … with 21 more rows</code></pre>
+</div>
+<div id="tidy" class="section level1">
+<h1>Tidy</h1>
+<ul>
+<li><p>Change <code>\x92</code> to ’</p></li>
+<li><p>Split words in line column into tokens</p></li>
+<li><p>Anti-Join each word into it’s own row</p></li>
+</ul>
+<pre class="r"><code>tidy_lyrics &lt;-
+  lyrics %&gt;%
+  mutate(song_name = str_replace_all(song_name, &quot;\x92&quot;, &quot;&#39;&quot;)) %&gt;%
+  unnest_tokens(word, line) %&gt;%
+  anti_join(get_stopwords())
+tidy_lyrics</code></pre>
+<pre><code>## # A tibble: 6,663 × 9
+##    artist_name album_name track_number song_id song_name line_number
+##    &lt;chr&gt;       &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+##  1 Spice Girls Spice                 1   89740 Wannabe             1
+##  2 Spice Girls Spice                 1   89740 Wannabe             2
+##  3 Spice Girls Spice                 1   89740 Wannabe             2
+##  4 Spice Girls Spice                 1   89740 Wannabe             2
+##  5 Spice Girls Spice                 1   89740 Wannabe             2
+##  6 Spice Girls Spice                 1   89740 Wannabe             2
+##  7 Spice Girls Spice                 1   89740 Wannabe             2
+##  8 Spice Girls Spice                 1   89740 Wannabe             3
+##  9 Spice Girls Spice                 1   89740 Wannabe             3
+## 10 Spice Girls Spice                 1   89740 Wannabe             3
+## # … with 6,653 more rows, and 3 more variables: section_name &lt;chr&gt;,
+## #   section_artist &lt;chr&gt;, word &lt;chr&gt;</code></pre>
+</div>
+<div id="most-common-words" class="section level1">
+<h1>Most Common Words</h1>
+<p><strong>Long Way</strong></p>
+<pre class="r"><code>tidy_lyrics %&gt;%
+  group_by(word) %&gt;%
+  summarise(n = n()) %&gt;% 
+  arrange(-n)</code></pre>
+<pre><code>## # A tibble: 979 × 2
+##    word      n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 get     153
+##  2 love    137
+##  3 know    124
+##  4 time    106
+##  5 wanna   102
+##  6 never   101
+##  7 oh       88
+##  8 yeah     88
+##  9 la       85
+## 10 got      82
+## # … with 969 more rows</code></pre>
+<p><strong>Short Way</strong></p>
+<pre class="r"><code>tidy_lyrics %&gt;%
+  count(word, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 979 × 2
+##    word      n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 get     153
+##  2 love    137
+##  3 know    124
+##  4 time    106
+##  5 wanna   102
+##  6 never   101
+##  7 oh       88
+##  8 yeah     88
+##  9 la       85
+## 10 got      82
+## # … with 969 more rows</code></pre>
+<pre class="r"><code>tidy_lyrics %&gt;%
+  count(word, sort = TRUE) %&gt;%
+  filter(n &gt; 80,
+         word != &quot;la&quot;,
+         word != &quot;oh&quot;) %&gt;%
+  ggplot(aes(x = n, y = reorder(word, n), fill = word)) +
+  geom_col() + 
+  labs(y = &quot;&quot;,
+       x = &quot;Number of Times Mentioned&quot;,
+       title = &quot;Most Frequent Words in Spice Girls Lyrics&quot;)</code></pre>
+<p><img src="https://www.rbolt.me/post/2022-02-22-tidy-spice/index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="most-common-word-per-song" class="section level1">
+<h1>Most Common Word Per Song</h1>
+<pre class="r"><code># Most Common Word per Song
+tidy_lyrics %&gt;%
+  count(song_name, word, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 2,206 × 3
+##    song_name                       word           n
+##    &lt;chr&gt;                           &lt;chr&gt;      &lt;int&gt;
+##  1 Saturday Night Divas            get           91
+##  2 Spice Up Your Life              la            64
+##  3 If U Can&#39;t Dance                dance         60
+##  4 Holler                          holler        48
+##  5 Never Give Up on the Good Times never         47
+##  6 Move Over                       generation    41
+##  7 Saturday Night Divas            deeper        41
+##  8 Move Over                       yeah          39
+##  9 Something Kinda Funny           got           39
+## 10 Never Give Up on the Good Times give          38
+## # … with 2,196 more rows</code></pre>
+<pre class="r"><code>tidy_lyrics %&gt;%
+  count(song_name, word, sort = TRUE) %&gt;%
+  filter(n &gt;40,
+         word != &quot;la&quot;) %&gt;%
+  ggplot(aes(x = n, y = reorder(word, n), fill = word)) +
+  geom_col() + 
+  labs(y = &quot;&quot;,
+       x = &quot;Number of Times Mentioned&quot;,
+       title = &quot;Most Frequent Words in Spice Girls Lyrics in a Single Song&quot;) </code></pre>
+<p><img src="https://www.rbolt.me/post/2022-02-22-tidy-spice/index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="train-a-topic-model" class="section level1">
+<h1>Train a topic model</h1>
+<p>(Analyze text data to determine cluster words)</p>
+<pre class="r"><code>lyrics_sparse &lt;-
+  tidy_lyrics %&gt;%
+  count(song_name, word) %&gt;%
+  cast_sparse(song_name, word, n)
+dim(lyrics_sparse)</code></pre>
+<pre><code>## [1]  31 979</code></pre>
+<p>This means there are 31 songs (i.e. documents) and 979 different tokens (i.e. terms or words) in our dataset for modeling.</p>
+<p>“The most important parameter when training a topic modeling is K, the number of topics. This is like k in k-means in that it is a hyperparamter of the model and we must choose this value ahead of time. We could try multiple different values to find the best value for K, but this is a very small dataset so let’s just stick with K = 4.”</p>
+<pre class="r"><code>set.seed(123) # random number generator 
+topic_model &lt;- stm(lyrics_sparse, K = 4, verbose = FALSE)
+summary(topic_model)</code></pre>
+<pre><code>## A topic model with 4 topics, 31 documents and a 979 word dictionary.</code></pre>
+<pre><code>## Topic 1 Top Words:
+##       Highest Prob: get, wanna, deeper, right, night, come, gotta 
+##       FREX: deeper, saturday, get, comin, back, night, ya 
+##       Lift: jump, party&#39;s, body, another, anyway, blameless, breaking 
+##       Score: deeper, saturday, get, night, comin, arms, wanna 
+## Topic 2 Top Words:
+##       Highest Prob: dance, yeah, know, generation, next, love, naked 
+##       FREX: next, naked, denying, foolin, nobody, wants, lead 
+##       Lift: foolin, nobody, question, next, admit, bein, check 
+##       Score: next, dance, naked, generation, denying, colour, foolin 
+## Topic 3 Top Words:
+##       Highest Prob: got, holler, make, love, wanna, oh, time 
+##       FREX: holler, kinda, swing, funny, yay, use, driving 
+##       Lift: anyone, driving, fantasy, oller, blow, nudge, unwind 
+##       Score: holler, swing, kinda, funny, yay, ashamed, loving 
+## Topic 4 Top Words:
+##       Highest Prob: la, never, love, give, time, know, way 
+##       FREX: times, swear, la, bring, promise, viva, tried 
+##       Lift: aggravation, angel, dreamt, heaven, letting, revelation, sent 
+##       Score: la, times, aha, swear, chicas, front, havin</code></pre>
+</div>
+<div id="explore-topic-model-results" class="section level1">
+<h1>Explore topic model results</h1>
+<pre class="r"><code>word_topics &lt;- tidy(topic_model, matrix = &quot;beta&quot;)
+word_topics </code></pre>
+<pre><code>## # A tibble: 3,916 × 3
+##    topic term        beta
+##    &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;
+##  1     1 achieve 1.94e- 3
+##  2     2 achieve 8.51e-29
+##  3     3 achieve 1.00e-25
+##  4     4 achieve 9.51e-19
+##  5     1 baby    1.38e- 2
+##  6     2 baby    1.44e- 2
+##  7     3 baby    1.28e- 3
+##  8     4 baby    4.16e- 3
+##  9     1 back    2.31e- 2
+## 10     2 back    5.44e- 4
+## # … with 3,906 more rows</code></pre>
+</div>
+<div id="visulaization" class="section level1">
+<h1>Visulaization</h1>
+<pre class="r"><code>word_topics %&gt;%
+  group_by(topic) %&gt;%
+  slice_max(beta, n = 10) %&gt;%
+  ungroup() %&gt;%
+  mutate(topic = paste(&quot;Topic&quot;, topic)) %&gt;%
+  ggplot(aes(beta, reorder_within(term, beta, topic), fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(vars(topic), scales = &quot;free_y&quot;) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_reordered() +
+  labs(x = expression(beta), y = NULL)</code></pre>
+<p><img src="https://www.rbolt.me/post/2022-02-22-tidy-spice/index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="gamma-matrix" class="section level2">
+<h2>Gamma Matrix</h2>
+<pre class="r"><code>song_topics &lt;- tidy(topic_model,
+  matrix = &quot;gamma&quot;,
+  document_names = rownames(lyrics_sparse)
+)
+song_topics</code></pre>
+<pre><code>## # A tibble: 124 × 3
+##    document                   topic    gamma
+##    &lt;chr&gt;                      &lt;int&gt;    &lt;dbl&gt;
+##  1 2 Become 1                     1 0.932   
+##  2 Denying                        1 0.00154 
+##  3 Do It                          1 0.996   
+##  4 Get Down With Me               1 0.300   
+##  5 Goodbye                        1 0.000971
+##  6 Holler                         1 0.00155 
+##  7 If U Can&#39;t Dance               1 0.000896
+##  8 If You Wanna Have Some Fun     1 0.0171  
+##  9 Last Time Lover                1 0.140   
+## 10 Let Love Lead the Way          1 0.00178 
+## # … with 114 more rows</code></pre>
+<pre class="r"><code>song_topics %&gt;%
+  mutate(
+    song_name = fct_reorder(document, gamma),
+    topic = factor(topic)
+  ) %&gt;%
+  ggplot(aes(gamma, topic, fill = topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(vars(song_name), ncol = 4) +
+  scale_x_continuous(expand = c(0, 0)) +
+  labs(x = expression(gamma), y = &quot;Topic&quot;)</code></pre>
+<p><img src="https://www.rbolt.me/post/2022-02-22-tidy-spice/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+</div>
+<div id="estimate-regression" class="section level1">
+<h1>Estimate Regression</h1>
+<pre class="r"><code>effects &lt;-
+  estimateEffect(
+    1:4 ~ album_name,
+    topic_model,
+    tidy_lyrics %&gt;% distinct(song_name, album_name) %&gt;% arrange(song_name)
+  )</code></pre>
+<pre class="r"><code>summary(effects)</code></pre>
+<pre><code>## 
+## Call:
+## estimateEffect(formula = 1:4 ~ album_name, stmobj = topic_model, 
+##     metadata = tidy_lyrics %&gt;% distinct(song_name, album_name) %&gt;% 
+##         arrange(song_name))
+## 
+## 
+## Topic 1:
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)           0.14061    0.12301   1.143    0.263
+## album_nameSpice       0.09258    0.17701   0.523    0.605
+## album_nameSpiceworld  0.15105    0.17327   0.872    0.391
+## 
+## 
+## Topic 2:
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)            0.1471     0.1327   1.109    0.277
+## album_nameSpice        0.1327     0.1887   0.703    0.488
+## album_nameSpiceworld   0.1472     0.1851   0.795    0.433
+## 
+## 
+## Topic 3:
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)           0.29480    0.12114   2.434   0.0216 *
+## album_nameSpice       0.07952    0.17174   0.463   0.6470  
+## album_nameSpiceworld -0.28112    0.16919  -1.662   0.1078  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## 
+## Topic 4:
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)           0.41760    0.13938   2.996  0.00567 **
+## album_nameSpice      -0.30293    0.19793  -1.531  0.13711   
+## album_nameSpiceworld -0.01948    0.19352  -0.101  0.92053   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+    <div class="post-footer">
+      <div class="info">
+        
+          <span class="separator"><a class="category" href="/categories/undergrad/">undergrad</a></span>
+
+
+
+
+        
+
+        
+          <span class="separator"><a class="tag" href="/tags/r-studio/">R Studio</a><a class="tag" href="/tags/tidy2sday/">Tidy2sday</a><a class="tag" href="/tags/spice-girls-lyrics/">Spice Girls Lyrics</a><a class="tag" href="/tags/tidyverse/">tidyverse</a><a class="tag" href="/tags/tidytext/">tidytext</a><a class="tag" href="/tags/stm/">stm</a></span>
+
+
+
+
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+
+          </div>
+        </div>
+      </main>
+    </div><footer class="footer footer--base">
+  <div class="by_farbox">
+    <ul class="footer__list">
+      <li class="footer__item">
+        &copy;
+        
+          Randi Bolt
+          2022
+
+
+        
+      </li>
+      
+        <li class="footer__item">
+          <a
+            href="https://github.com/rbolt13"
+            
+              target="_blank" rel="noopener noreferrer"
+
+            
+            title=""
+          >
+            Github
+          </a>
+        </li>
+
+      
+    </ul>
+  </div>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js"
+    integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I="
+    crossorigin="anonymous"
+  ></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR&#43;zwDAROtph0PXGte6ia8heboACF9R5l/DiY&#43;WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous" /><script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8&#43;w2LAIftJEULZABrF9PPFv&#43;tVkH" crossorigin="anonymous"></script><script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB&#43;w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script></body>
+</html>
