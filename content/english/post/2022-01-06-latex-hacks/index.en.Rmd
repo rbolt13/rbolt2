@@ -120,7 +120,7 @@ Note: still haven't figured out how to get multiple lines of equations to work i
   
 **More than two backslashes**
 
-- Ex: Equation will work but `\end{equation}` will show at the end. One of the lines has more than two backslashes ending it. 
+- Ex: Equation will work but `\end{equation}` will show at the end. One of the lines has more than two backslashes at the end of at least one of the lines. 
 
 **Space before final $**
 
