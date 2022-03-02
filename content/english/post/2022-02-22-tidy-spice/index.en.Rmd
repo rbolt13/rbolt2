@@ -149,7 +149,7 @@ word_topics <- tidy(topic_model, matrix = "beta")
 word_topics 
 ```
 
-# Visulaization
+# Visualization
 
 ```{r}
 word_topics %>%

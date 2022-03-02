@@ -231,8 +231,8 @@ word_topics </code></pre>
 ## 10     2 back    5.44e- 4
 ## # … with 3,906 more rows</code></pre>
 </div>
-<div id="visulaization" class="section level1">
-<h1>Visulaization</h1>
+<div id="visualization" class="section level1">
+<h1>Visualization</h1>
 <pre class="r"><code>word_topics %&gt;%
   group_by(topic) %&gt;%
   slice_max(beta, n = 10) %&gt;%

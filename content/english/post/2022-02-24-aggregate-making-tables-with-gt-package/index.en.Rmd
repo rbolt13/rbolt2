@@ -9,7 +9,7 @@ tags:
   - rstudio
 ---
 
-Ted Landeras led this event for [Portland R user Group](https://pdxrlang.com/) where we watched [Tich Lannone|| Making Beautiful Tables with `{gt}`|| RStudio](https://www.youtube.com/watch?v=z0UGmMOxl-c) as a group on Youtube, and then went through some other examples. 
+Ted Landeras led this event for [Portland R user Group](https://pdxrlang.com/) where we watched [Rich Lannone|| Making Beautiful Tables with `{gt}`|| RStudio](https://www.youtube.com/watch?v=z0UGmMOxl-c) as a group on Youtube, and then went through some other examples. 
 
 Additional Links: 
 

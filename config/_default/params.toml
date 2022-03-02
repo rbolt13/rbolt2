@@ -56,7 +56,7 @@ url = "https://github.com/rbolt13/"
 # title = "instagram"
 # url = "https://www.instagram.com/"
 
-[[socialIcons]]
-icon = "fas fa-envelope"
-title = "e-mail"
-url = "rbolt@pdx.edu"
+# [[socialIcons]]
+# icon = "fas fa-envelope"
+# title = "e-mail"
+# url = "rbolt@pdx.edu"
