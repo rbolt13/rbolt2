@@ -74,6 +74,8 @@ Here is some short and simple latex.
 
 - $\varepsilon$ : `\varepsilon`
 
+- $\varphi$ : `\varphi`
+
 ### Inline : 
 
 **Limits above and below sums and integrals** 
