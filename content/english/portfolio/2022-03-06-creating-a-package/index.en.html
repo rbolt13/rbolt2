@@ -1,0 +1,89 @@
+---
+title: Creating a Package with RStudio
+author: Randi Bolt
+date: '2022-03-06'
+slug: []
+categories:
+  - undergrad
+tags:
+  - rstudio
+  - package building
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this post I will be walking through the steps I used to create a package with R Studio. All my resources are linked below.</p>
+</div>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>The package I am planning to make is a distance package that will have variations of two functions. One function will calculate the Euclidean distance <a href="https://www.cuemath.com/euclidean-distance-formula/">(Read more here)</a>, and the other will calculate the Taxicab distance <a href="https://mat292project.weebly.com/distance-in-taxi-cab.html">(Read more here)</a>. Below <strong>Figure 1</strong> (from the Taxicab distance link) shows both the Euclidean and Taxicab calculations for <span class="math inline">\(\overline{AB}\)</span> of <span class="math inline">\(\triangle ABC\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="img/img1.png" alt="Distance from A to B on a traingle in Euclidean Distance and Taxicab Distance" width="80%" />
+<p class="caption">
+Figure 1: Distance from A to B on a traingle in Euclidean Distance and Taxicab Distance
+</p>
+</div>
+<p>Using this example, my distance package should be able to preform the following code.</p>
+<pre class="r"><code>### Euclidean Distance 
+distance_E &lt;- function(x1,x2,y1,y2){
+  sqrt((x2-x1)^2+(y2-y1)^2)
+}
+### Taxicab Distance
+distance_T &lt;- function(x1,x2,y1,y2){
+  abs(x2-x1)+abs(y2-y1)
+}
+### Example 
+x1 &lt;- 2
+x2 &lt;- 8
+y1 &lt;- 5
+y2 &lt;- 1
+distance_E(x1,x2,y1,y2)</code></pre>
+<pre><code>## [1] 7.211103</code></pre>
+<pre class="r"><code>distance_T(x1,x2,y1,y2)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>Dang, that is pretty tedious entering in each point like that. Not sure how much time that will save us in the long run so lets create a couple more functions. That way we can put in A and B as points instead.</p>
+<pre class="r"><code>### Euclidean xy Distance 
+distance_Eab &lt;- function(A,B){
+  sqrt((B[1]-A[1])^2+(B[2]-A[2])^2)
+}
+### Taxicab xy Distance
+distance_Tab &lt;- function(A,B){
+  abs(B[1]-A[1])+abs(B[2]-A[2])
+}
+### Example 
+A &lt;- c(2,5)
+B &lt;- c(8,1)
+distance_Eab(A,B)</code></pre>
+<pre><code>## [1] 7.211103</code></pre>
+<pre class="r"><code>distance_Tab(A,B)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>Lastly, just because, lets create two more functions where we can put in a single line.</p>
+<pre class="r"><code>### Euclidean xy Distance 
+distance_Eline &lt;- function(line){
+  sqrt((line[3]-line[1])^2+(line[4]-line[2])^2)
+}
+### Taxicab xy Distance
+distance_Tline &lt;- function(line){
+  abs(line[3]-line[1])+abs(line[4]-line[2])
+}
+### Example
+line &lt;- c(A,B)
+distance_Eline(line)</code></pre>
+<pre><code>## [1] 7.211103</code></pre>
+<pre class="r"><code>distance_Tline(line)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>Alrighty, now let’s jump into building this package.</p>
+</div>
+<div id="create-the-github-repository" class="section level1">
+<h1>Create the GitHub Repository</h1>
+<p>Next create a GitHub Repository, but do not initialize anything withing the repository. See <strong>Figure 2</strong> below.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="img/img2.png" alt="How the create a new repository page will look before you create it." width="80%" />
+<p class="caption">
+Figure 2: How the create a new repository page will look before you create it.
+</p>
+</div>
+</div>
