@@ -207,7 +207,7 @@ portfolioitems:
         status: 'Complete'
         start: 'Winter 2022'
         end: 'Winter 2022'
-        description: 'Quiz 2 for Math-338 is a proof that first investigaes the symmetries of a non-square rhombus, then proves that group of symmetries is closed under composition.'
+        description: 'Quiz 2 for Math-338 is a proof that first investigates the symmetries of a non-square rhombus, then proves that group of symmetries is closed under composition.'
         tags:
           - undergrad math
           - paralellograms
