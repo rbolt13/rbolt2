@@ -1,0 +1,85 @@
+---
+title: Final Prep. Mathematical Statistics
+author: Randi Bolt
+date: '2022-03-11'
+slug: []
+categories:
+  - undergrad
+tags:
+  - undergrad
+---
+
+
+
+<p>Final Exam was Tuesday March 15th 2022 from 10:15am-12:05pm.</p>
+<div id="sparkling_heart-method-of-distribution-function-cdf" class="section level1">
+<h1>:sparkling_heart: Method of Distribution Function (CDF)</h1>
+<ol style="list-style-type: decimal">
+<li><p>Given the density function <span class="math inline">\(f(y)\)</span> the distribution function <span class="math display">\[F_Y(y)=\int_{\text{lower}}^{y}f(t)dt=F_Y(t)|_{t=\text{lower}}^{t=y}=F_Y(y)\]</span></p></li>
+<li><p>For <span class="math inline">\(U=\)</span> :heart:, when y = lower, u = :heartbeat: and when y = upper, u = :heartpulse:.</p></li>
+<li><p>By definition of the CDF, the CDF of U is,</p></li>
+</ol>
+<p><span class="math inline">\(F_U(u)=P(U\leq u)=P(\)</span>:heart:<span class="math inline">\(\leq u)=P(Y\leq\)</span>:blue_heart:<span class="math inline">\()=F_Y(\)</span>:blue_heart:<span class="math inline">\()=\)</span>:purple_heart:</p>
+<p><span class="math display">\[F_U(u)=\begin{cases}0 &amp;\quad\quad\quad\quad u&lt;\text{:heartbeat:}\\ \text{:purple_heart:} &amp; \text{:heartbeat:}\leq u\leq \text{:heartpulse:}\\ 1 &amp; \text{:heartpulse:}\leq u\end{cases}\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Since <span class="math inline">\(f_U(u)=F&#39;_U(u)\)</span>,</li>
+</ol>
+<p><span class="math inline">\(f_U(u)=\frac{d}{du}(F_U(u))=\)</span>:green_heart:</p>
+<p>The complete pdf of U is,</p>
+<p><span class="math display">\[f_U(u)=\begin{cases}\text{:green_heart:} &amp; \text{:heartbeat:}&lt;u&lt;\text{:heartpulse:}\\0 &amp; \text{otherwise}\end{cases}\]</span></p>
+</div>
+<div id="hatched_chick-jacobian-univariate" class="section level1">
+<h1>:hatched_chick: Jacobian (Univariate)</h1>
+<ol style="list-style-type: decimal">
+<li><p>Graph U (Y,u) to verify <em>g</em> is monotone and increasing.</p></li>
+<li><p><span class="math inline">\(U=g(Y)\)</span> where <span class="math inline">\(g(y)=U\)</span>. Since g is a monotinc increasing function we can apply the Transformation Method.</p></li>
+<li><p>The inverse of g is <span class="math inline">\(h(u)=g^{-1}(y)=\)</span>:egg: for :hatching_chick:<span class="math inline">\(\leq u\leq\)</span>:chicken:, and <span class="math inline">\(h&#39;(u)=\)</span> :baby_chick:.</p></li>
+<li><p>The pdf of U is then, <span class="math display">\[f_U(u)=f_Y(h(u))\cdot |h&#39;(u)|=f_Y(:egg:)\cdot|\text{:baby_chick:}|=\text{:hatched_chick:}\]</span></p></li>
+</ol>
+<p>And the complete pdf is,</p>
+<p><span class="math display">\[f_U(u)=\begin{cases}\text{:hatched_chick:} &amp; \text{:hatching_chick:}&lt;u&lt;\text{:chicken:}\\0 &amp; \text{otherwise}\end{cases}\]</span></p>
+<p>Note:</p>
+<ul>
+<li><span class="math inline">\(y^2\)</span> is monotonic on <span class="math inline">\(0\leq y\)</span></li>
+</ul>
+</div>
+<div id="metal-mgf" class="section level1">
+<h1>:metal: MGF</h1>
+<p><img src="mgf_tab.png" /></p>
+<ol style="list-style-type: decimal">
+<li><p>The mgf of Y is <span class="math inline">\(M_Y(t)=\)</span>:punch:<span class="math inline">\(=E_Y(t)=E(e^{ty})\)</span>.</p></li>
+<li><p>By definition of the mgf, the mgf of U is, <span class="math display">\[M_U(t)=E(e^{tU})=\text{something with the form of }E(e^{ty})=\text{:hand: (similar to known distribution)}\]</span></p></li>
+<li><p>Therefore, mgf U has the form of <span class="math inline">\(\underline{\text{a known distribution}}\)</span> with parameters :point_down: and :point_up_2:.</p></li>
+</ol>
+<p>Note: (Bivariate)</p>
+<ol style="list-style-type: lower-roman">
+<li>Let <span class="math inline">\(Y_i\)</span> be the ith <span class="math inline">\(\underline{\quad\quad\quad}\)</span> for <span class="math inline">\(i=1,2\)</span>.</li>
+</ol>
+</div>
+<div id="crescent_moon-jacobian-bivariate" class="section level1">
+<h1>:crescent_moon: Jacobian (bivariate)</h1>
+<ol style="list-style-type: decimal">
+<li><p>The pdf of <span class="math inline">\(Y_1\)</span> is <span class="math inline">\(f(y_1)=\)</span>:last_quarter_moon: and the pdf of <span class="math inline">\(Y_2\)</span> is <span class="math inline">\(f(y_2)=\)</span>:first_quarter_moon:.</p></li>
+<li><p>Since <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> are independent, their joint pdf is <span class="math inline">\(f_{Y_1,Y_2}(y_1,y_2)=f(y_1)f(y_2)=\text{:last_quarter_moon::first_quarter_moon:}=\text{:full_moon_with_face:}\)</span></p></li>
+<li><p>Let <span class="math inline">\(U_1=\)</span>:running:<span class="math inline">\(=h_1(y_1,y_2)\)</span> and <span class="math inline">\(U_2=\)</span>:earth_americas:<span class="math inline">\(=h_2(y_1,y_2)\)</span>. Then, <span class="math inline">\(y_1=...=\text{:boat:}=h_1^{-1}(u_1,u_2)\)</span> and <span class="math inline">\(y_2=...=\text{:ocean:}=h_2^{-1}(u_1,u_2)\)</span>.</p></li>
+<li><p>Then the Jacobian is, <span class="math display">\[J=\text{det}\begin{bmatrix}\frac{\partial y_1}{\partial u_1} &amp; \frac{\partial y_1}{\partial u_2}\\ \frac{\partial y_2}{\partial u_1} &amp; \frac{\partial y_2}{\partial u_2}\end{bmatrix}=\text{:anchor:}\]</span></p>
+<p>Recall: det<span class="math inline">\(|\begin{smallmatrix}a &amp; b \\ c &amp; d\end{smallmatrix}|=(ad)-(bc)\)</span></p></li>
+<li><p>Therefore the joint pdf of <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span> is <span class="math display">\[f_{U_1,U_2}=(u_1,u_2)=f_{Y_1,Y_2}(h_1^{-1}(u_1,u_2),h_2^{-1}(u_1,u_2))\times|J|=\text{:last_quarter_moon_with_face::boat::ocean::first_quarter_moon_with_face:}\times|\text{:anchor:}|\]</span></p></li>
+</ol>
+</div>
+<div id="hibiscus-normal-sample" class="section level1">
+<h1>:hibiscus: Normal Sample</h1>
+<p>Find the probability that the sample of <span class="math inline">\(n=\)</span>:bee: will be within X=:honey_pot: of the population mean. Given <span class="math inline">\(\mu=\)</span>:sunflower: and <span class="math inline">\(\sigma^2=\)</span>:herb:</p>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(\overline{Y}\)</span> be the mean of <span class="math inline">\(\underline{\quad\text{(words)}\quad}\)</span> of <span class="math inline">\(\underline{\quad\text{:bee: }\quad}\)</span> <span class="math inline">\(\underline{\quad\text{(words)}\quad}\)</span>.</p></li>
+<li><p>We want to find <span class="math inline">\(P(|\overline{Y}-\mu|\leq X)=P(|\overline{Y}-\text{:sunflower:}|\leq \text{:honey_pot:})=P(-\text{:honey_pot:}\leq \overline{Y}-\text{:sunflower:}\leq \text{:honey_pot:})\)</span>.</p></li>
+<li><p>Since the population is normally distributed with mean <span class="math inline">\(=\mu\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{\sqrt{n}}=\frac{:herb:}{\sqrt{\text{:bee:}}}=\)</span>:ear_of_rice:. Then, <span class="math display">\[P(-Z\leq\overline{Y}-\mu\leq Z)=P(\frac{-\text{:honey_pot:}}{\text{:ear_of_rice:}}\leq \frac{\overline{Y}-\text{:sunflower:}}{\text{:ear_of_rice:}}\leq \frac{\text{:honey_pot:}}{\text{:ear_of_rice:}})=P(\text{:mushroom:}\leq Z\leq \text{:cherry_blossom:})\]</span></p></li>
+<li><p>On Ti Calculator normalcdf(:mushroom:,:cherry_blossom:,0,1)</p></li>
+</ol>
+<p>Note:</p>
+<ul>
+<li><p>Variance = 4 <span class="math inline">\(\rightarrow\sqrt{4}=\sigma^2\)</span></p></li>
+<li><p>Standard Deviation = 4 <span class="math inline">\(\rightarrow 4=\sigma^2\)</span></p></li>
+<li><p><span class="math inline">\(Z=\frac{\overline{Y}-\mu}{\frac{\sigma^2}{\sqrt{n}}}=\frac{\sqrt{n}(\overline{Y}-\mu)}{\sigma^2}\)</span></p></li>
+</ul>
+</div>

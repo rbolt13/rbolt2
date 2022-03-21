@@ -9,9 +9,7 @@ tags:
   - undergrad
 ---
 
-This post is live, but under construction.
-
-Final Exam will be Thursday March 17th, from 12:30pm - 2:20pm.
+Final Exam was Thursday March 17th 2022 from 12:30pm - 2:20pm.
 
 # Ch. 10 The Order of Group Elements 
 
