@@ -180,3 +180,8 @@ The third graph shows us that MicroVision does not seem to preform well in the f
 
 - Analyzing Financial Statements
 
+```{r, echo=FALSE}
+# OR_unemployment <- getSymbols("ORUR", src = "FRED", auto.assign = F)
+```
+
+

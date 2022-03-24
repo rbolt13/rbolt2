@@ -1,0 +1,167 @@
+---
+title: reactable
+author: 'Randi Bolt '
+date: '2022-03-24'
+slug: []
+categories:
+  - undergrad
+tags:
+  - react
+  - rvest
+---
+
+# Background 
+
+I wanted to try reactable, and NBA playoffs start in April. 
+
+# Set Up 
+
+Handy dandy global options, 
+
+```{r global options}
+# Global Options 
+knitr::opts_chunk$set(error=FALSE,
+                      message= FALSE,
+                      warning=FALSE)
+```
+
+and libraris. 
+
+```{r set up}
+# Load Libraries 
+library(rvest) 
+library(tidyverse) 
+library(reactable)
+```
+
+# Harvest the data with rvest
+
+I could easily pull the CSV's off [Basketball Reference](https://www.basketball-reference.com/), but I might want to come back and adjust this post later. It would be pretty tedious to save those data sets again, so instead I am using the package `rvest` to harvest the data directly off the web page. For this table I am pulling the top three teams in the west and the top three teams in the east.  
+
+```{r variables}
+# Add team name and team slug
+suns <- "Phoenix Suns"
+suns_slug <- "PHO"
+
+heat <- "Miami Heat"
+heat_slug <- "MIA"
+
+# define player page URL
+suns_url <- paste0("https://www.basketball-reference.com/teams/",suns_slug,"/2022.html")
+
+heat_url <- paste0("https://www.basketball-reference.com/teams/",heat_slug,"/2022.html")
+```
+
+If you check either of these teams Basketball Reference page you will see there is a lot of data and statistics available. Since I really just want to try reactable, lets just look at the Total stats. 
+
+```{r rvest data}
+# Read total stats
+suns_ttl_stat <- suns_url %>%
+  read_html %>%
+  html_node("#totals") %>% 
+  html_table()
+
+heat_ttl_stat <- heat_url %>%
+  read_html %>%
+  html_node("#totals") %>% 
+  html_table()
+```
+
+# Tidy 
+
+To tidy this data there are four main things I am doing: 
+
+- add "Name" to the column with players names
+
+- add column with team name (as to be able to sort by team)
+
+- merge Suns and Heats tables
+
+- Remove NA rows and extra columns 
+
+```{r tidy data}
+# Rename Column 2 Name 
+names(suns_ttl_stat)[2] <- "Name"
+names(heat_ttl_stat)[2] <- "Name"
+
+# Add Column with Team Name
+suns_ttl_stat$Team <- suns
+heat_ttl_stat$Team <- heat
+
+# Merge stats tables
+total_stats <- full_join(suns_ttl_stat, heat_ttl_stat) 
+
+# Remove NA rows and extra column data 
+total_stats <- total_stats %>% 
+  filter(!is.na(Rk)) %>%
+  select(Team, Name, Rk, Age, G, MP, PTS, FG, `3P`, `2P`, FT, AST, STL, BLK, TOV, PF)
+
+# View Data
+head(total_stats)
+```
+
+# Reactable 
+
+There were five main things I wanted from this table: 
+
+- groupBy = Team 
+
+- remane columns
+
+- bordered
+
+- highlight
+
+- searchable
+
+- minRows = number of teams showing (which is 2)
+
+```{r reactable}
+reactable(
+  total_stats,
+  groupBy = "Team",
+  columns = list(
+    Rk = colDef(name = "Rank"),
+    G = colDef(name = "Games"),
+    MP = colDef(name = "Minutes Played"),
+    FG = colDef(name = "Field Goals"),
+    `3P` = colDef(name = "3 Point Goals"),
+    `2P` = colDef(name = "2 Point Goals"),
+    FT = colDef(name = "Free Throws"),
+    AST = colDef(name = "Assists"),
+    STL = colDef(name = "Steals"),
+    BLK = colDef(name = "Blocks"),
+    PTS = colDef(name = "Points"),
+    TOV = colDef(name = "Turnovers"),
+    PF = colDef(name = "Personal Fouls")
+  ),
+  bordered = TRUE,
+  highlight = TRUE,
+  filterable = TRUE,
+  searchable = TRUE,
+  minRows = 2
+  )
+```
+
+# Sources
+
+[Reactable](https://glin.github.io/reactable/index.html)
+
+[NBA Analytics Tutorial: Using R to Display Player Career Stats](https://sweepsportsanalytics.com/2021/12/19/nba-analytics-tutorial-using-r-to-display-player-career-stats/)
+
+# Future Projects
+
+- Add Functions to look at more teams / reduce code
+
+- Add Graphs or other visuals 
+
+Clean Up Reactable:
+
+- Add logos 
+
+- Add Graphs 
+
+- Narrow Data and Compute Statistics
+
+- Add more teams 
+

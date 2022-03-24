@@ -1,0 +1,158 @@
+---
+title: reactable
+author: 'Randi Bolt '
+date: '2022-03-24'
+slug: []
+categories:
+  - undergrad
+tags:
+  - react
+  - rvest
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/core-js/shim.min.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/react/react.min.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/react/react-dom.min.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/reactwidget/react-tools.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/reactable-binding/reactable.js"></script>
+
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>I wanted to try reactable, and NBA playoffs start in April.</p>
+</div>
+<div id="set-up" class="section level1">
+<h1>Set Up</h1>
+<p>Handy dandy global options,</p>
+<pre class="r"><code># Global Options 
+knitr::opts_chunk$set(error=FALSE,
+                      message= FALSE,
+                      warning=FALSE)</code></pre>
+<p>and libraris.</p>
+<pre class="r"><code># Load Libraries 
+library(rvest) 
+library(tidyverse) 
+library(reactable)</code></pre>
+</div>
+<div id="harvest-the-data-with-rvest" class="section level1">
+<h1>Harvest the data with rvest</h1>
+<p>I could easily pull the CSV’s off <a href="https://www.basketball-reference.com/">Basketball Reference</a>, but I might want to come back and adjust this post later. It would be pretty tedious to save those data sets again, so instead I am using the package <code>rvest</code> to harvest the data directly off the web page. For this table I am pulling the top three teams in the west and the top three teams in the east.</p>
+<pre class="r"><code># Add team name and team slug
+suns &lt;- &quot;Phoenix Suns&quot;
+suns_slug &lt;- &quot;PHO&quot;
+
+heat &lt;- &quot;Miami Heat&quot;
+heat_slug &lt;- &quot;MIA&quot;
+
+# define player page URL
+suns_url &lt;- paste0(&quot;https://www.basketball-reference.com/teams/&quot;,suns_slug,&quot;/2022.html&quot;)
+
+heat_url &lt;- paste0(&quot;https://www.basketball-reference.com/teams/&quot;,heat_slug,&quot;/2022.html&quot;)</code></pre>
+<p>If you check either of these teams Basketball Reference page you will see there is a lot of data and statistics available. Since I really just want to try reactable, lets just look at the Total stats.</p>
+<pre class="r"><code># Read total stats
+suns_ttl_stat &lt;- suns_url %&gt;%
+  read_html %&gt;%
+  html_node(&quot;#totals&quot;) %&gt;% 
+  html_table()
+
+heat_ttl_stat &lt;- heat_url %&gt;%
+  read_html %&gt;%
+  html_node(&quot;#totals&quot;) %&gt;% 
+  html_table()</code></pre>
+</div>
+<div id="tidy" class="section level1">
+<h1>Tidy</h1>
+<p>To tidy this data there are four main things I am doing:</p>
+<ul>
+<li><p>add “Name” to the column with players names</p></li>
+<li><p>add column with team name (as to be able to sort by team)</p></li>
+<li><p>merge Suns and Heats tables</p></li>
+<li><p>Remove NA rows and extra columns</p></li>
+</ul>
+<pre class="r"><code># Rename Column 2 Name 
+names(suns_ttl_stat)[2] &lt;- &quot;Name&quot;
+names(heat_ttl_stat)[2] &lt;- &quot;Name&quot;
+
+# Add Column with Team Name
+suns_ttl_stat$Team &lt;- suns
+heat_ttl_stat$Team &lt;- heat
+
+# Merge stats tables
+total_stats &lt;- full_join(suns_ttl_stat, heat_ttl_stat) 
+
+# Remove NA rows and extra column data 
+total_stats &lt;- total_stats %&gt;% 
+  filter(!is.na(Rk)) %&gt;%
+  select(Team, Name, Rk, Age, G, MP, PTS, FG, `3P`, `2P`, FT, AST, STL, BLK, TOV, PF)
+
+# View Data
+head(total_stats)</code></pre>
+<pre><code>## # A tibble: 6 × 16
+##   Team   Name     Rk   Age     G    MP   PTS    FG  `3P`  `2P`    FT   AST   STL
+##   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1 Phoen… Mika…     1    25    73  2583  1034   407   107   300   113   170    88
+## 2 Phoen… Devi…     2    25    62  2129  1610   586   165   421   273   304    73
+## 3 Phoen… Chri…     3    36    58  1916   866   325    60   265   156   619   108
+## 4 Phoen… Jae …     4    31    61  1716   580   200   113    87    67   111    84
+## 5 Phoen… Came…     5    25    60  1579   770   261   159   102    89    89    50
+## 6 Phoen… Dean…     6    23    52  1528   901   399     6   393    97    75    37
+## # … with 3 more variables: BLK &lt;int&gt;, TOV &lt;int&gt;, PF &lt;int&gt;</code></pre>
+</div>
+<div id="reactable" class="section level1">
+<h1>Reactable</h1>
+<p>There were five main things I wanted from this table:</p>
+<ul>
+<li><p>groupBy = Team</p></li>
+<li><p>remane columns</p></li>
+<li><p>bordered</p></li>
+<li><p>highlight</p></li>
+<li><p>searchable</p></li>
+<li><p>minRows = number of teams showing (which is 2)</p></li>
+</ul>
+<pre class="r"><code>reactable(
+  total_stats,
+  groupBy = &quot;Team&quot;,
+  columns = list(
+    Rk = colDef(name = &quot;Rank&quot;),
+    G = colDef(name = &quot;Games&quot;),
+    MP = colDef(name = &quot;Minutes Played&quot;),
+    FG = colDef(name = &quot;Field Goals&quot;),
+    `3P` = colDef(name = &quot;3 Point Goals&quot;),
+    `2P` = colDef(name = &quot;2 Point Goals&quot;),
+    FT = colDef(name = &quot;Free Throws&quot;),
+    AST = colDef(name = &quot;Assists&quot;),
+    STL = colDef(name = &quot;Steals&quot;),
+    BLK = colDef(name = &quot;Blocks&quot;),
+    PTS = colDef(name = &quot;Points&quot;),
+    TOV = colDef(name = &quot;Turnovers&quot;),
+    PF = colDef(name = &quot;Personal Fouls&quot;)
+  ),
+  bordered = TRUE,
+  highlight = TRUE,
+  filterable = TRUE,
+  searchable = TRUE,
+  minRows = 2
+  )</code></pre>
+<div id="htmlwidget-1" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Team":["Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Phoenix Suns","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat","Miami Heat"],"Name":["Mikal Bridges","Devin Booker","Chris Paul","Jae Crowder","Cameron Johnson","Deandre Ayton","Landry Shamet","Cameron Payne","JaVale McGee","Elfrid Payton","Torrey Craig","Bismack Biyombo","Jalen Smith","Aaron Holiday","Ish Wainright","Frank Kaminsky","Abdel Nader","Justin Jackson","Chandler Hutchison","Emanuel Terry","M.J. Walker","Paris Bass","Tyler Herro","Kyle Lowry","Duncan Robinson","P.J. Tucker","Jimmy Butler","Bam Adebayo","Gabe Vincent","Max Strus","Caleb Martin","Dewayne Dedmon","Omer Yurtseven","Markieff Morris","KZ Okpala","Kyle Guy","Marcus Garrett","Haywood Highsmith","Chris Silva","Victor Oladipo","Udonis Haslem","Nik Stauskas","Javonte Smart"],"Rk":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],"Age":[25,25,36,31,25,23,24,27,34,27,31,29,21,25,27,28,28,26,25,25,23,26,22,35,27,36,32,24,25,25,26,32,23,32,22,24,23,25,25,29,41,28,22],"G":[73,62,58,61,60,52,60,51,67,47,18,29,29,17,41,9,14,6,6,3,2,2,59,56,70,65,50,48,62,60,55,61,50,15,21,19,12,14,9,5,10,2,2],"MP":[2583,2129,1916,1716,1579,1528,1244,1151,1046,514,396,392,382,290,288,181,145,35,22,18,8,7,1926,1917,1862,1830,1690,1579,1483,1379,1247,970,630,257,244,186,128,107,88,85,59,24,4],"PTS":[1034,1610,866,580,770,901,490,573,629,138,123,165,175,123,66,95,34,13,4,0,0,6,1235,732,791,506,1062,920,554,622,514,377,279,109,77,74,13,27,26,29,28,11,0],"FG":[407,586,325,200,261,399,158,217,266,61,47,67,63,44,25,36,12,5,1,0,0,2,452,239,266,194,345,352,201,214,195,148,121,46,30,26,5,9,8,12,12,3,0],"3P":[107,165,60,113,159,6,108,64,2,4,17,0,9,13,11,5,4,3,0,0,0,0,155,124,210,77,19,0,110,155,58,17,1,9,9,14,1,7,0,3,1,2,0],"2P":[300,421,265,87,102,393,50,153,264,57,30,67,54,31,14,31,8,2,1,0,0,2,297,115,56,117,326,352,91,59,137,131,120,37,21,12,4,2,8,9,11,1,0],"FT":[113,273,156,67,89,97,66,75,95,12,12,31,40,22,5,18,6,0,2,0,0,2,176,130,49,41,353,216,42,39,66,64,36,8,8,8,2,2,10,2,3,3,0],"AST":[170,304,619,111,89,75,97,248,39,94,27,18,6,63,11,13,7,2,2,2,1,0,227,433,119,137,277,167,198,78,60,45,46,19,14,17,7,2,7,11,3,1,0],"STL":[88,73,108,84,50,37,26,35,19,24,14,11,6,16,11,8,8,0,0,1,2,1,39,61,36,52,87,71,59,21,56,21,15,3,4,7,5,1,0,1,1,0,0],"BLK":[33,25,18,27,14,37,7,16,75,6,13,20,18,0,6,7,4,0,0,0,0,0,8,17,13,13,25,39,12,13,25,38,19,1,7,1,3,2,1,1,1,0,0],"TOV":[57,152,138,52,36,80,36,94,86,45,20,21,22,22,12,5,11,1,4,5,0,2,150,156,57,63,102,132,92,45,43,62,39,20,5,13,2,2,8,2,3,0,0],"PF":[141,159,118,152,102,120,78,105,166,36,36,58,52,21,41,14,20,3,1,4,1,2,81,156,180,153,76,148,147,98,92,155,77,31,25,12,16,10,20,8,11,1,0]},"columns":[{"accessor":"Team","name":"Team","type":"character"},{"accessor":"Name","name":"Name","type":"character"},{"accessor":"Rk","name":"Rank","type":"numeric"},{"accessor":"Age","name":"Age","type":"numeric"},{"accessor":"G","name":"Games","type":"numeric"},{"accessor":"MP","name":"Minutes Played","type":"numeric"},{"accessor":"PTS","name":"Points","type":"numeric"},{"accessor":"FG","name":"Field Goals","type":"numeric"},{"accessor":"3P","name":"3 Point Goals","type":"numeric"},{"accessor":"2P","name":"2 Point Goals","type":"numeric"},{"accessor":"FT","name":"Free Throws","type":"numeric"},{"accessor":"AST","name":"Assists","type":"numeric"},{"accessor":"STL","name":"Steals","type":"numeric"},{"accessor":"BLK","name":"Blocks","type":"numeric"},{"accessor":"TOV","name":"Turnovers","type":"numeric"},{"accessor":"PF","name":"Personal Fouls","type":"numeric"}],"pivotBy":["Team"],"filterable":true,"searchable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":2,"highlight":true,"bordered":true,"dataKey":"2fbf1a80900c1d05753859f0022d8348","key":"2fbf1a80900c1d05753859f0022d8348"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="sources" class="section level1">
+<h1>Sources</h1>
+<p><a href="https://glin.github.io/reactable/index.html">Reactable</a></p>
+<p><a href="https://sweepsportsanalytics.com/2021/12/19/nba-analytics-tutorial-using-r-to-display-player-career-stats/">NBA Analytics Tutorial: Using R to Display Player Career Stats</a></p>
+</div>
+<div id="future-projects" class="section level1">
+<h1>Future Projects</h1>
+<ul>
+<li><p>Add Functions to look at more teams / reduce code</p></li>
+<li><p>Add Graphs or other visuals</p></li>
+</ul>
+<p>Clean Up Reactable:</p>
+<ul>
+<li><p>Add logos</p></li>
+<li><p>Add Graphs</p></li>
+<li><p>Narrow Data and Compute Statistics</p></li>
+<li><p>Add more teams</p></li>
+</ul>
+</div>
