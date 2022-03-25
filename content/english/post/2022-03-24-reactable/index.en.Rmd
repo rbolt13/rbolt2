@@ -16,16 +16,16 @@ I wanted to try reactable, and NBA playoffs start in April.
 
 # Set Up 
 
-Handy dandy global options, 
+Handy dandy options, 
 
-```{r global options}
+```{r options}
 # Global Options 
 knitr::opts_chunk$set(error=FALSE,
                       message= FALSE,
                       warning=FALSE)
 ```
 
-and libraris. 
+and libraries. 
 
 ```{r set up}
 # Load Libraries 
@@ -36,7 +36,7 @@ library(reactable)
 
 # Harvest the data with rvest
 
-I could easily pull the CSV's off [Basketball Reference](https://www.basketball-reference.com/), but I might want to come back and adjust this post later. It would be pretty tedious to save those data sets again, so instead I am using the package `rvest` to harvest the data directly off the web page. For this table I am pulling the top three teams in the west and the top three teams in the east.  
+I could easily pull the CSV's off [Basketball Reference](https://www.basketball-reference.com/), but I might want to come back and adjust this post later. It would be pretty tedious to save those data sets again, so instead I am using the package `rvest` to harvest the data directly off the web page. For this table I am pulling the top team in the west, which is the Phoenix Suns and the top teams in the east, which is the Miami Heat.   
 
 ```{r variables}
 # Add team name and team slug
@@ -149,7 +149,9 @@ reactable(
 
 [NBA Analytics Tutorial: Using R to Display Player Career Stats](https://sweepsportsanalytics.com/2021/12/19/nba-analytics-tutorial-using-r-to-display-player-career-stats/)
 
-# Future Projects
+# Future Updates
+
+- Create a question to look at
 
 - Add Functions to look at more teams / reduce code
 
