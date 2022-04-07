@@ -1,0 +1,65 @@
+---
+title: Tidyverse Style Guide (Part 2)
+author: Randi Bolt
+date: '2022-03-30'
+slug: []
+categories:
+  - undergrad
+tags:
+  - rstudio
+  - tidyverse
+output:
+  blogdown::html_page:
+    toc: TRUE
+---
+
+```{r, echo=F, message=FALSE, error=FALSE, warning=FALSE}
+x <- 1
+y <- 2
+library(datasets)
+library(tidyverse)
+data(iris)
+```
+
+This is part 2 of my notes from [the tidyverse style guide](https://style.tidyverse.org/).
+
+# Packages 
+
+## 6. Files 
+
+### Names 
+
+### Organization 
+
+
+## 7. Documentation 
+
+
+
+## 8. Tests 
+
+### Organization 
+
+
+## 9. Error messages 
+
+
+
+## 10. News 
+
+### Bullets
+
+
+### Organization
+
+### Blog Post 
+
+
+## 11. Git/Github 
+
+### Commit message
+
+### Pull requests 
+
+
+

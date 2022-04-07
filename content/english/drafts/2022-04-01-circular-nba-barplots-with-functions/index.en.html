@@ -1,0 +1,477 @@
+---
+title: Circular NBA Barplots with Functions
+author: Randi Bolt
+date: '2022-04-01'
+slug: []
+categories:
+  - undergrad
+tags: []
+---
+
+
+
+<div id="load-packages" class="section level1">
+<h1>Load Packages</h1>
+<pre class="r"><code>library(rvest) 
+library(tidyverse) 
+library(reactable)
+library(plotly)</code></pre>
+</div>
+<div id="load-and-prepare-data-function" class="section level1">
+<h1>Load and Prepare Data Function</h1>
+<pre class="r"><code># Calls and merges team total stats and per game stats.  
+merge_stats_table &lt;- function(team_name, 
+                              slug) {
+  
+  # define team page URL
+  url &lt;- paste0(&quot;https://www.basketball-reference.com/teams/&quot;,slug,&quot;/2022.html&quot;)
+  
+  # Read total stats
+  ttl_stat &lt;- url %&gt;%
+  read_html %&gt;%
+  html_node(&quot;#totals&quot;) %&gt;% 
+  html_table()
+  
+  # Read Per Game stats
+  per_game_stat &lt;- url %&gt;%
+  read_html %&gt;%
+  html_node(&quot;#per_game&quot;) %&gt;% 
+  html_table()
+  
+  # Rename Column 2 to Name 
+  names(ttl_stat)[2] &lt;- &quot;Name&quot;
+  names(per_game_stat)[2] &lt;- &quot;Name&quot;
+  
+  # Merge stats tables 
+  merge(ttl_stat, per_game_stat, 
+        by = c(&quot;Age&quot;, &quot;Name&quot;, &quot;G&quot;, &quot;GS&quot;))
+  
+}</code></pre>
+</div>
+<div id="load-and-prepare-data" class="section level1">
+<h1>Load and Prepare Data</h1>
+<pre class="r"><code># Suns Data 
+suns_tt &lt;- merge_stats_table(&quot;Phoenix Suns&quot;,&quot;PHO&quot;)</code></pre>
+</div>
+<div id="create-pts-data" class="section level1">
+<h1>Create PTS Data</h1>
+<pre class="r"><code># Sort and filter data by PTS &gt;= a value (500)
+pts_sort &lt;- function(data_tt, value){
+  # Arrange by most PTS, and filter pts &gt;= value
+  data_tt %&gt;%
+  filter(PTS &gt;= value)
+}
+
+# Sort Data 
+suns_tt_pts_sort &lt;- pts_sort(suns_tt, 500)
+
+# Create PTS Data Frames
+suns_pts &lt;- data.frame(
+  player = suns_tt_pts_sort$Name,
+  pts = suns_tt_pts_sort$PTS
+) </code></pre>
+</div>
+<div id="pts-per-game-data" class="section level1">
+<h1>PTS per Game Data</h1>
+<pre class="r"><code># Sort and filter data by PTS/G &gt;= a value (10)
+pts_pg_sort &lt;- function(data_tt, value){
+  # Arrange by most overall AST (.x), and filter pts &gt;= value
+  data_tt %&gt;%
+  filter(`PTS/G` &gt;= value)
+}
+
+# Sort Data 
+suns_pg_pts_sort &lt;- pts_pg_sort(suns_tt, 10.0)
+
+# Create PTS Data Frames
+suns_pts_pg &lt;- data.frame(
+  player = suns_pg_pts_sort$Name,
+  pts_pg = suns_pg_pts_sort$`PTS/G`
+) </code></pre>
+</div>
+<div id="ast-data" class="section level1">
+<h1>AST Data</h1>
+<pre class="r"><code># Sort and filter data by AST &gt;= a value (100)
+ast_sort &lt;- function(data_tt, value){
+  # Arrange by most overall AST (.x), and filter pts &gt;= value
+  data_tt %&gt;%
+  filter(AST.x &gt;= value)
+}
+
+# Sort Data 
+suns_tt_ast_sort &lt;- ast_sort(suns_tt, 100)
+
+# Create AST Data Frames
+suns_ast &lt;- data.frame(
+  player = suns_tt_ast_sort$Name,
+  ast = suns_tt_ast_sort$AST.x
+) </code></pre>
+</div>
+<div id="blk-data" class="section level1">
+<h1>BLK Data</h1>
+<pre class="r"><code># Sort and filter data by BLK &gt;= a value (20)
+blk_sort &lt;- function(data_tt, value){
+  # Arrange by most overall AST (.x), and filter pts &gt;= value
+  data_tt %&gt;%
+  filter(BLK.x &gt;= value)
+}
+
+# Sort Data 
+suns_tt_blk_sort &lt;- blk_sort(suns_tt, 20)
+
+# Create BLK Data Frames
+suns_blk &lt;- data.frame(
+  player = suns_tt_blk_sort$Name,
+  blk = suns_tt_blk_sort$BLK.x
+)</code></pre>
+</div>
+<div id="create-color-palettes" class="section level1">
+<h1>Create Color Palettes</h1>
+<pre class="r"><code># Suns 
+suns_cols &lt;- c(&quot;#1D1160&quot;, &quot;#E56020&quot;, &quot;#000000&quot;, &quot;#63727A&quot;, &quot;#F9AD1B&quot;)</code></pre>
+<pre class="r"><code># PTS Data Lengths 
+suns_pts_size &lt;- length(suns_pts$player)
+# PTS per Game Data Lengths 
+suns_pts_pg_size &lt;- length(suns_pts_pg$player)
+# AST Data Lengths
+suns_ast_size &lt;- length(suns_ast$player)
+# BLK Data Lengths
+suns_blk_size &lt;- length(suns_blk$player)</code></pre>
+<pre class="r"><code># PTS Color Palettes
+suns_pts_cols &lt;- colorRampPalette(suns_cols)(suns_pts_size)
+# PTS per Game Color Palettes
+suns_pts_pg_cols &lt;- colorRampPalette(suns_cols)(suns_pts_pg_size)
+# AST Color Palettes
+suns_ast_cols &lt;- colorRampPalette(suns_cols)(suns_ast_size)
+# BLK Color Palettes
+suns_blk_cols &lt;- colorRampPalette(suns_cols)(suns_blk_size)</code></pre>
+</div>
+<div id="pts-radar-plot-function" class="section level1">
+<h1>PTS Radar plot function</h1>
+<pre class="r"><code># Pts radar plot function 
+pts_radar_plot &lt;- function(data_stat, team_cols, team_title){
+  ggplot(data_stat, 
+         aes(x = reorder(str_wrap(player,5), pts),
+             y = pts)
+         ) + 
+    # Make Custome panel Grid 
+    geom_hline(
+      aes(yintercept =y),
+      data.frame(y=c(0:3)*500),
+      color = &quot;lightgrey&quot;
+    ) + 
+    geom_col(
+      show.legend = TRUE,
+      fill = team_cols,
+      position = &quot;dodge2&quot;,
+      alpha = 0.9
+    ) +
+    # Annotate custom scale inside plot
+    annotate(
+    x = 0, 
+    y = 600, 
+    label = &quot;500&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 1100, 
+    label = &quot;1000&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 1600, 
+    label = &quot;1500&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+    theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    
+    # Use gray text for the region names
+    axis.text.x = element_text(color = &quot;gray12&quot;, size = 12),
+    
+    # Remove legend
+    legend.position = &quot;none&quot;,
+    
+    # Customize the text in the title, subtitle, and caption
+    plot.title = element_text(face = &quot;bold&quot;, size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = .5),
+    plot.caption = element_text(size = 8, hjust = .5),
+    
+    # Make the background white and remove extra grid lines
+    panel.background = element_rect(fill = &quot;white&quot;, color = &quot;white&quot;),
+    panel.grid = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) + 
+    labs(
+      title = team_title,
+      subtitle = paste(
+        &quot;This visualisation shows the players whose total points&quot;, 
+        &quot;for the 2021/22 season are over  500.&quot;,
+        sep = &quot;\n&quot;
+      ),
+      caption = &quot;\n\n Data Visualisation by Randi Bolt\n https://www.rbolt.me/\nSource: Basketball Reference\nLink to Data: https://www.basketball-reference.com/\nDate: April 1st, 2022&quot;
+    ) +
+    coord_polar()
+}</code></pre>
+</div>
+<div id="pts-per-game-radar-function" class="section level1">
+<h1>PTS per Game Radar Function</h1>
+<pre class="r"><code># Pts per game radar function
+pts_pg_radar_plot &lt;- function(data_stat, team_cols, team_title){
+  ggplot(data_stat, 
+         aes(x = reorder(str_wrap(player,5), pts_pg),
+             y = pts_pg)
+         ) + 
+    # Make Custome panel Grid 
+    geom_hline(
+      aes(yintercept =y),
+      data.frame(y=c(0:3)*10),
+      color = &quot;lightgrey&quot;
+    ) + 
+    geom_col(
+      show.legend = TRUE,
+      fill = team_cols,
+      position = &quot;dodge2&quot;,
+      alpha = 0.9
+    ) +
+    # Annotate custom scale inside plot
+    annotate(
+    x = 0, 
+    y = 12, 
+    label = &quot;10&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 22, 
+    label = &quot;20&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 32, 
+    label = &quot;30&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+    theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    
+    # Use gray text for the region names
+    axis.text.x = element_text(color = &quot;gray12&quot;, size = 12),
+    
+    # Remove legend
+    legend.position = &quot;none&quot;,
+    
+    # Customize the text in the title, subtitle, and caption
+    plot.title = element_text(face = &quot;bold&quot;, size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = .5),
+    plot.caption = element_text(size = 8, hjust = .5),
+    
+    # Make the background white and remove extra grid lines
+    panel.background = element_rect(fill = &quot;white&quot;, color = &quot;white&quot;),
+    panel.grid = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) + 
+    labs(
+      title = team_title,
+      subtitle = paste(
+        &quot;This visualisation shows the players whose points per game&quot;, 
+        &quot;for the 2021/22 season are over 10.&quot;,
+        sep = &quot;\n&quot;
+      ),
+      caption = &quot;\n\n Data Visualisation by Randi Bolt\n https://www.rbolt.me/\nSource: Basketball Reference\nLink to Data: https://www.basketball-reference.com/\nDate: April 1st, 2022&quot;
+    ) +
+    coord_polar()
+}</code></pre>
+</div>
+<div id="ast-radar-plot-function" class="section level1">
+<h1>AST Radar Plot Function</h1>
+<pre class="r"><code># AST radar plot function 
+ast_radar_plot &lt;- function(data_stat, team_cols, team_title){
+  ggplot(data_stat, 
+         aes(x = reorder(str_wrap(player,5), ast),
+             y = ast)
+         ) + 
+    # Make Custome panel Grid 
+    geom_hline(
+      aes(yintercept =y),
+      data.frame(y=c(0:3)*200),
+      color = &quot;lightgrey&quot;
+    ) + 
+    geom_col(
+      show.legend = TRUE,
+      fill = team_cols,
+      position = &quot;dodge2&quot;,
+      alpha = 0.9
+    ) +
+    # Annotate custom scale inside plot
+    annotate(
+    x = 0, 
+    y = 300, 
+    label = &quot;200&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 500, 
+    label = &quot;400&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 700, 
+    label = &quot;600&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+    theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    
+    # Use gray text for the region names
+    axis.text.x = element_text(color = &quot;gray12&quot;, size = 12),
+    
+    # Remove legend
+    legend.position = &quot;none&quot;,
+    
+    # Customize the text in the title, subtitle, and caption
+    plot.title = element_text(face = &quot;bold&quot;, size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = .5),
+    plot.caption = element_text(size = 8, hjust = .5),
+    
+    # Make the background white and remove extra grid lines
+    panel.background = element_rect(fill = &quot;white&quot;, color = &quot;white&quot;),
+    panel.grid = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) + 
+    labs(
+      title = team_title,
+      subtitle = paste(
+        &quot;This visualisation shows the players whose total assists&quot;, 
+        &quot;for the 2021/22 season are over 100.&quot;,
+        sep = &quot;\n&quot;
+      ),
+      caption = &quot;\n\n Data Visualisation by Randi Bolt\n https://www.rbolt.me/\nSource: Basketball Reference\nLink to Data: https://www.basketball-reference.com/\nDate: April 1st, 2022&quot;
+    ) +
+    coord_polar()
+}</code></pre>
+</div>
+<div id="blk-radar-plot-function" class="section level1">
+<h1>BLK Radar Plot Function</h1>
+<pre class="r"><code># BLK radar plot function 
+blk_radar_plot &lt;- function(data_stat, team_cols, team_title){
+  ggplot(data_stat, 
+         aes(x = reorder(str_wrap(player,5), blk),
+             y = blk)
+         ) + 
+    # Make Custome panel Grid 
+    geom_hline(
+      aes(yintercept =y),
+      data.frame(y=c(0:3)*25),
+      color = &quot;lightgrey&quot;
+    ) + 
+    geom_col(
+      show.legend = TRUE,
+      fill = team_cols,
+      position = &quot;dodge2&quot;,
+      alpha = 0.9
+    ) +
+    # Annotate custom scale inside plot
+    annotate(
+    x = 0, 
+    y = 35, 
+    label = &quot;25&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 60, 
+    label = &quot;50&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+  annotate(
+    x = 0, 
+    y = 85, 
+    label = &quot;75&quot;, 
+    geom = &quot;text&quot;, 
+    color = &quot;gray12&quot;
+  ) +
+    theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    
+    # Use gray text for the region names
+    axis.text.x = element_text(color = &quot;gray12&quot;, size = 12),
+    
+    # Remove legend
+    legend.position = &quot;none&quot;,
+    
+    # Customize the text in the title, subtitle, and caption
+    plot.title = element_text(face = &quot;bold&quot;, size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = .5),
+    plot.caption = element_text(size = 8, hjust = .5),
+    
+    # Make the background white and remove extra grid lines
+    panel.background = element_rect(fill = &quot;white&quot;, color = &quot;white&quot;),
+    panel.grid = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) + 
+    labs(
+      title = team_title,
+      subtitle = paste(
+        &quot;This visualisation shows the players whose total blocks&quot;, 
+        &quot;for the 2021/22 season are over 20.&quot;,
+        sep = &quot;\n&quot;
+      ),
+      caption = &quot;\n\n Data Visualisation by Randi Bolt\n https://www.rbolt.me/\nSource: Basketball Reference\nLink to Data: https://www.basketball-reference.com/\nDate: April 1st, 2022&quot;
+    ) +
+    coord_polar()
+}</code></pre>
+</div>
+<div id="radar-plots" class="section level1">
+<h1>Radar Plots</h1>
+<pre class="r"><code># PTS
+suns_pts_radar &lt;- pts_radar_plot(suns_pts, suns_pts_cols, &quot;\nPheonix Suns&quot;)
+# Pts/g
+suns_pts_pg_radar &lt;- pts_pg_radar_plot(suns_pts_pg, suns_pts_pg_cols, &quot;\nPheonix Suns&quot;)
+# Ast
+suns_ast_radar &lt;- ast_radar_plot(suns_ast, suns_ast_cols, &quot;\nPheonix Suns&quot;)
+# BLK 
+suns_blk_radar &lt;- blk_radar_plot(suns_blk, suns_blk_cols, &quot;\nPheonix Suns&quot;)
+# Save Data 
+ggsave(&quot;suns_pts_radar.png&quot;, suns_pts_radar ,width=9 , height=12.6)
+ggsave(&quot;suns_pts_pg_radar.png&quot;, suns_pts_pg_radar ,width=9 , height=12.6)
+ggsave(&quot;suns_ast_radar.png&quot;, suns_ast_radar ,width=9 , height=12.6)
+ggsave(&quot;suns_blk_radar.png&quot;, suns_blk_radar ,width=9 , height=12.6)
+# Print Data 
+knitr::include_graphics(&quot;suns_pts_radar.png&quot;)</code></pre>
+<p><img src="suns_pts_radar.png" width="1350" /></p>
+<pre class="r"><code>knitr::include_graphics(&quot;suns_pts_pg_radar.png&quot;)</code></pre>
+<p><img src="suns_pts_pg_radar.png" width="1350" /></p>
+<pre class="r"><code>knitr::include_graphics(&quot;suns_ast_radar.png&quot;)</code></pre>
+<p><img src="suns_ast_radar.png" width="1350" /></p>
+<pre class="r"><code>knitr::include_graphics(&quot;suns_blk_radar.png&quot;)</code></pre>
+<p><img src="suns_blk_radar.png" width="1350" /></p>
+</div>

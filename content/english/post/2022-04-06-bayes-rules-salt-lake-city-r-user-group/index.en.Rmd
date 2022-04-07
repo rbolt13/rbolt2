@@ -1,0 +1,259 @@
+---
+title: 'Bayes Rules! - Salt Lake City R User Group '
+author: Randi Bolt
+date: '2022-04-06'
+slug: []
+categories:
+  - undergrad
+tags: []
+---
+
+ Next Meeting: https://www.meetup.com/slc-rug/events/284188359/ 
+  
+  Code of Conduct: https://wiki.r-consortium.org/view/R_Consortium_and_the_R_Community_Code_of_Conduct 
+
+If you are interested in speaking, reach out. 
+
+Alicia Johnson (speaker)
+
+- statistics professor 
+
+- author of Bayes Rules!
+  
+# Links
+  
+Workshop Materials: https://docs.google.com/presentation/d/13SnjPZsJpJWBHimIhA2edBoQHIp0_1xkF-k2T8uj2pg/edit#slide=id.p
+
+Github Repository: https://github.com/ajohns24/r-ladies-philly
+
+Website: https://www.bayesrulesbook.com/ 
+  
+# Quiz 
+  
+**1. What does P(heads)=0.5 mean?**
+  
+    a. If I flip this coin over and over, roughly 50% will be heads. 
+
+    b. Heads and Tails are equally plausible.
+
+    c. Both a and b make sense. 
+
+>Majority Responses: C
+>
+>Scores: a = 1, b = 3, c = 2 
+
+a) Frequentist Philosophy 
+
+    - long run outcome 
+
+b) Bayesian Philosophy
+
+    - relative probability of events 
+
+c) Pragmatic Philosophy 
+
+    - both interpretations make sense
+
+**2. P(candidate A wins) = 0.8 means**
+
+    a. If we observe this election over and over, candidate A will win roughly 80% of the time. 
+
+    b. Candidate A is much more likely to win than to lose (4 times more likely).
+
+    c. The pollster's calculation is wrong. 
+
+>Majority Response: B 
+>
+>Scores: a = 1, b = 3, c = 1
+
+a) Freq. 
+
+b) Bayes 
+
+c) Freq. 
+
+    - b/c event cannot be repeated over and over again 
+
+**3. Alicia claims she can predict the outcome of a coin flip.** 
+
+**Mine claims she can distinguish between a Crown Burger and a vegan alternative.** 
+
+**Both succeed in 10 out of 10 trials! What do you conclude?** 
+
+    a. You're still more confident in Mine's claim than Alicia's claim.
+
+    b. The evidence supporting Mine's claim. 
+
+>Score: a = 3, b = 1
+
+a) Bayes
+
+b) Freq. 
+
+**4. You've tested positive for a very rare genetic trait. If you only get to ask the doctor one question, which would it be?**
+  
+    a. P(rare trait|+)
+
+    b. P(+| no rare trait)
+
+> Score: a = 3, b = 1 
+
+a) Bayes
+
+    - asking about uncertainty of hypothesis given certainty of the data
+
+    - more natural question to ask 
+
+b) Freq. = p-value 
+
+    - hard to wrap minds around 
+
+    - asking about uncertainty in data 
+
+    - less natural question to ask (since data is certain)
+
+# Bayes Rules Activity 
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  fig.height = 2.5,
+  fig.width = 4.5,
+  fig.pos = "center")
+```
+
+
+## Goals 
+
+- Learn to think like Bayesians.
+- Apply Bayesian thinking in a regression setting.
+
+## Set Up
+
+```{r}
+# Load packages
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(bayesplot)
+library(rstanarm)
+library(broom.mixed)
+```
+
+## Background 
+
+Let $\pi$ ("pi") be the proportion of U.S. adults that believe that climate change is real and caused by people. Thus $\pi$ is some value between 0 and 1.
+
+### Exercise 1: Specify a prior model
+
+The first step in learning about $\pi$ is to specify a **prior model** for $\pi$ (i.e. prior to collecting any data). Suppose your friend specifies their understanding of $\pi$ through the "Beta(2, 20)" model. Plot this Beta model and discuss what it tells you about your friend's prior understanding. For example:
+
+- What do they think is the most likely value of $\pi$?    
+- What range of $\pi$ values do they think are plausible?
+
+```{r}
+plot_beta(alpha = 2, beta = 20)
+```
+
+Notes:
+
+- proportion between 0 and 1 (not $-\infty$ to $+\infty$)
+
+- this model, beta-2-20, is right skewed 
+
+Q: what is your friend saying is the most likely value of pie?
+
+A: about .12, aka about 12% of people believe in climate change. 
+
+- spike of model is best estimate 
+
+- looking at range the prior model drops off above .25, so you friend believes under 25% of people believe in climate change. 
+
+### Exercise 2: Check out some data
+
+The second step in learning about $\pi$, the proportion of U.S. adults that believe that climate change is real and caused by people, is to collect data. Your friend surveys 10 people and 6 believe that climate change is real and caused by people. The **likelihood function** of $\pi$ plots the chance of getting this 6-out-of-10 survey result under different possible $\pi$ values. Based on this plot:
+
+- With what values of $\pi$ are the 6-out-of-10 results most consistent?
+
+    Approx. 60% of people belive in climate change. Shown by our graph spiking at that value. 
+
+- For what values of $\pi$ would these 6-out-of-10 results be *unlikely*?
+
+    Our data would not be very likely to happen for values below .25 and above .9. 
+
+```{r}
+plot_binomial_likelihood(y = 6, n = 10)
+```
+
+Notes: 
+
+- The next step after creating a model (beta-2-20) we collect data. 
+
+- This plot is showing us what the chance is that we got these survey results under different possible pie values. 
+
+### Exercise 3: Build the posterior model
+
+In a Bayesian analysis of $\pi$, we build a *posterior* model of $\pi$ by combining the prior model of $\pi$ with the data (represented through the likelihood function). Plot all 3 components below. Summarize your observations:
+
+- What's your friend's posterior understanding of $\pi$?
+
+    My friend's prior understanding of $\pi$ is not as low as what it was before, but also not as high as what is suggested in the data. 
+
+- How does their posterior understanding compare to their prior and likelihood? Thus how does their posterior *balance* the prior and data?
+
+
+```{r}
+plot_beta_binomial(alpha = 2, beta = 20, y = 6, n = 10)
+```
+
+Notes:
+
+- Depends on a lot of factors 
+
+### Exercise 4: Another friend
+
+Consider another friend that saw the same 6-out-of-10 polling data but started with a Beta(1, 1) prior model for $\pi$:
+
+```{r}
+plot_beta(alpha = 1, beta = 1)
+```
+
+- Describe the new friend's understanding of $\pi$. Compared to the first friend, are they more or less sure about $\pi$?
+
+- Do you think the new friend will have a different posterior model than the first friend? If so, how do you think it will compare?
+
+- Test your intuition. Use `plot_beta_binomial()` to explore your new friend's posterior model of $\pi$.
+
+```{r}
+plot_beta_binomial(alpha = 1, beta = 1, y = 6, n = 10)
+```
+
+Notes:
+
+- this is a shoulder shrug, uncertain prior model. It could really be anything. 
+
+### Exercise 5: More data
+
+Your two friends come across more data. In the `pulse_of_the_nation` survey, 655 of 1000 people believed climate change was real and caused by people:
+
+```{r}
+data("pulse_of_the_nation")
+pulse_of_the_nation %>% 
+  count(climate_change)
+```
+
+- How do you think the additional data will impact your first friend's posterior understanding of $\pi$? What about the second friend's?
+
+- Upon seeing the 1000-person survey results, do you think your two friends' posterior understandings of $\pi$ will disagree a lot or a little?
+
+- Test your intuition. Use `plot_beta_binomial()` to explore both friends' posterior models of $\pi$.
+
+```{r}
+# first friend 
+plot_beta_binomial(alpha = 2, beta = 20, y = 655, n = 1000)
+# second friend 
+plot_beta_binomial(alpha = 1, beta = 1, y = 655, n = 1000)
+```
+
+--> See the link to the github repository above for the rest of this activity.  

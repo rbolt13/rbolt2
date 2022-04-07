@@ -1,0 +1,224 @@
+---
+title: 'Bayes Rules! - Salt Lake City R User Group '
+author: Randi Bolt
+date: '2022-04-06'
+slug: []
+categories:
+  - undergrad
+tags: []
+---
+
+
+
+<p>Next Meeting: <a href="https://www.meetup.com/slc-rug/events/284188359/" class="uri">https://www.meetup.com/slc-rug/events/284188359/</a></p>
+<p>Code of Conduct: <a href="https://wiki.r-consortium.org/view/R_Consortium_and_the_R_Community_Code_of_Conduct" class="uri">https://wiki.r-consortium.org/view/R_Consortium_and_the_R_Community_Code_of_Conduct</a></p>
+<p>If you are interested in speaking, reach out.</p>
+<p>Alicia Johnson (speaker)</p>
+<ul>
+<li><p>statistics professor</p></li>
+<li><p>author of Bayes Rules!</p></li>
+</ul>
+<div id="links" class="section level1">
+<h1>Links</h1>
+<p>Workshop Materials: <a href="https://docs.google.com/presentation/d/13SnjPZsJpJWBHimIhA2edBoQHIp0_1xkF-k2T8uj2pg/edit#slide=id.p" class="uri">https://docs.google.com/presentation/d/13SnjPZsJpJWBHimIhA2edBoQHIp0_1xkF-k2T8uj2pg/edit#slide=id.p</a></p>
+<p>Github Repository: <a href="https://github.com/ajohns24/r-ladies-philly" class="uri">https://github.com/ajohns24/r-ladies-philly</a></p>
+<p>Website: <a href="https://www.bayesrulesbook.com/" class="uri">https://www.bayesrulesbook.com/</a></p>
+</div>
+<div id="quiz" class="section level1">
+<h1>Quiz</h1>
+<p><strong>1. What does P(heads)=0.5 mean?</strong></p>
+<pre><code>a. If I flip this coin over and over, roughly 50% will be heads. 
+
+b. Heads and Tails are equally plausible.
+
+c. Both a and b make sense. </code></pre>
+<blockquote>
+<p>Majority Responses: C</p>
+<p>Scores: a = 1, b = 3, c = 2</p>
+</blockquote>
+<ol style="list-style-type: lower-alpha">
+<li><p>Frequentist Philosophy</p>
+<ul>
+<li>long run outcome</li>
+</ul></li>
+<li><p>Bayesian Philosophy</p>
+<ul>
+<li>relative probability of events</li>
+</ul></li>
+<li><p>Pragmatic Philosophy</p>
+<ul>
+<li>both interpretations make sense</li>
+</ul></li>
+</ol>
+<p><strong>2. P(candidate A wins) = 0.8 means</strong></p>
+<pre><code>a. If we observe this election over and over, candidate A will win roughly 80% of the time. 
+
+b. Candidate A is much more likely to win than to lose (4 times more likely).
+
+c. The pollster&#39;s calculation is wrong. </code></pre>
+<blockquote>
+<p>Majority Response: B</p>
+<p>Scores: a = 1, b = 3, c = 1</p>
+</blockquote>
+<ol style="list-style-type: lower-alpha">
+<li><p>Freq.</p></li>
+<li><p>Bayes</p></li>
+<li><p>Freq.</p>
+<ul>
+<li>b/c event cannot be repeated over and over again</li>
+</ul></li>
+</ol>
+<p><strong>3. Alicia claims she can predict the outcome of a coin flip.</strong></p>
+<p><strong>Mine claims she can distinguish between a Crown Burger and a vegan alternative.</strong></p>
+<p><strong>Both succeed in 10 out of 10 trials! What do you conclude?</strong></p>
+<pre><code>a. You&#39;re still more confident in Mine&#39;s claim than Alicia&#39;s claim.
+
+b. The evidence supporting Mine&#39;s claim. </code></pre>
+<blockquote>
+<p>Score: a = 3, b = 1</p>
+</blockquote>
+<ol style="list-style-type: lower-alpha">
+<li><p>Bayes</p></li>
+<li><p>Freq.</p></li>
+</ol>
+<p><strong>4. You’ve tested positive for a very rare genetic trait. If you only get to ask the doctor one question, which would it be?</strong></p>
+<pre><code>a. P(rare trait|+)
+
+b. P(+| no rare trait)</code></pre>
+<blockquote>
+<p>Score: a = 3, b = 1</p>
+</blockquote>
+<ol style="list-style-type: lower-alpha">
+<li><p>Bayes</p>
+<ul>
+<li><p>asking about uncertainty of hypothesis given certainty of the data</p></li>
+<li><p>more natural question to ask</p></li>
+</ul></li>
+<li><p>Freq. = p-value</p>
+<ul>
+<li><p>hard to wrap minds around</p></li>
+<li><p>asking about uncertainty in data</p></li>
+<li><p>less natural question to ask (since data is certain)</p></li>
+</ul></li>
+</ol>
+</div>
+<div id="bayes-rules-activity" class="section level1">
+<h1>Bayes Rules Activity</h1>
+<div id="goals" class="section level2">
+<h2>Goals</h2>
+<ul>
+<li>Learn to think like Bayesians.</li>
+<li>Apply Bayesian thinking in a regression setting.</li>
+</ul>
+</div>
+<div id="set-up" class="section level2">
+<h2>Set Up</h2>
+<pre class="r"><code># Load packages
+library(tidyverse)
+library(tidybayes)
+library(bayesrules)
+library(bayesplot)
+library(rstanarm)
+library(broom.mixed)</code></pre>
+</div>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Let <span class="math inline">\(\pi\)</span> (“pi”) be the proportion of U.S. adults that believe that climate change is real and caused by people. Thus <span class="math inline">\(\pi\)</span> is some value between 0 and 1.</p>
+<div id="exercise-1-specify-a-prior-model" class="section level3">
+<h3>Exercise 1: Specify a prior model</h3>
+<p>The first step in learning about <span class="math inline">\(\pi\)</span> is to specify a <strong>prior model</strong> for <span class="math inline">\(\pi\)</span> (i.e. prior to collecting any data). Suppose your friend specifies their understanding of <span class="math inline">\(\pi\)</span> through the “Beta(2, 20)” model. Plot this Beta model and discuss what it tells you about your friend’s prior understanding. For example:</p>
+<ul>
+<li>What do they think is the most likely value of <span class="math inline">\(\pi\)</span>?<br />
+</li>
+<li>What range of <span class="math inline">\(\pi\)</span> values do they think are plausible?</li>
+</ul>
+<pre class="r"><code>plot_beta(alpha = 2, beta = 20)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="432" /></p>
+<p>Notes:</p>
+<ul>
+<li><p>proportion between 0 and 1 (not <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>)</p></li>
+<li><p>this model, beta-2-20, is right skewed</p></li>
+</ul>
+<p>Q: what is your friend saying is the most likely value of pie?</p>
+<p>A: about .12, aka about 12% of people believe in climate change.</p>
+<ul>
+<li><p>spike of model is best estimate</p></li>
+<li><p>looking at range the prior model drops off above .25, so you friend believes under 25% of people believe in climate change.</p></li>
+</ul>
+</div>
+<div id="exercise-2-check-out-some-data" class="section level3">
+<h3>Exercise 2: Check out some data</h3>
+<p>The second step in learning about <span class="math inline">\(\pi\)</span>, the proportion of U.S. adults that believe that climate change is real and caused by people, is to collect data. Your friend surveys 10 people and 6 believe that climate change is real and caused by people. The <strong>likelihood function</strong> of <span class="math inline">\(\pi\)</span> plots the chance of getting this 6-out-of-10 survey result under different possible <span class="math inline">\(\pi\)</span> values. Based on this plot:</p>
+<ul>
+<li><p>With what values of <span class="math inline">\(\pi\)</span> are the 6-out-of-10 results most consistent?</p>
+<p>Approx. 60% of people belive in climate change. Shown by our graph spiking at that value.</p></li>
+<li><p>For what values of <span class="math inline">\(\pi\)</span> would these 6-out-of-10 results be <em>unlikely</em>?</p>
+<p>Our data would not be very likely to happen for values below .25 and above .9.</p></li>
+</ul>
+<pre class="r"><code>plot_binomial_likelihood(y = 6, n = 10)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="432" /></p>
+<p>Notes:</p>
+<ul>
+<li><p>The next step after creating a model (beta-2-20) we collect data.</p></li>
+<li><p>This plot is showing us what the chance is that we got these survey results under different possible pie values.</p></li>
+</ul>
+</div>
+<div id="exercise-3-build-the-posterior-model" class="section level3">
+<h3>Exercise 3: Build the posterior model</h3>
+<p>In a Bayesian analysis of <span class="math inline">\(\pi\)</span>, we build a <em>posterior</em> model of <span class="math inline">\(\pi\)</span> by combining the prior model of <span class="math inline">\(\pi\)</span> with the data (represented through the likelihood function). Plot all 3 components below. Summarize your observations:</p>
+<ul>
+<li><p>What’s your friend’s posterior understanding of <span class="math inline">\(\pi\)</span>?</p>
+<p>My friend’s prior understanding of <span class="math inline">\(\pi\)</span> is not as low as what it was before, but also not as high as what is suggested in the data.</p></li>
+<li><p>How does their posterior understanding compare to their prior and likelihood? Thus how does their posterior <em>balance</em> the prior and data?</p></li>
+</ul>
+<pre class="r"><code>plot_beta_binomial(alpha = 2, beta = 20, y = 6, n = 10)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-1.png" width="432" /></p>
+<p>Notes:</p>
+<ul>
+<li>Depends on a lot of factors</li>
+</ul>
+</div>
+<div id="exercise-4-another-friend" class="section level3">
+<h3>Exercise 4: Another friend</h3>
+<p>Consider another friend that saw the same 6-out-of-10 polling data but started with a Beta(1, 1) prior model for <span class="math inline">\(\pi\)</span>:</p>
+<pre class="r"><code>plot_beta(alpha = 1, beta = 1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="432" /></p>
+<ul>
+<li><p>Describe the new friend’s understanding of <span class="math inline">\(\pi\)</span>. Compared to the first friend, are they more or less sure about <span class="math inline">\(\pi\)</span>?</p></li>
+<li><p>Do you think the new friend will have a different posterior model than the first friend? If so, how do you think it will compare?</p></li>
+<li><p>Test your intuition. Use <code>plot_beta_binomial()</code> to explore your new friend’s posterior model of <span class="math inline">\(\pi\)</span>.</p></li>
+</ul>
+<pre class="r"><code>plot_beta_binomial(alpha = 1, beta = 1, y = 6, n = 10)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="432" /></p>
+<p>Notes:</p>
+<ul>
+<li>this is a shoulder shrug, uncertain prior model. It could really be anything.</li>
+</ul>
+</div>
+<div id="exercise-5-more-data" class="section level3">
+<h3>Exercise 5: More data</h3>
+<p>Your two friends come across more data. In the <code>pulse_of_the_nation</code> survey, 655 of 1000 people believed climate change was real and caused by people:</p>
+<pre class="r"><code>data(&quot;pulse_of_the_nation&quot;)
+pulse_of_the_nation %&gt;% 
+  count(climate_change)</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   climate_change                    n
+##   &lt;fct&gt;                         &lt;int&gt;
+## 1 Not Real At All                 150
+## 2 Real and Caused by People       655
+## 3 Real but not Caused by People   195</code></pre>
+<ul>
+<li><p>How do you think the additional data will impact your first friend’s posterior understanding of <span class="math inline">\(\pi\)</span>? What about the second friend’s?</p></li>
+<li><p>Upon seeing the 1000-person survey results, do you think your two friends’ posterior understandings of <span class="math inline">\(\pi\)</span> will disagree a lot or a little?</p></li>
+<li><p>Test your intuition. Use <code>plot_beta_binomial()</code> to explore both friends’ posterior models of <span class="math inline">\(\pi\)</span>.</p></li>
+</ul>
+<pre class="r"><code># first friend 
+plot_beta_binomial(alpha = 2, beta = 20, y = 655, n = 1000)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="432" /></p>
+<pre class="r"><code># second friend 
+plot_beta_binomial(alpha = 1, beta = 1, y = 655, n = 1000)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-2.png" width="432" /></p>
+<p>–&gt; See the link to the github repository above for the rest of this activity.</p>
+</div>
+</div>
+</div>
