@@ -42,7 +42,7 @@ library(NBAcharts)
 
 To begin I'm creating a function, `nba_data()` that does three things: 
 
-1. Uses the rvest package to read the two tables (Totals and Per Game Stat) from [Basketball Reference](https://www.basketball-reference.com/). 
+1. Uses the rvest package to read two tables (Totals and Per Game Stat) from [Basketball Reference](https://www.basketball-reference.com/). 
 
 2. Rename the second column to "Name".
 
