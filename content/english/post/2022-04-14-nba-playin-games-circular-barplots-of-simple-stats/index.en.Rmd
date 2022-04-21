@@ -1,0 +1,733 @@
+---
+title: NBA Play in Games - Circular Barplots of Simple Stats
+author: Randi Bolt
+date: '2022-04-15'
+slug: []
+categories:
+  - undergrad
+tags:
+  - package
+---
+
+Today is April 15th, 2022 and the last round of the '21-'22 NBA play-in games. Lets look at some simple statistics of the four teams still in the fighting for a spot in the playoffs: Atlanta Hawks, Cleveland Cavaliers, New Orleans Pelicans, and the Los Angeles Clippers. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(error=FALSE,
+                      message= FALSE,
+                      warning=FALSE)
+```
+
+# Load Packages 
+
+To make these plots I will use three packages: 
+
+1. rvest : to gather the data from Basketball Reference
+
+2. tidyverse : to lean the data 
+
+3. NBAcharts : to create the charts.
+
+Hopefully the first two are familiar to you. The last one I created to "save time and space". Be warned that at this time this is a very simple package that currently has zero tests. I hope to update this soon. 
+
+```{r load packages}
+# install.packages("devtools")
+devtools::install_github("rbolt13/NBAcharts")
+# load packages 
+library(rvest) 
+library(tidyverse)
+library(NBAcharts)
+```
+
+# Scrape Data 
+
+To begin I'm creating a function, `nba_data()` that does three things: 
+
+1. Uses the rvest package to read the two tables (Totals and Per Game Stat) from [Basketball Reference](https://www.basketball-reference.com/). 
+
+2. Rename the second column to "Name".
+
+3. Merge the two tables together. 
+
+And creating four data sets for the four teams still competing for a spot in the finals. 
+
+```{r scrape and merge function and data sets}
+# Function :  Scrape and merge total and per game data-------
+nba_data <- function(slug){
+  # define team page URL
+  url <- paste0("https://www.basketball-reference.com/teams/",
+                slug,"/2022.html")
+  # Read total stats
+  ttl_stat <- url %>%
+  read_html %>%
+  html_node("#totals") %>% 
+  html_table()
+  
+  # Read Per Game stats
+  per_game_stat <- url %>%
+  read_html %>%
+  html_node("#per_game") %>% 
+  html_table()
+  
+  # Rename Column 2 to Name 
+  names(ttl_stat)[2] <- "Name"
+  names(per_game_stat)[2] <- "Name"
+  
+  # Replace NA values with 0 (for quantile function)
+  ttl_stat[is.na(ttl_stat)] <- 0
+  per_game_stat[is.na(per_game_stat)] <- 0
+  
+  # Merge stats tables 
+  merge(ttl_stat, per_game_stat, 
+        by = c("Age", "Name", "G", "GS"))
+}
+
+# Data Sets : Total and Per Game Team Stats-------------------
+hawks_data <- nba_data("ATL")
+cavs_data <- nba_data("CLE")
+pelicans_data <- nba_data("NOP")
+clippers_data <- nba_data("LAC")
+```
+
+# Tidy Data Sets 
+
+There are a lot of simple stats to look at, but to narrow it down lets look at some big ones: steals, blocks, defensive rebounds, assists, turnovers, and points per game.
+
+```{r tidy functions}
+# Steals----------------------------------------------
+team_stl <- function(team_data){
+  # reassign data
+  t_data <- team_data
+  
+  # filter data 
+  filtered_data <- team_data %>% 
+    filter(STL.x >= unname(quantile(t_data$STL.x))[4])
+  
+  #create data frame 
+  stl <- data.frame(
+    player = filtered_data$Name,
+    data = filtered_data$STL.x)
+  
+  # arrange data 
+  stl %>% arrange(-data)
+}
+
+# Blocks-----------------------------------------------
+team_blk <- function(team_data){
+  # reassign data
+  t_data <- team_data
+  
+  # filter data 
+  filtered_data <- team_data %>% 
+    filter(BLK.x >= unname(quantile(t_data$BLK.x))[4])
+  
+  #create data frame 
+  blk <- data.frame(
+    player = filtered_data$Name,
+    data = filtered_data$BLK.x)
+  # arrange data 
+  blk %>% arrange(-data)
+}
+
+# Defensive Rebounds------------------------------------
+team_drb <- function(team_data){
+  # reassign data
+  t_data <- team_data
+  
+  # filter data 
+  filtered_data <- team_data %>% 
+    filter(DRB.x >= unname(quantile(t_data$DRB.x))[4])
+  
+  #create data frame 
+  drb <- data.frame(
+    player = filtered_data$Name,
+    data = filtered_data$DRB.x)
+  
+  # arrange data 
+  drb %>% arrange(-data)
+}
+
+# Assists ------------------------------------------------- 
+team_ast <- function(team_data){
+  # reassign data
+  t_data <- team_data
+  
+  # filter data 
+  filtered_data <- team_data %>% 
+    filter(`AST.x` >= unname(quantile(t_data$`AST.x`))[4])
+  
+  #create data frame 
+  ast <- data.frame(
+    player = filtered_data$Name,
+    data = filtered_data$`AST.x`)
+  
+  # arrange data 
+  ast %>% arrange(-data)
+}
+
+# Turnovers ----------------------------------------------
+team_tov <- function(team_data){
+  # reassign data
+  t_data <- team_data
+  
+  # filter data 
+  filtered_data <- team_data %>% 
+    filter(`TOV.x` >= unname(quantile(t_data$`TOV.x`))[4])
+  
+  #create data frame 
+  tov <- data.frame(
+    player = filtered_data$Name,
+    data = filtered_data$`TOV.x`)
+  
+  # arrange data 
+  tov %>% arrange(-data)
+}
+
+# Points per game --------------------------------------
+team_ppg <- function(team_data){
+  # reassign data
+  t_data <- team_data
+  
+  # filter data 
+  filtered_data <- team_data %>% 
+    filter(`PTS/G` >= unname(quantile(t_data$`PTS/G`))[4])
+  
+  #create data frame 
+  ppg <- data.frame(
+    player = filtered_data$Name,
+    data = filtered_data$`PTS/G`)
+  
+  # arrange data 
+  ppg %>% arrange(-data)
+}
+```
+
+Note: Within each of these function I am getting a value for the top 75% of 
+players in a certain area. Below is a smaller chunk of code that breaks down this line of code. You can easily change this by setting a specific numeric value (i.e. `DRB.x >= 200`) or by looking at a different quantile by changing the 4 to another value between 1 and 5. 
+
+```{r}
+# Quantile (0%, 25%, 50%, 75%, 100%)
+quantile(hawks_data$STL.x)
+# Unname
+unname(quantile(hawks_data$STL.x))
+# Extract 4th data value (75%)
+unname(quantile(hawks_data$STL.x))[4]
+```
+
+Next to create tidy data sets for each team for each of the 6 stats.  
+
+```{r data sets}
+# Steals Data -------------------------------
+hawks_stls <- team_stl(hawks_data)
+cavs_stls <- team_stl(cavs_data)
+pelicans_stls <- team_stl(pelicans_data)
+clippers_stls <- team_stl(clippers_data)
+
+# Blocks Data -------------------------------
+hawks_blks <- team_blk(hawks_data)
+cavs_blks <- team_blk(cavs_data)
+pelicans_blks <- team_blk(pelicans_data)
+clippers_blks <- team_blk(clippers_data)
+
+# Defensive Rebounds Data -------------------
+hawks_drb <- team_drb(hawks_data)
+cavs_drb <- team_drb(cavs_data)
+pelicans_drb <- team_drb(pelicans_data)
+clippers_drb <- team_drb(clippers_data)
+
+# Points per game ---------------------------
+hawks_ppg <- team_ppg(hawks_data)
+cavs_ppg <- team_ppg(cavs_data)
+pelicans_ppg <- team_ppg(pelicans_data)
+clippers_ppg <- team_ppg(clippers_data)
+
+# Assists Data -------------------------------------------
+hawks_ast <- team_ast(hawks_data)
+cavs_ast <- team_ast(cavs_data)
+pelicans_ast <- team_ast(pelicans_data)
+clippers_ast <- team_ast(clippers_data)
+
+# Turnovers Data -----------------------------------------
+hawks_tov <- team_tov(hawks_data)
+cavs_tov <- team_tov(cavs_data)
+pelicans_tov <- team_tov(pelicans_data)
+clippers_tov <- team_tov(clippers_data)
+
+```
+
+# Color Palletes 
+
+To create color pallets for each team, I first assigned `team_cols` variables for each team with HTML links from the website [Team Color Codes](https://teamcolorcodes.com/nba-team-color-codes/).  Note that since the background of the graphs will be white with black text I omitted these choices upon assignment for aesthetics. Then I am using `colorRampPalette()` to create specific color palettes with size equale to `length(team_stat$player)`. 
+
+```{r}
+# Team Colors ------------------------------------------------------------------
+hawks_cols <- c("#C1D32F", "#E03A3E", "#26282A")
+cavs_cols <- c("#860038", "#041E42", "#FDBB30")
+pelicans_cols <- c("#0C2340", "#C8102E", "#85714D") 
+clippers_cols <- c("#C8102E", "#1D428A", "#BEC0C2")
+
+# Steals color palette ---------------------------------------------------------
+hawks_stls_pal <- colorRampPalette(hawks_cols)(length(hawks_stls$player))
+cavs_stls_pal <- colorRampPalette(cavs_cols)(length(cavs_stls$player))
+pelicans_stls_pal <- colorRampPalette(pelicans_cols)(length(pelicans_stls$player))
+clippers_stls_pal <- colorRampPalette(clippers_cols)(length(clippers_stls$player))
+
+# Blocks color palette ---------------------------------------------------------
+hawks_blks_pal <- colorRampPalette(hawks_cols)(length(hawks_blks$player))
+cavs_blks_pal <- colorRampPalette(cavs_cols)(length(cavs_blks$player))
+pelicans_blks_pal <- colorRampPalette(pelicans_cols)(length(pelicans_blks$player))
+clippers_blks_pal <- colorRampPalette(clippers_cols)(length(clippers_blks$player))
+
+# Defensive Rebounds color palette ---------------------------------------------
+hawks_drb_pal <- colorRampPalette(hawks_cols)(length(hawks_drb$player))
+cavs_drb_pal <- colorRampPalette(cavs_cols)(length(cavs_drb$player))
+pelicans_drb_pal <- colorRampPalette(pelicans_cols)(length(pelicans_drb$player))
+clippers_drb_pal <- colorRampPalette(clippers_cols)(length(clippers_drb$player))
+
+# Points per game (ppg) color palette ------------------------------------------ 
+hawks_ppg_pal <- colorRampPalette(hawks_cols)(length(hawks_ppg$player))
+cavs_ppg_pal <- colorRampPalette(cavs_cols)(length(cavs_ppg$player))
+pelicans_ppg_pal <- colorRampPalette(pelicans_cols)(length(pelicans_ppg$player))
+clippers_ppg_pal <- colorRampPalette(clippers_cols)(length(clippers_ppg$player))
+
+# Assists (ast) ----------------------------------------------------------------
+hawks_ast_pal <- colorRampPalette(hawks_cols)(length(hawks_ast$player))
+cavs_ast_pal <- colorRampPalette(cavs_cols)(length(cavs_ast$player))
+pelicans_ast_pal <- colorRampPalette(pelicans_cols)(length(pelicans_ast$player))
+clippers_ast_pal <- colorRampPalette(clippers_cols)(length(clippers_ast$player))
+
+# Turnovers (tov) --------------------------------------------------------------
+hawks_tov_pal <- colorRampPalette(hawks_cols)(length(hawks_tov$player))
+cavs_tov_pal <- colorRampPalette(cavs_cols)(length(cavs_tov$player))
+pelicans_tov_pal <- colorRampPalette(pelicans_cols)(length(pelicans_tov$player))
+clippers_tov_pal <- colorRampPalette(clippers_cols)(length(clippers_tov$player))
+
+```
+
+# Graphs 
+
+Since 6 different stats for four different teams equals 24 graphs, I created the package `NBAcharts` to minimize the amount of code needed to recreate each graph. For more information on the function I use be sure to check out it's documentation by typing `?circ_col_chart()` into your RStudio console, or checking out the Github repository [here](https://github.com/rbolt13/NBAcharts). 
+
+```{r, fig.show='hide'}
+# Variables (team names) -------------------------------------------------------
+hawks <- "Atlanta Hakws"
+cavs <- "Clevland Cavaliers"
+pels <- "New Orleans Pelicans"
+clips <- "Los Angeles Clippers"
+
+# Variables (captions) ---------------------------------------------------------
+all_caption <- c("\n\n Data Visualisation by Randi Bolt\n https://www.rbolt.me/\nSource: Basketball Reference \nLink: https://www.basketball-reference.com/\nDate: April 15th, 2022")
+
+steal_caption <- c("This visualization shows the total number of steals\n by the top 25% of stealers of the `21/`22 ")
+blocks_caption <- c("This visualization shows the total number of blocks\n by the top 25% of blockers of the `21/`22 ")
+drb_caption <- c("This visualization shows the total number of defensive\n rebounds by the top 25% of defensive rebounders of the \n`21/`22 ")
+ppg_caption <- c("This visualization shows the average amount of points\n per game by the top 25% of scorers of the `21/`22 ")
+ast_caption <- c("This visualization shows the total number of assists\n by the top 25% of assisters of the `21/`22 ")
+tov_caption <- c("This visualization shows the total number of turn overs\n by the top 25% of turn overers of the `21/`22 ")
+
+# Steals -----------------------------------------------------------------------
+# Hawks
+hawks_stls_png <- circ_col_chart(player_data = hawks_stls,
+                                 ring_scale = 30, 
+                                 ring_inner = 35,
+                                 ring_middle = 65,
+                                 ring_outer = 95,
+                                 ringlab_inner = "30",
+                                 ringlab_middle = "60",
+                                 ringlab_outer = "90",
+                                 col_pal = hawks_stls_pal,
+                                 chart_title = c("Hawks Total Steals"),
+                                 chart_subtitle = paste(steal_caption, hawks),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("hawks_stls.png"))
+# Cavs
+cavs_stls_png <- circ_col_chart(player_data = cavs_stls,
+                                 ring_scale = 30, 
+                                 ring_inner = 35,
+                                 ring_middle = 65,
+                                 ring_outer = 95,
+                                 ringlab_inner = "30",
+                                 ringlab_middle = "60",
+                                 ringlab_outer = "90",
+                                 col_pal = cavs_stls_pal,
+                                 chart_title = c("Cavaliers Total Steals"),
+                                 chart_subtitle = paste(steal_caption, cavs),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("cavs_stls.png"))
+# Pelicans
+pelicans_stls_png <- circ_col_chart(player_data = pelicans_stls,
+                                 ring_scale = 50, 
+                                 ring_inner = 55,
+                                 ring_middle = 105,
+                                 ring_outer = 155,
+                                 ringlab_inner = "50",
+                                 ringlab_middle = "100",
+                                 ringlab_outer = "150",
+                                 col_pal = pelicans_stls_pal,
+                                 chart_title = c("Pelicans Total Steals"),
+                                 chart_subtitle = paste(steal_caption, pels),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("pelicans_stls.png"))
+
+# Clippers
+clippers_stls_png <- circ_col_chart(player_data = clippers_stls,
+                                 ring_scale = 50, 
+                                 ring_inner = 55,
+                                 ring_middle = 105,
+                                 ring_outer = 155,
+                                 ringlab_inner = "50",
+                                 ringlab_middle = "100",
+                                 ringlab_outer = "150",
+                                 col_pal = clippers_stls_pal,
+                                 chart_title = c("Clippers Total Steals"),
+                                 chart_subtitle = paste(steal_caption, clips),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("clippers_stls.png"))
+
+# Blocks -----------------------------------------------------------------------
+# Hawks
+hawks_blks_png <- circ_col_chart(player_data = hawks_blks,
+                                 ring_scale = 30, 
+                                 ring_inner = 35,
+                                 ring_middle = 65,
+                                 ring_outer = 95,
+                                 ringlab_inner = "30",
+                                 ringlab_middle = "60",
+                                 ringlab_outer = "90",
+                                 col_pal = hawks_blks_pal,
+                                 chart_title = c("Hawks Total Blocks"),
+                                 chart_subtitle = paste(blocks_caption, hawks),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("hawks_blks.png"))
+# Cavs
+cavs_blks_png <- circ_col_chart(player_data = cavs_blks,
+                                 ring_scale = 30, 
+                                 ring_inner = 35,
+                                 ring_middle = 65,
+                                 ring_outer = 95,
+                                 ringlab_inner = "30",
+                                 ringlab_middle = "60",
+                                 ringlab_outer = "90",
+                                 col_pal = cavs_blks_pal,
+                                 chart_title = c("Cavaliers Total Blocks"),
+                                 chart_subtitle = paste(blocks_caption, cavs),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("cavs_blks.png"))
+# Pelicans
+pelicans_blks_png <- circ_col_chart(player_data = pelicans_blks,
+                                 ring_scale = 30, 
+                                 ring_inner = 35,
+                                 ring_middle = 65,
+                                 ring_outer = 95,
+                                 ringlab_inner = "30",
+                                 ringlab_middle = "60",
+                                 ringlab_outer = "90",
+                                 col_pal = pelicans_blks_pal,
+                                 chart_title = c("Pelicans Total Blocks"),
+                                 chart_subtitle = paste(blocks_caption, pels),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("pelicans_blks.png"))
+
+# Clippers
+clippers_blks_png <- circ_col_chart(player_data = clippers_blks,
+                                 ring_scale = 30, 
+                                 ring_inner = 35,
+                                 ring_middle = 65,
+                                 ring_outer = 95,
+                                 ringlab_inner = "30",
+                                 ringlab_middle = "60",
+                                 ringlab_outer = "90",
+                                 col_pal = clippers_blks_pal,
+                                 chart_title = c("Clippers Total Blocks"),
+                                 chart_subtitle = paste(blocks_caption, clips),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("clippers_blks.png"))
+
+# Defensive Rebounds -----------------------------------------------------------
+# Hawks
+hawks_drb_png <- circ_col_chart(player_data = hawks_drb,
+                                 ring_scale = 200, 
+                                 ring_inner = 220,
+                                 ring_middle = 420,
+                                 ring_outer = 620,
+                                 ringlab_inner = "200",
+                                 ringlab_middle = "400",
+                                 ringlab_outer = "600",
+                                 col_pal = hawks_drb_pal,
+                                 chart_title = c("Hawks Total Defensive Rebounds"),
+                                 chart_subtitle = paste(drb_caption, hawks),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("hawks_drb.png"))
+# Cavs
+cavs_drb_png <- circ_col_chart(player_data = cavs_drb,
+                                 ring_scale = 200, 
+                                 ring_inner = 220,
+                                 ring_middle = 420,
+                                 ring_outer = 620,
+                                 ringlab_inner = "200",
+                                 ringlab_middle = "400",
+                                 ringlab_outer = "600",
+                                 col_pal = cavs_drb_pal,
+                                 chart_title = c("Cavaliers Total Defensive Rebounds"),
+                                 chart_subtitle = paste(drb_caption, cavs),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("cavs_drb.png"))
+# Pelicans
+pelicans_drb_png <- circ_col_chart(player_data = pelicans_drb,
+                                 ring_scale = 200, 
+                                 ring_inner = 220,
+                                 ring_middle = 420,
+                                 ring_outer = 620,
+                                 ringlab_inner = "200",
+                                 ringlab_middle = "400",
+                                 ringlab_outer = "600",
+                                 col_pal = pelicans_drb_pal,
+                                 chart_title = c("Pelicans Total Defensive Rebounds"),
+                                 chart_subtitle = paste(drb_caption, pels),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("pelicans_drb.png"))
+
+# Clippers
+clippers_drb_png <- circ_col_chart(player_data = clippers_drb,
+                                 ring_scale = 200, 
+                                 ring_inner = 220,
+                                 ring_middle = 420,
+                                 ring_outer = 620,
+                                 ringlab_inner = "200",
+                                 ringlab_middle = "400",
+                                 ringlab_outer = "600",
+                                 col_pal = clippers_drb_pal,
+                                 chart_title = c("Clippers Total Defensive Rebounds"),
+                                 chart_subtitle = paste(drb_caption, clips),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("clippers_drb.png"))
+
+
+# Points per game (ppg) --------------------------------------------------------
+# Hawks
+hawks_ppg_png <- circ_col_chart(player_data = hawks_ppg,
+                                ring_scale = 10,
+                                ring_inner = 12,
+                                ring_middle = 22,
+                                ring_outer = 32,
+                                ringlab_inner = "10",
+                                ringlab_middle = "20",
+                                ringlab_outer = "30",
+                                col_pal = hawks_ppg_pal,
+                                chart_title = c("Hawks Points per Game"),
+                                chart_subtitle = paste(ppg_caption, hawks),
+                                chart_source = all_caption,
+                                cc_chart_filename = c("hawks_ppg.png"))
+# Cavs
+cavs_ppg_png <- circ_col_chart(player_data = cavs_ppg,
+                               ring_scale = 10,
+                               ring_inner = 12,
+                               ring_middle = 22,
+                               ring_outer = 32,
+                               ringlab_inner = "10",
+                               ringlab_middle = "20",
+                               ringlab_outer = "30",
+                               col_pal = cavs_ppg_pal,
+                               chart_title = c("Cavaliers Points per Game"),
+                               chart_subtitle = paste(ppg_caption, cavs),
+                               chart_source = all_caption,
+                               cc_chart_filename = c("cavs_ppg.png"))
+# Pelicans
+pelicans_ppg_png <- circ_col_chart(player_data = pelicans_ppg,
+                                   ring_scale = 10, 
+                                   ring_inner = 12,
+                                   ring_middle = 22,
+                                   ring_outer = 32,
+                                   ringlab_inner = "10",
+                                   ringlab_middle = "20",
+                                   ringlab_outer = "30",
+                                   col_pal = pelicans_ppg_pal,
+                                   chart_title = c("Pelicans Points per Game"),
+                                   chart_subtitle = paste(ppg_caption, pels),
+                                   chart_source = all_caption,
+                                   cc_chart_filename = c("pelicans_ppg.png"))
+
+# Clippers
+clippers_ppg_png <- circ_col_chart(player_data = clippers_ppg,
+                                   ring_scale = 10, 
+                                   ring_inner = 12,
+                                   ring_middle = 22,
+                                   ring_outer = 32,
+                                   ringlab_inner = "10",
+                                   ringlab_middle = "20",
+                                   ringlab_outer = "30",
+                                   col_pal = clippers_ppg_pal,
+                                   chart_title = c("Clippers Points per Game"),
+                                   chart_subtitle = paste(ppg_caption, clips),
+                                   chart_source = all_caption,
+                                   cc_chart_filename = c("clippers_ppg.png"))
+
+
+# Assists (ast) ----------------------------------------------------------------
+# Hawks
+hawks_ast_png <- circ_col_chart(player_data = hawks_ast,
+                                ring_scale = 250, 
+                                ring_inner = 260,
+                                ring_middle = 510,
+                                ring_outer = 760,
+                                ringlab_inner = "250",
+                                ringlab_middle = "500",
+                                ringlab_outer = "750",
+                                col_pal = hawks_ast_pal,
+                                chart_title = c("Hawks Total Assists"),
+                                chart_subtitle = paste(ast_caption, hawks),
+                                chart_source = all_caption,
+                                cc_chart_filename = c("hawks_ast.png"))
+# Cavs
+cavs_ast_png <- circ_col_chart(player_data = cavs_ast,
+                               ring_scale = 250, 
+                               ring_inner = 260,
+                               ring_middle = 510,
+                               ring_outer = 760,
+                               ringlab_inner = "250",
+                               ringlab_middle = "500",
+                               ringlab_outer = "750",
+                               col_pal = cavs_ast_pal,
+                               chart_title = c("Cavaliers Total Assists"),
+                               chart_subtitle = paste(ast_caption, cavs),
+                               chart_source = all_caption,
+                               cc_chart_filename = c("cavs_ast.png"))
+# Pelicans
+pelicans_ast_png <- circ_col_chart(player_data = pelicans_ast,
+                                   ring_scale = 100, 
+                                   ring_inner = 110,
+                                   ring_middle = 210,
+                                   ring_outer = 310,
+                                   ringlab_inner = "100",
+                                   ringlab_middle = "200",
+                                   ringlab_outer = "300",
+                                   col_pal = pelicans_ast_pal,
+                                   chart_title = c("Pelicans Total Assists"),
+                                   chart_subtitle = paste(ast_caption, pels), 
+                                   chart_source = all_caption,
+                                   cc_chart_filename = c("pelicans_ast.png"))
+
+# Clippers
+clippers_ast_png <- circ_col_chart(player_data = clippers_ast,
+                                   ring_scale = 100, 
+                                   ring_inner = 110,
+                                   ring_middle = 210,
+                                   ring_outer = 310,
+                                   ringlab_inner = "100",
+                                   ringlab_middle = "200",
+                                   ringlab_outer = "300",
+                                   col_pal = clippers_ast_pal,
+                                   chart_title = c("Clippers Total Assists"),
+                                   chart_subtitle = paste(ast_caption, clips),
+                                   chart_source = all_caption,
+                                   cc_chart_filename = c("clippers_ast.png"))
+
+# Turnovers (tov) --------------------------------------------------------------
+# Hawks
+hawks_tov_png <- circ_col_chart(player_data = hawks_tov,
+                                ring_scale = 100, 
+                                ring_inner = 110,
+                                ring_middle = 210,
+                                ring_outer = 310,
+                                ringlab_inner = "100",
+                                ringlab_middle = "200",
+                                ringlab_outer = "300",
+                                col_pal = hawks_tov_pal,
+                                chart_title = c("Hawks Total Turnovers"),
+                                chart_subtitle = paste(tov_caption, hawks),
+                                chart_source = all_caption,
+                                cc_chart_filename = c("hawks_tov.png"))
+
+# Cavs
+cavs_tov_png <- circ_col_chart(player_data = cavs_tov,
+                               ring_scale = 100, 
+                               ring_inner = 110,
+                               ring_middle = 210,
+                               ring_outer = 310,
+                               ringlab_inner = "100",                              
+                               ringlab_middle = "200",
+                               ringlab_outer = "300",
+                               col_pal = cavs_tov_pal,
+                               chart_title = c("Cavaliers Total Turnovers"),
+                               chart_subtitle = paste(tov_caption, cavs),
+                               chart_source = all_caption,
+                               cc_chart_filename = c("cavs_tov.png"))
+
+# Pelicans
+pelicans_tov_png <- circ_col_chart(player_data = pelicans_tov,
+                                 ring_scale = 100, 
+                                 ring_inner = 110,
+                                 ring_middle = 210,
+                                 ring_outer = 310,
+                                 ringlab_inner = "100",
+                                 ringlab_middle = "200",
+                                 ringlab_outer = "300",
+                                 col_pal = pelicans_tov_pal,
+                                 chart_title = c("Pelicans Total Turnovers"),
+                                 chart_subtitle = paste(tov_caption, pels),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("pelicans_tov.png"))
+
+# Clippers
+clippers_tov_png <- circ_col_chart(player_data = clippers_tov,
+                                 ring_scale = 100, 
+                                 ring_inner = 110,
+                                 ring_middle = 210,
+                                 ring_outer = 310,
+                                 ringlab_inner = "100",
+                                 ringlab_middle = "200",
+                                 ringlab_outer = "300",
+                                 col_pal = clippers_tov_pal,
+                                 chart_title = c("Clippers Total Turnovers"),
+                                 chart_subtitle = paste(tov_caption, clips),
+                                 chart_source = all_caption,
+                                 cc_chart_filename = c("clippers_tov.png"))
+
+```
+
+To display the images I am going to put the teams who played each other side by side using settings within the r chunk. 
+
+```{r, echo=F, out.width="50%", out.height= "45%", fig.show = 'hold', fig.align='Totals'}
+# East
+knitr::include_graphics(c("hawks_stls.png","cavs_stls.png"))
+knitr::include_graphics(c("hawks_blks.png","cavs_blks.png"))
+knitr::include_graphics(c("hawks_drb.png","cavs_drb.png"))
+knitr::include_graphics(c("hawks_ppg.png","cavs_ppg.png"))
+knitr::include_graphics(c("hawks_ast.png","cavs_ast.png"))
+knitr::include_graphics(c("hawks_tov.png","cavs_tov.png"))
+
+```
+
+
+Below are the charts for the Clippers and the Pelicans. 
+
+```{r, echo=F, out.width="50%", out.height= "45%", fig.show = 'hold', fig.align='Totals'}
+# West  
+knitr::include_graphics(c("pelicans_stls.png","clippers_stls.png"))
+knitr::include_graphics(c("pelicans_blks.png","clippers_blks.png"))
+knitr::include_graphics(c("pelicans_drb.png","clippers_drb.png"))
+knitr::include_graphics(c("pelicans_ppg.png","clippers_ppg.png"))
+knitr::include_graphics(c("pelicans_ast.png","clippers_ast.png"))
+knitr::include_graphics(c("pelicans_tov.png","clippers_tov.png"))
+```
+
+**Resources**
+
+[NBAcharts](https://github.com/rbolt13/NBAcharts)
+
+[Basketball Referene](https://www.basketball-reference.com/)
+
+[insert side by side png images using knitr](https://stackoverflow.com/questions/25415365/insert-side-by-side-png-images-using-knitr)
+
+**Additional Resources**
+
+[Hawks at Cavaliers | Full Game Highlights | April 15, 2022](https://www.youtube.com/watch?v=P2aE6kFJuR4)
+
+[Pelicans at Clippers | Full Game Highlights | April 15, 2022](https://www.youtube.com/watch?v=VndxAY_uH2k)
+
+[LA Clippers' Paul George tests positive for COVID-19, out for play-in game vs. New Orleans Pelicans](https://www.espn.com/nba/story/_/id/33743708/la-clippers-paul-george-tests-positive-covid-19-miss-play-game-vs-new-orleans-pelicans-sources-say)
+
+[CJ McCollum gets 90-second standing ovation in Portland return | `it was special to be part of it`](https://www.youtube.com/watch?v=apESci9Fg_A)
+
+
+
+
