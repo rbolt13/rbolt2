@@ -23,7 +23,7 @@ To make these plots I will use three packages:
 
 1. rvest : to gather the data from Basketball Reference
 
-2. tidyverse : to lean the data 
+2. tidyverse : to clean the data 
 
 3. NBAcharts : to create the charts.
 
