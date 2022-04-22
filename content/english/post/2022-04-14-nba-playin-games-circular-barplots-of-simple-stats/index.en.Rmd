@@ -9,7 +9,7 @@ tags:
   - package
 ---
 
-Today is April 15th, 2022 and the last round of the '21-'22 NBA play-in games. Lets look at some simple statistics of the four teams still in the fighting for a spot in the playoffs: Atlanta Hawks, Cleveland Cavaliers, New Orleans Pelicans, and the Los Angeles Clippers. 
+Today is April 15th, 2022 and the last round of the '21-'22 NBA play-in games. Let's look at some simple statistics of the four teams still fighting for a spot in the playoffs: Atlanta Hawks, Cleveland Cavaliers, New Orleans Pelicans, and the Los Angeles Clippers. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(error=FALSE,
@@ -44,11 +44,11 @@ To begin I'm creating a function, `nba_data()` that does three things:
 
 1. Uses the rvest package to read two tables (Totals and Per Game Stat) from [Basketball Reference](https://www.basketball-reference.com/). 
 
-2. Rename the second column to "Name".
+2. Rename the second column in both tables to "Name".
 
 3. Merge the two tables together. 
 
-And creating four data sets for the four teams still competing for a spot in the finals. 
+Then I am creating four data sets for the four teams still competing for a spot in the finals. 
 
 ```{r scrape and merge function and data sets}
 # Function :  Scrape and merge total and per game data-------
@@ -90,7 +90,7 @@ clippers_data <- nba_data("LAC")
 
 # Tidy Data Sets 
 
-There are a lot of simple stats to look at, but to narrow it down lets look at some big ones: steals, blocks, defensive rebounds, assists, turnovers, and points per game.
+There is a lot of simple stats to look at, but to narrow it down lets look at some big ones: steals, blocks, defensive rebounds, assists, turnovers, and points per game.
 
 ```{r tidy functions}
 # Steals----------------------------------------------
@@ -256,7 +256,7 @@ clippers_tov <- team_tov(clippers_data)
 
 # Color Palletes 
 
-To create color pallets for each team, I first assigned `team_cols` variables for each team with HTML links from the website [Team Color Codes](https://teamcolorcodes.com/nba-team-color-codes/).  Note that since the background of the graphs will be white with black text I omitted these choices upon assignment for aesthetics. Then I am using `colorRampPalette()` to create specific color palettes with size equale to `length(team_stat$player)`. 
+To create color pallets for each team, I first assigned `team_cols` variables for each team with HTML links from the website [Team Color Codes](https://teamcolorcodes.com/nba-team-color-codes/).  Note that since the background of the graphs will be white, and the text black, I omitted these choices (black and white) upon assignment for aesthetics. Then I am using `colorRampPalette()` to create specific color palettes with size equal to `length(team_stat$player)`. 
 
 ```{r}
 # Team Colors ------------------------------------------------------------------

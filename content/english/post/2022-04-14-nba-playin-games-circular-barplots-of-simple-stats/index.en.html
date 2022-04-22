@@ -11,7 +11,7 @@ tags:
 
 
 
-<p>Today is April 15th, 2022 and the last round of the ’21-’22 NBA play-in games. Lets look at some simple statistics of the four teams still in the fighting for a spot in the playoffs: Atlanta Hawks, Cleveland Cavaliers, New Orleans Pelicans, and the Los Angeles Clippers.</p>
+<p>Today is April 15th, 2022 and the last round of the ’21-’22 NBA play-in games. Let’s look at some simple statistics of the four teams still fighting for a spot in the playoffs: Atlanta Hawks, Cleveland Cavaliers, New Orleans Pelicans, and the Los Angeles Clippers.</p>
 <div id="load-packages" class="section level1">
 <h1>Load Packages</h1>
 <p>To make these plots I will use three packages:</p>
@@ -33,10 +33,10 @@ library(NBAcharts)</code></pre>
 <p>To begin I’m creating a function, <code>nba_data()</code> that does three things:</p>
 <ol style="list-style-type: decimal">
 <li><p>Uses the rvest package to read two tables (Totals and Per Game Stat) from <a href="https://www.basketball-reference.com/">Basketball Reference</a>.</p></li>
-<li><p>Rename the second column to “Name”.</p></li>
+<li><p>Rename the second column in both tables to “Name”.</p></li>
 <li><p>Merge the two tables together.</p></li>
 </ol>
-<p>And creating four data sets for the four teams still competing for a spot in the finals.</p>
+<p>Then I am creating four data sets for the four teams still competing for a spot in the finals.</p>
 <pre class="r"><code># Function :  Scrape and merge total and per game data-------
 nba_data &lt;- function(slug){
   # define team page URL
@@ -75,7 +75,7 @@ clippers_data &lt;- nba_data(&quot;LAC&quot;)</code></pre>
 </div>
 <div id="tidy-data-sets" class="section level1">
 <h1>Tidy Data Sets</h1>
-<p>There are a lot of simple stats to look at, but to narrow it down lets look at some big ones: steals, blocks, defensive rebounds, assists, turnovers, and points per game.</p>
+<p>There is a lot of simple stats to look at, but to narrow it down lets look at some big ones: steals, blocks, defensive rebounds, assists, turnovers, and points per game.</p>
 <pre class="r"><code># Steals----------------------------------------------
 team_stl &lt;- function(team_data){
   # reassign data
@@ -233,7 +233,7 @@ clippers_tov &lt;- team_tov(clippers_data)</code></pre>
 </div>
 <div id="color-palletes" class="section level1">
 <h1>Color Palletes</h1>
-<p>To create color pallets for each team, I first assigned <code>team_cols</code> variables for each team with HTML links from the website <a href="https://teamcolorcodes.com/nba-team-color-codes/">Team Color Codes</a>. Note that since the background of the graphs will be white with black text I omitted these choices upon assignment for aesthetics. Then I am using <code>colorRampPalette()</code> to create specific color palettes with size equale to <code>length(team_stat$player)</code>.</p>
+<p>To create color pallets for each team, I first assigned <code>team_cols</code> variables for each team with HTML links from the website <a href="https://teamcolorcodes.com/nba-team-color-codes/">Team Color Codes</a>. Note that since the background of the graphs will be white, and the text black, I omitted these choices (black and white) upon assignment for aesthetics. Then I am using <code>colorRampPalette()</code> to create specific color palettes with size equal to <code>length(team_stat$player)</code>.</p>
 <pre class="r"><code># Team Colors ------------------------------------------------------------------
 hawks_cols &lt;- c(&quot;#C1D32F&quot;, &quot;#E03A3E&quot;, &quot;#26282A&quot;)
 cavs_cols &lt;- c(&quot;#860038&quot;, &quot;#041E42&quot;, &quot;#FDBB30&quot;)
