@@ -1,0 +1,28 @@
+---
+title: Basketball Data Sciene Basics
+author: Randi Bolt
+date: '2022-04-22'
+slug: []
+categories:
+  - undergrad
+tags: []
+---
+
+Recently I started reading [Bsketball Data Sciene]().... here are some things. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(error=FALSE,
+                      message= FALSE,
+                      warning=FALSE)
+```
+
+# Load Packages 
+
+Using .. 
+
+```{r}
+library(BasketballAnalyzeR)
+library(ggplot2)
+```
+
+

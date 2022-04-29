@@ -40,13 +40,15 @@ library(NBAcharts)
 
 # Scrape Data 
 
-To begin I'm creating a function, `nba_data()` that does three things: 
+To begin I'm creating a function, `nba_data()` that does four things: 
 
 1. Uses the rvest package to read two tables (Totals and Per Game Stat) from [Basketball Reference](https://www.basketball-reference.com/). 
 
 2. Rename the second column in both tables to "Name".
 
 3. Merge the two tables together. 
+
+4. Replace NA values with 0 (for quantile function)
 
 Then I am creating four data sets for the four teams still competing for a spot in the finals. 
 
