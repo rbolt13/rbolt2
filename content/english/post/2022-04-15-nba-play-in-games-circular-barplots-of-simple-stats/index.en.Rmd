@@ -6,7 +6,9 @@ slug: []
 categories:
   - undergrad
 tags:
-  - package
+  - rvest
+  - tidyverse
+  - NBAcharts
 ---
 
 Today is April 15th, 2022 and the last round of the '21-'22 NBA play-in games. Let's look at some simple statistics of the four teams still fighting for a spot in the playoffs: Atlanta Hawks, Cleveland Cavaliers, New Orleans Pelicans, and the Los Angeles Clippers. 
@@ -48,7 +50,7 @@ To begin I'm creating a function, `nba_data()` that does four things:
 
 3. Merge the two tables together. 
 
-4. Replace NA values with 0 (for quantile function)
+4. Replace NA values with 0 (for quantile function).
 
 Then I am creating four data sets for the four teams still competing for a spot in the finals. 
 
@@ -729,7 +731,3 @@ knitr::include_graphics(c("pelicans_tov.png","clippers_tov.png"))
 [LA Clippers' Paul George tests positive for COVID-19, out for play-in game vs. New Orleans Pelicans](https://www.espn.com/nba/story/_/id/33743708/la-clippers-paul-george-tests-positive-covid-19-miss-play-game-vs-new-orleans-pelicans-sources-say)
 
 [CJ McCollum gets 90-second standing ovation in Portland return | `it was special to be part of it`](https://www.youtube.com/watch?v=apESci9Fg_A)
-
-
-
-
