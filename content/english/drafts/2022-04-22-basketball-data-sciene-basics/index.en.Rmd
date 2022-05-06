@@ -26,3 +26,195 @@ library(ggplot2)
 ```
 
 
+# Data
+
+```{r}
+BAR <- data(package = "BasketballAnalyzeR")
+head(BAR)
+```
+
+There are 5 data sets:
+
+1. Obox: Opponents box scores dataset - NBA 2017-2018
+
+2. Pbp.BDB: Play by Play dataset - NBA 2017-2018
+
+3. Pbox: Players box scores dataset - NBA 2017-2018
+
+4. Tadd: Team information such as Conference, Division, final rank, qualification for Playoffs for the NBA 2017-2018 Championship.
+
+5. Tbox: Team box scores dataset - NBA 2017-2018
+
+```{r}
+Pbp <- PbPmanipulation(PbP.BDB)
+head(Pbp)
+```
+
+
+# Concepts (MATH)
+
+### Possession and Pace
+
+$$\text{POSS = (P2A + P3A) + 0.44 }\times \text{ FTA - OREB + TOV}$$ 
+
+$$\text{PACE = 5 }\times\text{ POSS/MIN}$$  
+
+Where MIN is the total minutes played by all the players. 
+
+### Offensive and Defensive Ratings
+
+Pre-possession efficiency is measure as the points scored or allowed per 100 possession, called Offensive (ORtg) and Defensive (DRtg) Ratings respectively: 
+
+$$\text{ORtg = PTS}_\text{T}/\text{POSS}_{\text{T}}$$
+
+$$\text{DRtg = PTS}_\text{O}/\text{POSS}_{\text{O}}$$
+
+Where T and O refer to team (being analyzed) and opponent(s). 
+
+### Four Factors
+
+$\underline{\text{Efficient Field Goal Percentage}}$ 
+
+$$\text{eFG }\%_{\text{ Offense}}=\frac{\text{P2M}_\text{T}+1.5\times\text{ P3M}_\text{T}}{\text{P2A}_\text{T}+\text{P3A}_\text{T}}$$
+
+$$\text{eFG }\%_\text{ Defense}=\frac{\text{P2M}_\text{O}+1.5\times\text{ P3M}_\text{O}}{\text{P2A}_\text{O}+\text{P3A}_\text{O}}$$
+
+$\underline{\text{Turnovers Per Possession Ratio}}$
+
+$$\text{TO Ratio}_\text{ Offense}=\frac{\text{TOV}_\text{T}}{\text{POSS}_\text{T}}$$
+
+$$\text{TO Ratio}_\text{ Defense}=\frac{\text{TOV}_\text{O}}{\text{POSS}_\text{O}}$$
+
+$\underline{\text{Rebounding Percentage}}$
+
+$$\text{REB }\%_{\text{ Offense}}=$$
+
+$$\text{REB }\%_\text{ Defense}=$$
+
+$\underline{\text{Free Throw Rate}}$
+
+$$\text{FT Rate}_{\text{ Offense}}=$$
+
+$$\text{FT Rate}_{\text{ Defense}}=$$
+
+# Plots
+
+```{r}
+tm <- c("BOS", "CLE", "GSW", "HOU")
+selTeams <- which(Tadd$team %in% tm)
+FF.sel <- fourfactors(Tbox[selTeams,], Obox[selTeams,])
+plot(FF.sel)
+```
+
+```{r}
+# rearrange 
+listPlots <- plot(FF.sel)
+library(gridExtra)
+grid.arrange(grobs=listPlots[1:2], ncol=1)
+grid.arrange(grobs=listPlots[3:4], ncol=1)
+```
+
+### Bar line Plots
+
+```{r}
+X <- data.frame(Tbox, 
+                PTS.O = Obox$PTS, 
+                TOV.O = Obox$TOV, 
+                CONF = Tadd$Conference)
+XW <- subset(X, CONF== "W")
+labs <- c("Steals", "Blocks", "Defensive Rebounds")
+barline(data = XW,
+        id = "Team",
+        bars = c("STL", "BLK", "DREB"),
+        line = "TOV.O",
+        order.by = "PTS.O",
+        labels.bars = labs)
+```
+
+```{r}
+Pbox.HR <- subset(Pbox, 
+                  Team=="Phoenix Suns" & MIN>= 500)
+Pbox.HR
+barline(data = Pbox.HR, id = "Player",
+        bars = c("P2p", "P3p", "FTp"),
+        line = "MIN",
+        order.by = "PM",
+        labels.bars = c("2P%", "3P%", "FT%"),
+        title = "Phoenix Suns")
+```
+
+### Radial Plots
+
+```{r}
+Pbox.PG <- subset(Pbox, 
+                  Player == "Russell Westbrook" |
+                    Player == "Stephen Curry" |
+                    Player == "Kyrie Irving" |
+                    Player == "Damian Lillard" |
+                    Player == "Kyle Lowry" |
+                    Player == "John Wall" |
+                    Player == "Rajon Rondo" |
+                    Player == "Kemba Walker")
+attach(Pbox.PG)
+X <- data.frame(P2M, P3M, FTM, REB=OREB+DREB, AST, STL, BLK)/MIN
+detach(Pbox.PG)
+radialprofile(data = X, title = Pbox.PG$Player, std = F)
+radialprofile(data = X, title = Pbox.PG$Player, std = T)
+```
+
+### Scatter Plots
+
+```{r}
+Pbox.sel <- subset(Pbox, MIN>=500)
+attach(Pbox.sel)
+X <- data.frame(AST, TOV, PTS)/MIN
+detach(Pbox.sel)
+mypal <- colorRampPalette(c("blue", "yellow", "red"))
+scatterplot(X, data.var = c("AST", "TOV"), z.var="PTS", labels = 1:nrow(X), palette = mypal)
+SAS <- which(Pbox.sel$Team=="San Antonio Spurs")
+scatterplot(X, data.var = c("AST", "TOV"), z.var="PTS", labels = Pbox.sel$Player, palette = mypal, subset = SAS)
+scatterplot(X, data.var = c("AST", "TOV"), z.var="PTS", labels = Pbox.sel$Player, palette = mypal, subset = SAS, zoom = c(0.2, 0.325, 0.05, 0.10))
+```
+
+### Bubble Plots 
+
+```{r}
+attach(Tbox)
+X <- data.frame(T = Team, P2p, P3p, FTp, AS = P2A + P3A + FTA)
+detach(Tbox)
+labs <- c("2-Point shots (% made)",
+          "3-Point shots (% made)",
+          "Free throws (% made)",
+          "Total shots attempted")
+bubbleplot(X, id = "T", x = "P2p", y = "P3p", col = "FTp", 
+           size = "AS", labels = labs)
+```
+
+
+```{r}
+Pbox.CC.GSW <- subset(Pbox, 
+                       Team == "Golden State Warriors" | Team == "Cleveland Cavaliers" & MIN >= 500)
+attach(Pbox.CC.GSW)
+X <- data.frame(ID = Player,
+                Team,
+                V1 = DREB/MIN,
+                V2 = STL/MIN,
+                V3 = BLK/MIN,
+                V4 = MIN)
+detach(Pbox.CC.GSW)
+labs <- c("Defensive Rebounds",
+          "Steals",
+          "Blocks",
+          "Total minutes played")
+bubbleplot(X, id = "ID",
+           x = "V1", y = "V2", col = "V3", size = "V4",
+           text.col = "Team", labels = labs, 
+           title = "CC and GSW during the regular season",
+           text.legend = TRUE,
+           text.size = 3.5,
+           scale = FALSE)
+```
+
+# Varibility Analysis
+
+

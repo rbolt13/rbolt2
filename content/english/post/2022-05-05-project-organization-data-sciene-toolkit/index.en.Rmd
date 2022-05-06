@@ -1,0 +1,241 @@
+---
+title: Project Organization (Part 1) - Data Sciene Toolkit
+author: Randi Bolt
+date: '2022-05-05'
+slug: []
+categories:
+  - undergrad
+tags: []
+---
+
+This is part 1 of my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser. 
+
+[Video](https://benkeser.github.io/info550/recordings/project-organization) | [Notes](https://benkeser.github.io/info550/lectures/08_organization/organization.html#1) | [Github](https://github.com/benkeser/info550)
+
+# Pre-lecture Questions
+
+### How to add headings?
+
+In R chunk use code options : `fig.cap="**Figure Caption**"`
+
+```{r, fig.cap="**Figure Caption**"}
+barplot(c(1,2,3,4))
+```
+
+Another option would be to have the first row of your table be your title and then format so the first row doesn't have any line filler in it. 
+
+[Stackoverflow](https://stackoverflow.com/questions/33710240/how-to-attach-a-title-to-a-data-frame-in-r)
+
+```{r}
+report <- list()
+report[[1]] <- "Report Name"
+report[[2]] <- head(mtcars)
+report
+```
+
+
+Your goal is to minimize time as much as possible. 
+
+Don't spend a lot of time formatting your tables until they are going to be final. 
+
+### What is `::` in R? 
+
+A better way of referencing functions from a particular package. 
+
+For example: `bookdown::htmldoc2` means that in that in the bookdown package there is a function htmldoc2. That way if multiple functions from different packages have the same name, now your code knows which package to call it from.
+
+This is less ambiguous. 
+
+# Lecture 
+
+## Basic Principles 
+
+### Use git 
+
+* <span style="color: red;">**Put everything in one version-controlled directory.**</span>
+* Jenny Bryan talks about [Project Oriented Workflow](https://rstats.wtf/project-oriented-workflow.html)
+   
+     [Website](https://jennybryan.org/) |  [Twitter](https://twitter.com/JennyBryan?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) | [GitHub](https://github.com/jennybc)
+* Everything related to one project lives in one folder on you computer. 
+* Don't spread things out across multiple folders. 
+* Put project directory on version control, and that's going to be your git repository. 
+
+
+### Develop your own system
+
+* Be Consistent, but look for ways to improve. 
+    * Naming conventions, file structure, make strucure 
+    
+### Data
+
+* Raw data is sacred and kept seperate from everything else. 
+* Separate code and data
+* Use make files and/ or READMEs to document dependencies
+
+### Names
+
+* No spaces in file names
+* use meaningful file names
+* use YY-MM-DD date formatting 
+    * this sorts you data (ex: most recent)properly
+
+### Code
+
+* Modularize R code. 
+* Know where to go to make changes. 
+* <span style="color: red;">**No absolute paths.**</span> 
+* <span style="color: red;">**Use a package management system**</span>
+
+## What to organize? 
+
+It is probably useful to have a system for organizing:
+
+* data analysis projects;
+* first-author papers;
+* talks.
+
+<span style="color: red;">**Think about organization of a project from the outset!**</span>
+
+## Collaborative Projects
+
+* Google drive 
+* [Overleaf](https://www.overleaf.com/)
+
+Some advice: 
+
+* Address organization from the outset.
+* Ideally, bring people on board to your (version controlled, reproducible) system.
+* Keep open lines of communication (especially if using GitHub)
+
+Even if some elements of the project are outside your control, you can try to bring in elements to your workflow. 
+
+* E.g., if you receive comments with tracked changes from a colleague, incorporate them into the document, add a commit message describing who's edits they were.
+
+If working on a shared GitHub repo, keep open lines of communication, e.g., short emails (or [slack](https://slack.com/) messages, etc...), "Just pushed `x`..."
+
+![](img/ExDataAnalysisProject.png)
+
+* raw data is sacred 
+* clean data will be saved into the data folder
+* serperate scripts out by language or have a code directory 
+* numbering equations will give an indicator in what order the code runs. 
+* sandbox directory for exploratory data analysis that no one really needs to see. 
+* Makefile 
+* renv is a way to manage R package 
+
+## Organizing Data 
+
+* Dont be tempted to edit raw data by hand
+* Everything scripted 
+* Let collaborators know: "Don't color code things." 
+* Ask for a moc data set ahead of time so you know their form ahead of time to talk about raw data formatting ahead of time. 
+
+Use meta-data files to describe raw and cleaned data. 
+
+* structure as data (e.g. .csv so easy to read)
+
+
+[Tidy Data by Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
+
+* Worth the read
+* Each Varibale forms a column
+* Each observation forms a row
+* Each observation unit forms a table. 
+
+## Exploring data 
+
+One of the first things we'll often do is open the data and start poking around.
+
+* Could be informal, "getting to know you."
+* Could be more formal, "see if anything looks interesting."
+
+This is often done in an ad-hoc way:
+
+* entering commands directly into R;
+* making and saving plots "by hand"; 
+* etc...
+
+**Slow down and document**
+
+* Your future self will thank you
+* even if it is just in a google doc to yourself. 
+
+You want to avoid situations like:
+
+* need to recreate a plot that you made "by hand" and saved "by hand";
+* figuring out why you removed certain observations;
+* trying to remember what variables had an interesting relationship that you wanted to follow up on later.
+
+Write out a set of comments describing what you are try to accomplish and fill in code from there. 
+
+* I do this for every coding project.
+  * Data analysis, methods coding, package development
+
+Leave a search-able comment tag by code to return to later
+
+* I use e.g., `# TO DO: add math expression to labels; make colors prettier`.
+
+Sets "the bones" of a formal analysis in place while allowing for some creative flow.
+
+From the outset, stop and think about what you want to do. Start filling in details from there. That simple approach will increase efficiency and reproducibility.
+
+Other helpful ideas for formalizing exploratory data analysis:
+
+* `.Rhistory` files
+  * all the commands used in an R session
+* Informal `.Rmd` documents. 
+  * easy way to organize code/comments into readable format
+* `save` intermediate objects and workspaces
+  * and document what they contain! 
+* `knitr::spin` 
+  * writing `.R` scripts with rendered-able comments 
+* [Juypyter Notebook](https://jupyter.org/)
+
+### The here package
+
+**No absolute paths**
+
+* Absolute paths are the enemy of project reproducibility.
+
+For `R` projects, the [`here`](https://here.r-lib.org/) package provides a simple way to use relative file paths.
+
+* Read [Jenny Bryan and James Hester's chapter](https://rstats.wtf/project-oriented-workflow.html) on project-oriented work-flows.
+
+The use of `here` is dead-simple and best illustrated by example.
+
+![](img/The_here_package.png)
+
+Root directory is `my_project`
+
+* this is where `.git` lives
+* all file paths should be relative to this
+
+Each `R` script or `Rmd` report, should contain a call to `here::i_am('path/to/this/file')` at the top
+
+* `here::i_am` means use function `i_am` from `here`
+
+For example: 
+
+```{r}
+# include at the top of script
+here::i_am('R/my_analysis.R')
+# now add all your R code 
+```
+
+Now anytime you make analysis you can use the here function. 
+
+```{r}
+# include at the top of script
+here::i_am('index.en.Rmd')
+
+# load data 
+my_data <- read.csv(here::here('data','my_data.csv'))
+
+# do some analysis to get results
+my_results <- sum(my_data)
+
+# save results
+save(my_results, file = here::here('output', 'my_results.RData'))
+```
+
+Part 1 ends around 36:54. 

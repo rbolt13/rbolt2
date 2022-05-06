@@ -17,3 +17,280 @@ tags: []
 <pre class="r"><code>library(BasketballAnalyzeR)
 library(ggplot2)</code></pre>
 </div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<pre class="r"><code>BAR &lt;- data(package = &quot;BasketballAnalyzeR&quot;)
+head(BAR)</code></pre>
+<pre><code>## $title
+## [1] &quot;Data sets&quot;
+## 
+## $header
+## NULL
+## 
+## $results
+##      Package             
+## [1,] &quot;BasketballAnalyzeR&quot;
+## [2,] &quot;BasketballAnalyzeR&quot;
+## [3,] &quot;BasketballAnalyzeR&quot;
+## [4,] &quot;BasketballAnalyzeR&quot;
+## [5,] &quot;BasketballAnalyzeR&quot;
+##      LibPath                                                          Item     
+## [1,] &quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot; &quot;Obox&quot;   
+## [2,] &quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot; &quot;PbP.BDB&quot;
+## [3,] &quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot; &quot;Pbox&quot;   
+## [4,] &quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot; &quot;Tadd&quot;   
+## [5,] &quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot; &quot;Tbox&quot;   
+##      Title                                         
+## [1,] &quot;Opponents box scores dataset - NBA 2017-2018&quot;
+## [2,] &quot;Play-by-play dataset - NBA 2017-2018&quot;        
+## [3,] &quot;Players box scores dataset - NBA 2017-2018&quot;  
+## [4,] &quot;Tadd dataset - NBA 2017-2018&quot;                
+## [5,] &quot;Teams box scores dataset - NBA 2017-2018&quot;    
+## 
+## $footer
+## NULL</code></pre>
+<p>There are 5 data sets:</p>
+<ol style="list-style-type: decimal">
+<li><p>Obox: Opponents box scores dataset - NBA 2017-2018</p></li>
+<li><p>Pbp.BDB: Play by Play dataset - NBA 2017-2018</p></li>
+<li><p>Pbox: Players box scores dataset - NBA 2017-2018</p></li>
+<li><p>Tadd: Team information such as Conference, Division, final rank, qualification for Playoffs for the NBA 2017-2018 Championship.</p></li>
+<li><p>Tbox: Team box scores dataset - NBA 2017-2018</p></li>
+</ol>
+<pre class="r"><code>Pbp &lt;- PbPmanipulation(PbP.BDB)
+head(Pbp)</code></pre>
+<pre><code>##      game_id                 data_set       date           a1            a2
+## 478 21700002 2017-2018 Regular Season 10/17/2017 Trevor Ariza Ryan Anderson
+## 479 21700002 2017-2018 Regular Season 10/17/2017 Trevor Ariza Ryan Anderson
+## 480 21700002 2017-2018 Regular Season 10/17/2017 Trevor Ariza Ryan Anderson
+## 481 21700002 2017-2018 Regular Season 10/17/2017 Trevor Ariza Ryan Anderson
+## 482 21700002 2017-2018 Regular Season 10/17/2017 Trevor Ariza Ryan Anderson
+## 483 21700002 2017-2018 Regular Season 10/17/2017 Trevor Ariza Ryan Anderson
+##               a3           a4         a5           h1             h2
+## 478 Clint Capela James Harden Chris Paul Kevin Durant Draymond Green
+## 479 Clint Capela James Harden Chris Paul Kevin Durant Draymond Green
+## 480 Clint Capela James Harden Chris Paul Kevin Durant Draymond Green
+## 481 Clint Capela James Harden Chris Paul Kevin Durant Draymond Green
+## 482 Clint Capela James Harden Chris Paul Kevin Durant Draymond Green
+## 483 Clint Capela James Harden Chris Paul Kevin Durant Draymond Green
+##                h3            h4            h5 period away_score home_score
+## 478 Zaza Pachulia Klay Thompson Stephen Curry      1          0          0
+## 479 Zaza Pachulia Klay Thompson Stephen Curry      1          0          0
+## 480 Zaza Pachulia Klay Thompson Stephen Curry      1          2          0
+## 481 Zaza Pachulia Klay Thompson Stephen Curry      1          2          0
+## 482 Zaza Pachulia Klay Thompson Stephen Curry      1          2          0
+## 483 Zaza Pachulia Klay Thompson Stephen Curry      1          2          0
+##     remaining_time elapsed play_length play_id team      event_type assist
+## 478        0:12:00 0:00:00     0:00:00       2      start of period       
+## 479        0:12:00 0:00:00     0:00:00       4  HOU       jump ball       
+## 480        0:11:47 0:00:13     0:00:13       7  HOU            shot       
+## 481        0:11:27 0:00:33     0:00:20       8  GSW            miss       
+## 482        0:11:23 0:00:37     0:00:04       9  HOU         rebound       
+## 483        0:11:13 0:00:47     0:00:10      10  HOU            miss       
+##             away          home block entered left num opponent outof
+## 478                                                NA             NA
+## 479 Clint Capela Zaza Pachulia                     NA             NA
+## 480                                                NA             NA
+## 481                                                NA             NA
+## 482                                                NA             NA
+## 483                                                NA             NA
+##             player points    possession reason result steal              type
+## 478                    NA                                     start of period
+## 479  Zaza Pachulia     NA Ryan Anderson                             jump ball
+## 480   James Harden      2                        made                 unknown
+## 481 Draymond Green      0                      missed               Jump Shot
+## 482   Clint Capela     NA                                   rebound defensive
+## 483   James Harden      0                      missed       Running Jump Shot
+##     shot_distance original_x original_y converted_x converted_y
+## 478            NA         NA         NA          NA          NA
+## 479            NA         NA         NA          NA          NA
+## 480             2        -10         16        26.0         6.6
+## 481            25          9        254        25.9        63.6
+## 482            NA         NA         NA          NA          NA
+## 483            10         46         94        20.4        14.4
+##                                        description periodTime totalTime
+## 478                                                         0         0
+## 479 Jump Ball Pachulia vs. Capela: Tip to Anderson          0         0
+## 480                Harden 2&#39; Driving Layup (2 PTS)         13        13
+## 481                   MISS Green 25&#39; 3PT Jump Shot         33        33
+## 482                   Capela REBOUND (Off:0 Def:1)         37        37
+## 483              MISS Harden 10&#39; Running Jump Shot         47        47
+##     playlength ShotType oppTeam
+## 478          0     &lt;NA&gt;        
+## 479          0     &lt;NA&gt;     GSW
+## 480         13       2P     GSW
+## 481         20       3P     HOU
+## 482          4     &lt;NA&gt;     GSW
+## 483         10       2P     GSW</code></pre>
+</div>
+<div id="concepts-math" class="section level1">
+<h1>Concepts (MATH)</h1>
+<div id="possession-and-pace" class="section level3">
+<h3>Possession and Pace</h3>
+<p><span class="math display">\[\text{POSS = (P2A + P3A) + 0.44 }\times \text{ FTA - OREB + TOV}\]</span></p>
+<p><span class="math display">\[\text{PACE = 5 }\times\text{ POSS/MIN}\]</span></p>
+<p>Where MIN is the total minutes played by all the players.</p>
+</div>
+<div id="offensive-and-defensive-ratings" class="section level3">
+<h3>Offensive and Defensive Ratings</h3>
+<p>Pre-possession efficiency is measure as the points scored or allowed per 100 possession, called Offensive (ORtg) and Defensive (DRtg) Ratings respectively:</p>
+<p><span class="math display">\[\text{ORtg = PTS}_\text{T}/\text{POSS}_{\text{T}}\]</span></p>
+<p><span class="math display">\[\text{DRtg = PTS}_\text{O}/\text{POSS}_{\text{O}}\]</span></p>
+<p>Where T and O refer to team (being analyzed) and opponent(s).</p>
+</div>
+<div id="four-factors" class="section level3">
+<h3>Four Factors</h3>
+<p><span class="math inline">\(\underline{\text{Efficient Field Goal Percentage}}\)</span></p>
+<p><span class="math display">\[\text{eFG }\%_{\text{ Offense}}=\frac{\text{P2M}_\text{T}+1.5\times\text{ P3M}_\text{T}}{\text{P2A}_\text{T}+\text{P3A}_\text{T}}\]</span></p>
+<p><span class="math display">\[\text{eFG }\%_\text{ Defense}=\frac{\text{P2M}_\text{O}+1.5\times\text{ P3M}_\text{O}}{\text{P2A}_\text{O}+\text{P3A}_\text{O}}\]</span></p>
+<p><span class="math inline">\(\underline{\text{Turnovers Per Possession Ratio}}\)</span></p>
+<p><span class="math display">\[\text{TO Ratio}_\text{ Offense}=\frac{\text{TOV}_\text{T}}{\text{POSS}_\text{T}}\]</span></p>
+<p><span class="math display">\[\text{TO Ratio}_\text{ Defense}=\frac{\text{TOV}_\text{O}}{\text{POSS}_\text{O}}\]</span></p>
+<p><span class="math inline">\(\underline{\text{Rebounding Percentage}}\)</span></p>
+<p><span class="math display">\[\text{REB }\%_{\text{ Offense}}=\]</span></p>
+<p><span class="math display">\[\text{REB }\%_\text{ Defense}=\]</span></p>
+<p><span class="math inline">\(\underline{\text{Free Throw Rate}}\)</span></p>
+<p><span class="math display">\[\text{FT Rate}_{\text{ Offense}}=\]</span></p>
+<p><span class="math display">\[\text{FT Rate}_{\text{ Defense}}=\]</span></p>
+</div>
+</div>
+<div id="plots" class="section level1">
+<h1>Plots</h1>
+<pre class="r"><code>tm &lt;- c(&quot;BOS&quot;, &quot;CLE&quot;, &quot;GSW&quot;, &quot;HOU&quot;)
+selTeams &lt;- which(Tadd$team %in% tm)
+FF.sel &lt;- fourfactors(Tbox[selTeams,], Obox[selTeams,])
+plot(FF.sel)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code># rearrange 
+listPlots &lt;- plot(FF.sel)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>library(gridExtra)
+grid.arrange(grobs=listPlots[1:2], ncol=1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>grid.arrange(grobs=listPlots[3:4], ncol=1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<div id="bar-line-plots" class="section level3">
+<h3>Bar line Plots</h3>
+<pre class="r"><code>X &lt;- data.frame(Tbox, 
+                PTS.O = Obox$PTS, 
+                TOV.O = Obox$TOV, 
+                CONF = Tadd$Conference)
+XW &lt;- subset(X, CONF== &quot;W&quot;)
+labs &lt;- c(&quot;Steals&quot;, &quot;Blocks&quot;, &quot;Defensive Rebounds&quot;)
+barline(data = XW,
+        id = &quot;Team&quot;,
+        bars = c(&quot;STL&quot;, &quot;BLK&quot;, &quot;DREB&quot;),
+        line = &quot;TOV.O&quot;,
+        order.by = &quot;PTS.O&quot;,
+        labels.bars = labs)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>Pbox.HR &lt;- subset(Pbox, 
+                  Team==&quot;Phoenix Suns&quot; &amp; MIN&gt;= 500)
+Pbox.HR</code></pre>
+<pre><code>##              Team          Player GP  MIN  PTS P2M P2A      P2p P3M P3A
+## 1918 Phoenix Suns       TJ Warren 65 2142 1271 509 973 52.31244  20  90
+## 823  Phoenix Suns   Dragan Bender 82 2069  531  69 162 42.59259 118 322
+## 1523 Phoenix Suns    Josh Jackson 77 1959 1012 332 715 46.43357  57 217
+## 723  Phoenix Suns    Devin Booker 54 1865 1346 308 670 45.97015 147 384
+## 2117 Phoenix Suns      Tyler Ulis 71 1658  554 172 405 42.46914  42 146
+## 2015 Phoenix Suns    Troy Daniels 79 1622  703  49 117 41.88034 183 458
+## 1623 Phoenix Suns Marquese Chriss 72 1527  556 146 287 50.87108  56 190
+## 323  Phoenix Suns        Alex Len 69 1395  587 213 375 56.80000   1   3
+## 2213 Phoenix Suns  Tyson Chandler 46 1151  300 121 187 64.70588   0   0
+## 1323 Phoenix Suns    Jared Dudley 48  686  152  19  42 45.23810  29  80
+## 1722 Phoenix Suns      Mike James 32  669  332  95 215 44.18605  26  97
+## 923  Phoenix Suns   Elfrid Payton 19  551  224  86 184 46.73913   5  25
+##           P3p FTM FTA      FTp OREB DREB AST TOV STL BLK  PF   PM
+## 1918 22.22222 193 255 75.68627  125  208  85  85  65  41 149 -433
+## 823  36.64596  39  51 76.47059   40  321 130 112  22  53 166 -469
+## 1523 26.26728 177 279 63.44086   95  256 119 146  80  35 218 -529
+## 723  38.28125 289 329 87.84195   26  218 253 194  47  14 168 -358
+## 2117 28.76712  84 101 83.16832   24  104 311 127  70   7 120 -316
+## 2015 39.95633  56  64 87.50000   12  115  48  56  26   5 137 -409
+## 1623 29.47368  96 158 60.75949   76  319  83 107  51  70 205 -300
+## 323  33.33333 158 231 68.39827  175  343  82  78  27  61 158 -255
+## 2213  0.00000  58  93 62.36559  134  284  53  59  16  27 106 -244
+## 1323 36.25000  27  35 77.14286    8   86  78  28  24  11  85    2
+## 1722 26.80412  64  84 76.19048   12   77 120  48  27   7  45  -30
+## 923  20.00000  37  54 68.51852   17   83 118  54  19   6  50 -256</code></pre>
+<pre class="r"><code>barline(data = Pbox.HR, id = &quot;Player&quot;,
+        bars = c(&quot;P2p&quot;, &quot;P3p&quot;, &quot;FTp&quot;),
+        line = &quot;MIN&quot;,
+        order.by = &quot;PM&quot;,
+        labels.bars = c(&quot;2P%&quot;, &quot;3P%&quot;, &quot;FT%&quot;),
+        title = &quot;Phoenix Suns&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="radial-plots" class="section level3">
+<h3>Radial Plots</h3>
+<pre class="r"><code>Pbox.PG &lt;- subset(Pbox, 
+                  Player == &quot;Russell Westbrook&quot; |
+                    Player == &quot;Stephen Curry&quot; |
+                    Player == &quot;Kyrie Irving&quot; |
+                    Player == &quot;Damian Lillard&quot; |
+                    Player == &quot;Kyle Lowry&quot; |
+                    Player == &quot;John Wall&quot; |
+                    Player == &quot;Rajon Rondo&quot; |
+                    Player == &quot;Kemba Walker&quot;)
+attach(Pbox.PG)
+X &lt;- data.frame(P2M, P3M, FTM, REB=OREB+DREB, AST, STL, BLK)/MIN
+detach(Pbox.PG)
+radialprofile(data = X, title = Pbox.PG$Player, std = F)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>radialprofile(data = X, title = Pbox.PG$Player, std = T)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+</div>
+<div id="scatter-plots" class="section level3">
+<h3>Scatter Plots</h3>
+<pre class="r"><code>Pbox.sel &lt;- subset(Pbox, MIN&gt;=500)
+attach(Pbox.sel)
+X &lt;- data.frame(AST, TOV, PTS)/MIN
+detach(Pbox.sel)
+mypal &lt;- colorRampPalette(c(&quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;))
+scatterplot(X, data.var = c(&quot;AST&quot;, &quot;TOV&quot;), z.var=&quot;PTS&quot;, labels = 1:nrow(X), palette = mypal)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>SAS &lt;- which(Pbox.sel$Team==&quot;San Antonio Spurs&quot;)
+scatterplot(X, data.var = c(&quot;AST&quot;, &quot;TOV&quot;), z.var=&quot;PTS&quot;, labels = Pbox.sel$Player, palette = mypal, subset = SAS)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<pre class="r"><code>scatterplot(X, data.var = c(&quot;AST&quot;, &quot;TOV&quot;), z.var=&quot;PTS&quot;, labels = Pbox.sel$Player, palette = mypal, subset = SAS, zoom = c(0.2, 0.325, 0.05, 0.10))</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+</div>
+<div id="bubble-plots" class="section level3">
+<h3>Bubble Plots</h3>
+<pre class="r"><code>attach(Tbox)
+X &lt;- data.frame(T = Team, P2p, P3p, FTp, AS = P2A + P3A + FTA)
+detach(Tbox)
+labs &lt;- c(&quot;2-Point shots (% made)&quot;,
+          &quot;3-Point shots (% made)&quot;,
+          &quot;Free throws (% made)&quot;,
+          &quot;Total shots attempted&quot;)
+bubbleplot(X, id = &quot;T&quot;, x = &quot;P2p&quot;, y = &quot;P3p&quot;, col = &quot;FTp&quot;, 
+           size = &quot;AS&quot;, labels = labs)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>Pbox.CC.GSW &lt;- subset(Pbox, 
+                       Team == &quot;Golden State Warriors&quot; | Team == &quot;Cleveland Cavaliers&quot; &amp; MIN &gt;= 500)
+attach(Pbox.CC.GSW)
+X &lt;- data.frame(ID = Player,
+                Team,
+                V1 = DREB/MIN,
+                V2 = STL/MIN,
+                V3 = BLK/MIN,
+                V4 = MIN)
+detach(Pbox.CC.GSW)
+labs &lt;- c(&quot;Defensive Rebounds&quot;,
+          &quot;Steals&quot;,
+          &quot;Blocks&quot;,
+          &quot;Total minutes played&quot;)
+bubbleplot(X, id = &quot;ID&quot;,
+           x = &quot;V1&quot;, y = &quot;V2&quot;, col = &quot;V3&quot;, size = &quot;V4&quot;,
+           text.col = &quot;Team&quot;, labels = labs, 
+           title = &quot;CC and GSW during the regular season&quot;,
+           text.legend = TRUE,
+           text.size = 3.5,
+           scale = FALSE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+<div id="varibility-analysis" class="section level1">
+<h1>Varibility Analysis</h1>
+</div>

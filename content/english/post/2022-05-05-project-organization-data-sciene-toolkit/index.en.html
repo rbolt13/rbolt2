@@ -1,0 +1,263 @@
+---
+title: Project Organization (Part 1) - Data Sciene Toolkit
+author: Randi Bolt
+date: '2022-05-05'
+slug: []
+categories:
+  - undergrad
+tags: []
+---
+
+
+
+<p>This is part 1 of my notes on Project Organization from <a href="https://benkeser.github.io/info550/">Data Science Toolkit</a>, by David Benkeser.</p>
+<p><a href="https://benkeser.github.io/info550/recordings/project-organization">Video</a> | <a href="https://benkeser.github.io/info550/lectures/08_organization/organization.html#1">Notes</a> | <a href="https://github.com/benkeser/info550">Github</a></p>
+<div id="pre-lecture-questions" class="section level1">
+<h1>Pre-lecture Questions</h1>
+<div id="how-to-add-headings" class="section level3">
+<h3>How to add headings?</h3>
+<p>In R chunk use code options : <code>fig.cap="**Figure Caption**"</code></p>
+<pre class="r"><code>barplot(c(1,2,3,4))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-1-1.png" alt="**Figure Caption**" width="672" />
+<p class="caption">
+Figure 1: <strong>Figure Caption</strong>
+</p>
+</div>
+<p>Another option would be to have the first row of your table be your title and then format so the first row doesn’t have any line filler in it.</p>
+<p><a href="https://stackoverflow.com/questions/33710240/how-to-attach-a-title-to-a-data-frame-in-r">Stackoverflow</a></p>
+<pre class="r"><code>report &lt;- list()
+report[[1]] &lt;- &quot;Report Name&quot;
+report[[2]] &lt;- head(mtcars)
+report</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Report Name&quot;
+## 
+## [[2]]
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Your goal is to minimize time as much as possible.</p>
+<p>Don’t spend a lot of time formatting your tables until they are going to be final.</p>
+</div>
+<div id="what-is-in-r" class="section level3">
+<h3>What is <code>::</code> in R?</h3>
+<p>A better way of referencing functions from a particular package.</p>
+<p>For example: <code>bookdown::htmldoc2</code> means that in that in the bookdown package there is a function htmldoc2. That way if multiple functions from different packages have the same name, now your code knows which package to call it from.</p>
+<p>This is less ambiguous.</p>
+</div>
+</div>
+<div id="lecture" class="section level1">
+<h1>Lecture</h1>
+<div id="basic-principles" class="section level2">
+<h2>Basic Principles</h2>
+<div id="use-git" class="section level3">
+<h3>Use git</h3>
+<ul>
+<li><p><span style="color: red;"><strong>Put everything in one version-controlled directory.</strong></span></p></li>
+<li><p>Jenny Bryan talks about <a href="https://rstats.wtf/project-oriented-workflow.html">Project Oriented Workflow</a></p>
+<p><a href="https://jennybryan.org/">Website</a> | <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a> | <a href="https://github.com/jennybc">GitHub</a></p></li>
+<li><p>Everything related to one project lives in one folder on you computer.</p></li>
+<li><p>Don’t spread things out across multiple folders.</p></li>
+<li><p>Put project directory on version control, and that’s going to be your git repository.</p></li>
+</ul>
+</div>
+<div id="develop-your-own-system" class="section level3">
+<h3>Develop your own system</h3>
+<ul>
+<li>Be Consistent, but look for ways to improve.
+<ul>
+<li>Naming conventions, file structure, make strucure</li>
+</ul></li>
+</ul>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>Raw data is sacred and kept seperate from everything else.</li>
+<li>Separate code and data</li>
+<li>Use make files and/ or READMEs to document dependencies</li>
+</ul>
+</div>
+<div id="names" class="section level3">
+<h3>Names</h3>
+<ul>
+<li>No spaces in file names</li>
+<li>use meaningful file names</li>
+<li>use YY-MM-DD date formatting
+<ul>
+<li>this sorts you data (ex: most recent)properly</li>
+</ul></li>
+</ul>
+</div>
+<div id="code" class="section level3">
+<h3>Code</h3>
+<ul>
+<li>Modularize R code.</li>
+<li>Know where to go to make changes.</li>
+<li><span style="color: red;"><strong>No absolute paths.</strong></span></li>
+<li><span style="color: red;"><strong>Use a package management system</strong></span></li>
+</ul>
+</div>
+</div>
+<div id="what-to-organize" class="section level2">
+<h2>What to organize?</h2>
+<p>It is probably useful to have a system for organizing:</p>
+<ul>
+<li>data analysis projects;</li>
+<li>first-author papers;</li>
+<li>talks.</li>
+</ul>
+<p><span style="color: red;"><strong>Think about organization of a project from the outset!</strong></span></p>
+</div>
+<div id="collaborative-projects" class="section level2">
+<h2>Collaborative Projects</h2>
+<ul>
+<li>Google drive</li>
+<li><a href="https://www.overleaf.com/">Overleaf</a></li>
+</ul>
+<p>Some advice:</p>
+<ul>
+<li>Address organization from the outset.</li>
+<li>Ideally, bring people on board to your (version controlled, reproducible) system.</li>
+<li>Keep open lines of communication (especially if using GitHub)</li>
+</ul>
+<p>Even if some elements of the project are outside your control, you can try to bring in elements to your workflow.</p>
+<ul>
+<li>E.g., if you receive comments with tracked changes from a colleague, incorporate them into the document, add a commit message describing who’s edits they were.</li>
+</ul>
+<p>If working on a shared GitHub repo, keep open lines of communication, e.g., short emails (or <a href="https://slack.com/">slack</a> messages, etc…), “Just pushed <code>x</code>…”</p>
+<p><img src="img/ExDataAnalysisProject.png" /></p>
+<ul>
+<li>raw data is sacred</li>
+<li>clean data will be saved into the data folder</li>
+<li>serperate scripts out by language or have a code directory</li>
+<li>numbering equations will give an indicator in what order the code runs.</li>
+<li>sandbox directory for exploratory data analysis that no one really needs to see.</li>
+<li>Makefile</li>
+<li>renv is a way to manage R package</li>
+</ul>
+</div>
+<div id="organizing-data" class="section level2">
+<h2>Organizing Data</h2>
+<ul>
+<li>Dont be tempted to edit raw data by hand</li>
+<li>Everything scripted</li>
+<li>Let collaborators know: “Don’t color code things.”</li>
+<li>Ask for a moc data set ahead of time so you know their form ahead of time to talk about raw data formatting ahead of time.</li>
+</ul>
+<p>Use meta-data files to describe raw and cleaned data.</p>
+<ul>
+<li>structure as data (e.g. .csv so easy to read)</li>
+</ul>
+<p><a href="https://www.jstatsoft.org/article/view/v059i10">Tidy Data by Hadley Wickham</a></p>
+<ul>
+<li>Worth the read</li>
+<li>Each Varibale forms a column</li>
+<li>Each observation forms a row</li>
+<li>Each observation unit forms a table.</li>
+</ul>
+</div>
+<div id="exploring-data" class="section level2">
+<h2>Exploring data</h2>
+<p>One of the first things we’ll often do is open the data and start poking around.</p>
+<ul>
+<li>Could be informal, “getting to know you.”</li>
+<li>Could be more formal, “see if anything looks interesting.”</li>
+</ul>
+<p>This is often done in an ad-hoc way:</p>
+<ul>
+<li>entering commands directly into R;</li>
+<li>making and saving plots “by hand”;</li>
+<li>etc…</li>
+</ul>
+<p><strong>Slow down and document</strong></p>
+<ul>
+<li>Your future self will thank you</li>
+<li>even if it is just in a google doc to yourself.</li>
+</ul>
+<p>You want to avoid situations like:</p>
+<ul>
+<li>need to recreate a plot that you made “by hand” and saved “by hand”;</li>
+<li>figuring out why you removed certain observations;</li>
+<li>trying to remember what variables had an interesting relationship that you wanted to follow up on later.</li>
+</ul>
+<p>Write out a set of comments describing what you are try to accomplish and fill in code from there.</p>
+<ul>
+<li>I do this for every coding project.
+<ul>
+<li>Data analysis, methods coding, package development</li>
+</ul></li>
+</ul>
+<p>Leave a search-able comment tag by code to return to later</p>
+<ul>
+<li>I use e.g., <code># TO DO: add math expression to labels; make colors prettier</code>.</li>
+</ul>
+<p>Sets “the bones” of a formal analysis in place while allowing for some creative flow.</p>
+<p>From the outset, stop and think about what you want to do. Start filling in details from there. That simple approach will increase efficiency and reproducibility.</p>
+<p>Other helpful ideas for formalizing exploratory data analysis:</p>
+<ul>
+<li><code>.Rhistory</code> files
+<ul>
+<li>all the commands used in an R session</li>
+</ul></li>
+<li>Informal <code>.Rmd</code> documents.
+<ul>
+<li>easy way to organize code/comments into readable format</li>
+</ul></li>
+<li><code>save</code> intermediate objects and workspaces
+<ul>
+<li>and document what they contain!</li>
+</ul></li>
+<li><code>knitr::spin</code>
+<ul>
+<li>writing <code>.R</code> scripts with rendered-able comments</li>
+</ul></li>
+<li><a href="https://jupyter.org/">Juypyter Notebook</a></li>
+</ul>
+<div id="the-here-package" class="section level3">
+<h3>The here package</h3>
+<p><strong>No absolute paths</strong></p>
+<ul>
+<li>Absolute paths are the enemy of project reproducibility.</li>
+</ul>
+<p>For <code>R</code> projects, the <a href="https://here.r-lib.org/"><code>here</code></a> package provides a simple way to use relative file paths.</p>
+<ul>
+<li>Read <a href="https://rstats.wtf/project-oriented-workflow.html">Jenny Bryan and James Hester’s chapter</a> on project-oriented work-flows.</li>
+</ul>
+<p>The use of <code>here</code> is dead-simple and best illustrated by example.</p>
+<p><img src="img/The_here_package.png" /></p>
+<p>Root directory is <code>my_project</code></p>
+<ul>
+<li>this is where <code>.git</code> lives</li>
+<li>all file paths should be relative to this</li>
+</ul>
+<p>Each <code>R</code> script or <code>Rmd</code> report, should contain a call to <code>here::i_am('path/to/this/file')</code> at the top</p>
+<ul>
+<li><code>here::i_am</code> means use function <code>i_am</code> from <code>here</code></li>
+</ul>
+<p>For example:</p>
+<pre class="r"><code># include at the top of script
+here::i_am(&#39;R/my_analysis.R&#39;)</code></pre>
+<pre><code>## here() starts at /Users/randi/Desktop/2022/rbolt2/content/english/post/2022-05-05-project-organization-data-sciene-toolkit</code></pre>
+<pre class="r"><code># now add all your R code </code></pre>
+<p>Now anytime you make analysis you can use the here function.</p>
+<pre class="r"><code># include at the top of script
+here::i_am(&#39;index.en.Rmd&#39;)</code></pre>
+<pre><code>## here() starts at /Users/randi/Desktop/2022/rbolt2/content/english/post/2022-05-05-project-organization-data-sciene-toolkit</code></pre>
+<pre class="r"><code># load data 
+my_data &lt;- read.csv(here::here(&#39;data&#39;,&#39;my_data.csv&#39;))
+
+# do some analysis to get results
+my_results &lt;- sum(my_data)
+
+# save results
+save(my_results, file = here::here(&#39;output&#39;, &#39;my_results.RData&#39;))</code></pre>
+<p>Part 1 ends around 36:54.</p>
+</div>
+</div>
+</div>
