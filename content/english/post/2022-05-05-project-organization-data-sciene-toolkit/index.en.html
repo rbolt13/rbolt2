@@ -1,5 +1,5 @@
 ---
-title: Project Organization (Part 1) - Data Sciene Toolkit
+title: Project Organization (Part 1 and 2) - Data Sciene Toolkit
 author: Randi Bolt
 date: '2022-05-05'
 slug: []
@@ -10,10 +10,12 @@ tags: []
 
 
 
-<p>This is part 1 of my notes on Project Organization from <a href="https://benkeser.github.io/info550/">Data Science Toolkit</a>, by David Benkeser.</p>
+<p>This is part 1 and 2 of my notes on Project Organization from <a href="https://benkeser.github.io/info550/">Data Science Toolkit</a>, by David Benkeser.</p>
 <p><a href="https://benkeser.github.io/info550/recordings/project-organization">Video</a> | <a href="https://benkeser.github.io/info550/lectures/08_organization/organization.html#1">Notes</a> | <a href="https://github.com/benkeser/info550">Github</a></p>
-<div id="pre-lecture-questions" class="section level1">
-<h1>Pre-lecture Questions</h1>
+<div id="part-1-000---3654" class="section level1">
+<h1>Part 1 (0:00 - 36:54)</h1>
+<div id="pre-lecture-questions" class="section level2">
+<h2>Pre-lecture Questions</h2>
 <div id="how-to-add-headings" class="section level3">
 <h3>How to add headings?</h3>
 <p>In R chunk use code options : <code>fig.cap="**Figure Caption**"</code></p>
@@ -49,6 +51,7 @@ report</code></pre>
 <p>A better way of referencing functions from a particular package.</p>
 <p>For example: <code>bookdown::htmldoc2</code> means that in that in the bookdown package there is a function htmldoc2. That way if multiple functions from different packages have the same name, now your code knows which package to call it from.</p>
 <p>This is less ambiguous.</p>
+</div>
 </div>
 </div>
 <div id="lecture" class="section level1">
@@ -141,6 +144,7 @@ report</code></pre>
 <li>Makefile</li>
 <li>renv is a way to manage R package</li>
 </ul>
+<p>Note: To go back two levels in your file directory: <code>./../../</code></p>
 </div>
 <div id="organizing-data" class="section level2">
 <h2>Organizing Data</h2>
@@ -257,7 +261,67 @@ my_results &lt;- sum(my_data)
 
 # save results
 save(my_results, file = here::here(&#39;output&#39;, &#39;my_results.RData&#39;))</code></pre>
-<p>Part 1 ends around 36:54.</p>
 </div>
 </div>
+</div>
+<div id="part-2-3940---13120" class="section level1">
+<h1>Part 2 (39:40 - 1:31:20)</h1>
+<p>Open Example Project in <a href="https://www.sublimetext.com/">Sublime</a></p>
+<div id="example-code" class="section level2">
+<h2>Example Code</h2>
+<p>To begin look at the <code>Makefile</code></p>
+<p><img src="img/Makefile_img.png" /></p>
+<p>The analysis here is going to culminate in a <span style="color: green;">report</span>, so we have a rule to make a <span style="color: green;">report</span> which says to render the report.Rmd document that lives in the Rmd folder.</p>
+<p>We can see the rule for making our report has a prerequisite. It depends on the source code (rmd shown below) and the barchart.png figure in fig folder.</p>
+<p>The rule for making that chart is shown on line 4: <span style="color: green;">figs/barchart.png</span>, which depends on the barchart.R code in the R directory.</p>
+<p><img src="img/report_img.png" /></p>
+<p>This report is saying that we looked at some data and make a figure which lives in the “figs” folder and is called “barchart.png”.</p>
+<p><img src="img/barchartR_img.png" /></p>
+<p>This is making a barchart out of the mtcars data.</p>
+<p>In the terminal now run <code>make report</code>, then open the report by typing <code>open Rmd/report.html</code>.</p>
+</div>
+<div id="here-package-two-examples" class="section level2">
+<h2>Here package (Two examples)</h2>
+<p>Identity where the folder is in relation to the project root.</p>
+<p>In the R folder create an R file <code>test.R</code> with the following in code:</p>
+<p><img src="img/testR_img.png" /></p>
+<p>Then in the terminal type: <code>Rscript R/test.R</code>, which should return the absolute path.</p>
+<p>Change line 3 from <code>here::here()</code> to <code>here::here("figs")</code>, save, and run <code>Rscript R/test.R</code>. This should show the absolute path of the “figs” folder.</p>
+<p><strong>Example 2</strong></p>
+<p>In the terminal change to the R directory by typing: <code>cd R</code>. Check its correct by listing the items in that folder with <code>ls</code>. Then create a new directory in that folder called “R_subdir”: <code>mkdir R_subdir</code></p>
+<p>Now create an R file simialr to the previous example and play around.</p>
+<p>Then when you’re done remove the directory you created with <code>rm -rf R/R_subdir/</code> , <code>rm R/test.R</code>, <code>rm figs/barchart.png</code></p>
+</div>
+<div id="package-management-system-renv" class="section level2">
+<h2>Package management system : `renv``</h2>
+<p>We want to record not only what packages we are using but:</p>
+<ul>
+<li>which versions of those packages we are using</li>
+<li>Where we downloaded those packages from</li>
+<li>what version of R we are using</li>
+</ul>
+<p>In example_project identify the projects that we need:</p>
+<ol style="list-style-type: decimal">
+<li>here</li>
+<li>wesanderson</li>
+<li>knitr</li>
+<li>rmarkdown</li>
+</ol>
+<p>In the terminal confirm where you are with <code>pwd</code>, and then type <code>R</code>. This should show you what version of R you are using (and other things). Install renv, and then run <code>renv::init()</code> in the terminal.</p>
+<p>This should list out not only the packages we are using but packages that those packages may depend on. Then it is saving all of that information into a lockfile which is now saved into the project file.</p>
+<p>Notice that other files appeared as well, such as “.Rprofile” which is a single line that says one line: ‘source(“renv/activate.R”)’. When you open R is is looking for these .Rprofile files (similar to bash or zshell). Be careful messing with this file, because that creates issues with reproducibility. What the line `(“renv/activate.R”)’ is doing is making R aware that we are in a project directory and there is a package library that’s associated with that package directory.</p>
+<p>We also now have an “renv” folder which contains activate scripts, and takes all of the specific versions of packages and places them into the project library. Note that it wont actually put those files into the folder, but will search your computer for that version of the package and link to that. That way you don’t have a lot of duplicate packages on your computer.</p>
+<p>Close out R session in terminal with: <code>q()</code>, and then start a new R with ‘R’, and notice there is a different output, which recognizes our package environment. If you get errors loading packages then type <code>renv::restore()</code> which will install packages on your computer.</p>
+<p>Now look back at the rmd file <code>repor.Rmd</code> at lines 8 and 9, shown below.</p>
+<p><img src="img/report_img.png" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Recognizes where this file is in relation to the project directory.</p></li>
+<li><p>This is saying anytime you find R code in this rmd script, run it from the project directly (which is where the code needs to be run from to make it aware of renv and packages needed).</p></li>
+</ol>
+<p>Moral of the story is to copy these two lines of code at the top of all of our rmd.</p>
+</div>
+</div>
+<div id="part-3" class="section level1">
+<h1>Part 3</h1>
+<p>Coming soon…</p>
 </div>

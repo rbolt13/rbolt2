@@ -1,5 +1,5 @@
 ---
-title: Project Organization (Part 1) - Data Sciene Toolkit
+title: Project Organization (Part 1 and 2) - Data Sciene Toolkit
 author: Randi Bolt
 date: '2022-05-05'
 slug: []
@@ -8,11 +8,13 @@ categories:
 tags: []
 ---
 
-This is part 1 of my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser. 
+This is part 1 and 2 of my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser. 
 
 [Video](https://benkeser.github.io/info550/recordings/project-organization) | [Notes](https://benkeser.github.io/info550/lectures/08_organization/organization.html#1) | [Github](https://github.com/benkeser/info550)
 
-# Pre-lecture Questions
+# Part 1 (0:00 - 36:54)
+
+## Pre-lecture Questions
 
 ### How to add headings?
 
@@ -122,6 +124,8 @@ If working on a shared GitHub repo, keep open lines of communication, e.g., shor
 * sandbox directory for exploratory data analysis that no one really needs to see. 
 * Makefile 
 * renv is a way to manage R package 
+
+Note: To go back two levels in your file directory: `./../../`
 
 ## Organizing Data 
 
@@ -238,4 +242,102 @@ my_results <- sum(my_data)
 save(my_results, file = here::here('output', 'my_results.RData'))
 ```
 
-Part 1 ends around 36:54. 
+# Part 2 (39:40 - 1:31:20)
+
+Open Example Project in [Sublime](https://www.sublimetext.com/)
+
+## Example Code 
+
+To begin look at the `Makefile`
+
+![](img/Makefile_img.png)
+
+The analysis here is going to culminate in a <span style="color: green;">report</span>, so we have a rule to make a <span style="color: green;">report</span> which says to render the report.Rmd document that lives in the Rmd folder. 
+
+We can see the rule for making our report has a prerequisite. It depends on the source code (rmd shown below) and the barchart.png figure in fig folder. 
+
+The rule for making that chart is shown on line 4: <span style="color: green;">figs/barchart.png</span>, which depends on the barchart.R code in the R directory. 
+
+![](img/report_img.png)
+
+This report is saying that we looked at some data and make a figure which lives in the "figs" folder and is called "barchart.png". 
+
+![](img/barchartR_img.png)
+
+This is making a barchart out of the mtcars data. 
+
+In the terminal now run `make report`, then open the report by typing `open Rmd/report.html`. 
+
+## Here package (Two examples)
+
+Identity where the folder is in relation to the project root. 
+
+In the R folder create an R file `test.R` with the following in code:
+
+![](img/testR_img.png)
+
+Then in the terminal type: `Rscript R/test.R`, which should return the absolute path. 
+
+Change line 3 from `here::here()` to `here::here("figs")`, save, and run `Rscript R/test.R`. This should show the absolute path of the "figs" folder. 
+
+**Example 2**
+
+In the terminal change to the R directory by typing: `cd R`. Check its correct by listing the items in that folder with `ls`. Then create a new directory in that folder called "R_subdir": `mkdir R_subdir`
+
+Now create an R file simialr to the previous example and play around. 
+
+Then when you're done remove the directory you created with `rm -rf R/R_subdir/` , `rm R/test.R`, `rm figs/barchart.png`
+
+## Package management system : `renv``
+
+We want to record not only what packages we are using but: 
+
+* which versions of those packages we are using
+* Where we downloaded those packages from
+* what version of R we are using
+
+In example_project identify the projects that we need:
+
+1. here
+2. wesanderson
+3. knitr
+4. rmarkdown
+
+In the terminal confirm where you are with `pwd`, and then type `R`. This should show you what version of R you are using (and other things). Install renv, and then run `renv::init()` in the terminal. 
+
+This should list out not only the packages we are using but packages that those packages may depend on. Then it is saving all of that information into a lockfile which is now saved into the project file. 
+
+Notice that other files appeared as well, such as  ".Rprofile" which is a single line that says one line: 'source("renv/activate.R")'. When you open R is is looking for these .Rprofile files (similar to bash or zshell). Be careful messing with this file, because that creates issues with reproducibility. What the line `("renv/activate.R")' is doing is making R aware that we are in a project directory and there is a package library that's associated with that package directory. 
+
+We also now have an "renv" folder which contains activate scripts, and takes all of the specific versions of packages and places them into the project library. Note that it wont actually put those files into the folder, but will search your computer for that version of the package and link to that. That way you don't have a lot of duplicate packages on your computer. 
+
+Close out R session in terminal with: `q()`, and then start a new R with 'R', and notice there is a different output, which recognizes our package environment. If you get errors loading packages then type `renv::restore()` which will install packages on your computer. 
+
+Now look back at the rmd file `repor.Rmd` at lines 8 and 9, shown below. 
+
+![](img/report_img.png)
+
+8. Recognizes where this file is in relation to the project directory. 
+
+9. This is saying anytime you find R code in this rmd script, run it from the project directly (which is where the code needs to be run from to make it aware of renv and packages needed).
+
+Moral of the story is to copy these two lines of code at the top of all of our rmd. 
+
+# Part 3 
+
+Coming soon... 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
