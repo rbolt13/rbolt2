@@ -1,0 +1,134 @@
+---
+title: Docker for reproducible research - Data Science Toolkit
+author: Randi Bolt
+date: '2022-05-10'
+slug: []
+categories:
+  - undergrad
+tags:
+  - docker
+---
+
+
+
+<p>This is part 1 of my notes on <em>Docker for reproducible research</em> from <a href="https://benkeser.github.io/info550/">Data Science Toolkit</a>, by David Benkeser.</p>
+<p><a href="https://benkeser.github.io/info550/recordings/docker-for-reproducible-research">Video</a> | <a href="https://benkeser.github.io/info550/lectures/11_docker/docker.html#1">Notes</a> | <a href="https://github.com/benkeser/info550/tree/master/lectures/11_docker">Github</a></p>
+<div id="part-1-000---3250" class="section level1">
+<h1>Part 1 (0:00 - 32:50)</h1>
+<div id="pre-lecture-question" class="section level2">
+<h2>Pre-lecture Question</h2>
+<p>Q: Can we review project organization?</p>
+<div id="phony-data-analysis" class="section level3">
+<h3>Phony data analysis</h3>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Create and Open Project then Create Folders}}\)</span></li>
+</ol>
+<p>In the terminal:</p>
+<ul>
+<li><p>mkdir example_project_2 <span class="math inline">\(\quad\quad\quad\text{: make  directory }\)</span></p></li>
+<li><p>subl example_project_2 <span class="math inline">\(\quad\quad\quad\quad\text{: open in sublime }\)</span></p></li>
+</ul>
+<p>Then in a terminal in sublime create some folders:</p>
+<ul>
+<li><p>mkdir code <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\text{: make  directory }\)</span></p></li>
+<li><p>mkdir raw data <span class="math inline">\(\quad\quad\quad\quad\quad\quad\text{: make directory }\)</span></p></li>
+<li><p>mkdir clean data <span class="math inline">\(\quad\quad\quad\quad\quad\quad\text{: make  directory }\)</span></p></li>
+<li><p>mkdir output <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\text{: make  directory }\)</span></p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Save Raw Data}}\)</span></li>
+</ol>
+<p>In the terminal:</p>
+<ul>
+<li><p>R <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\text{: open R }\)</span></p></li>
+<li><p>data(mtcars) <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\text{: load mtcars data set }\)</span></p></li>
+<li><p>head(mtcars) <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\text{: show head of mtcars }\)</span></p></li>
+<li><p>getwd() <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad\quad\text{: get working directory }\)</span></p></li>
+<li><p>saveRDS(mtcars, “raw_data/mtcars.rds”) <span class="math inline">\(\quad\text{: save as .rds file}\)</span></p></li>
+<li><p>saveRDS(mtcars, “raw_data/mtcars.RData”) <span class="math inline">\(\quad\text{: save as .RData file}\)</span></p></li>
+<li><p>q() <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\text{: quit R }\)</span></p></li>
+<li><p>y <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\text{: agree to quit }\)</span></p></li>
+<li><p>rm raw_data/mtcars.RData <span class="math inline">\(\quad\quad\text{: remove data from folder}\)</span></p></li>
+</ul>
+<p>Note that <code>.Rds</code> is preferred.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Create Clean Data File}}\)</span></li>
+</ol>
+<p>[command] [N] : to create a new file.</p>
+<p>Then save that file in the code directory as “clean_data.R” with the following code:</p>
+<p><img src="img/clean_data_file_img.png" /></p>
+<p>Note the 3 different places the here package is used.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Create Makefile}}\)</span></li>
+</ol>
+<p>[command] [N] : to create a new file.</p>
+<p>Then save that file in the project directory as “Makefile” with the following code:</p>
+<p><img src="img/make_file_img.png" /></p>
+<p>In the terminal:</p>
+<ul>
+<li><p>make clean_data/mtcars_cleaned.rds</p></li>
+<li><p>Rscript code/clean_data.R</p></li>
+</ul>
+<p>Verify data is in clean_data folder</p>
+<ol start="5" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Create make_table.R}}\)</span></li>
+</ol>
+<p>[command] [N] : to create a new file.</p>
+<p>Then save that file in the code folder as “make_table.R” with the following code:</p>
+<p><img src="img/make_table_img.png" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Update Makefile}}\)</span></li>
+</ol>
+<p>Now update the Makefile with the following:</p>
+<p><img src="img/update_make_file_img.png" /></p>
+<p>In the terminal:</p>
+<ul>
+<li>make output/data_for_table.rds</li>
+</ul>
+<p>Verify contents in output folder.</p>
+<ol start="7" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Create report.Rmd}}\)</span></li>
+</ol>
+<p>[command] [N] : to create a new file.</p>
+<p>Then save that file in the project directory as “report.Rmd” with the following code:</p>
+<p><img src="img/rmd_img.png" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li><span class="math inline">\(\underline{\text{Update Makefile}}\)</span></li>
+</ol>
+<p>Update the Makefile with the following:</p>
+<p><img src="img/update2_make_file_img.png" /></p>
+<p>In the terminal:</p>
+<ul>
+<li><p>make report.html</p></li>
+<li><p>open report.html</p></li>
+</ul>
+</div>
+</div>
+<div id="pre-lecture-question-2" class="section level2">
+<h2>Pre-lecture Question (2)</h2>
+<p>Q: why doesn’t git / github recognize empty folders?</p>
+<p>A: git doesn’t care about empty folders in directory.</p>
+<div id="make-github-aware-of-empty-folder" class="section level3">
+<h3>Make Github aware of empty folder</h3>
+<p>In terminal</p>
+<ul>
+<li><p>rm output/* <span class="math inline">\(\quad\quad\quad\quad\text{: remove everything in output folder}\)</span></p></li>
+<li><p>gitinit <span class="math inline">\(\quad\quad\quad\quad\quad\quad\text{: initilize git}\)</span></p></li>
+<li><p>git status <span class="math inline">\(\quad\quad\quad\quad\quad\text{: status}\)</span></p></li>
+</ul>
+<p>Notice the output folder isn’t included.</p>
+<ul>
+<li><p>cd output <span class="math inline">\(\quad\quad\quad\quad\quad\text{: change to output directory}\)</span></p></li>
+<li><p>touch .gitkeep <span class="math inline">\(\quad\quad\quad\text{: add empty file}\)</span></p></li>
+<li><p>ls -a <span class="math inline">\(\quad\quad\quad\quad\quad\quad\text{: list all files}\)</span></p></li>
+<li><p>cd .. <span class="math inline">\(\quad\quad\quad\quad\quad\quad\text{: change directory up one level}\)</span></p></li>
+<li><p>gitstatus <span class="math inline">\(\quad\quad\quad\quad\quad\text{: status}\)</span></p></li>
+</ul>
+<p>Now the output folder is visible.</p>
+</div>
+</div>
+</div>
+<div id="part-2-3300---xxxx" class="section level1">
+<h1>Part 2 (33:00 - XX:XX)</h1>
+<p>Coming Soon …</p>
+</div>
