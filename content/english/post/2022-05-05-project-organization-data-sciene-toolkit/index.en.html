@@ -1,5 +1,5 @@
 ---
-title: Project Organization (Part 1 and 2) - Data Sciene Toolkit
+title: Project Organization - Data Sciene Toolkit
 author: Randi Bolt
 date: '2022-05-05'
 slug: []
@@ -10,7 +10,7 @@ tags: []
 
 
 
-<p>This is part 1 and 2 of my notes on Project Organization from <a href="https://benkeser.github.io/info550/">Data Science Toolkit</a>, by David Benkeser.</p>
+<p>These are my notes on Project Organization from <a href="https://benkeser.github.io/info550/">Data Science Toolkit</a>, by David Benkeser.</p>
 <p><a href="https://benkeser.github.io/info550/recordings/project-organization">Video</a> | <a href="https://benkeser.github.io/info550/lectures/08_organization/organization.html#1">Notes</a> | <a href="https://github.com/benkeser/info550">Github</a></p>
 <div id="part-1-000---3654" class="section level1">
 <h1>Part 1 (0:00 - 36:54)</h1>
@@ -285,12 +285,47 @@ save(my_results, file = here::here(&#39;output&#39;, &#39;my_results.RData&#39;)
 <p>Identity where the folder is in relation to the project root.</p>
 <p>In the R folder create an R file <code>test.R</code> with the following in code:</p>
 <p><img src="img/testR_img.png" /></p>
-<p>Then in the terminal type: <code>Rscript R/test.R</code>, which should return the absolute path.</p>
-<p>Change line 3 from <code>here::here()</code> to <code>here::here("figs")</code>, save, and run <code>Rscript R/test.R</code>. This should show the absolute path of the “figs” folder.</p>
+<p>Then in the terminal:</p>
+<ul>
+<li><code>Rscript R/test.R</code></li>
+</ul>
+<center>
+should return the absolute path
+</center>
+<p>In <code>test.R</code> change line 3 from <code>here::here()</code> to <code>here::here("figs")</code>, save, and run:</p>
+<ul>
+<li><code>Rscript R/test.R</code></li>
+</ul>
+<center>
+should return the absolute path of the “figs” folder
+</center>
 <p><strong>Example 2</strong></p>
-<p>In the terminal change to the R directory by typing: <code>cd R</code>. Check its correct by listing the items in that folder with <code>ls</code>. Then create a new directory in that folder called “R_subdir”: <code>mkdir R_subdir</code></p>
-<p>Now create an R file simialr to the previous example and play around.</p>
-<p>Then when you’re done remove the directory you created with <code>rm -rf R/R_subdir/</code> , <code>rm R/test.R</code>, <code>rm figs/barchart.png</code></p>
+<p>In the terminal&lt;</p>
+<ul>
+<li><code>cd R</code></li>
+</ul>
+<center>
+change to R directory
+</center>
+<ul>
+<li><code>ls</code></li>
+</ul>
+<center>
+lists all files in current directory
+</center>
+<p>Verify this is correct.</p>
+<ul>
+<li><code>mkdir R_subdir</code></li>
+</ul>
+<center>
+create a new directory called “R_subdir”
+</center>
+<p>Now create an R file similar to the previous example and play around with the here function. Then remove the files that were just added:</p>
+<ul>
+<li><p><code>rm -rf R/R_subdir/</code></p></li>
+<li><p><code>rm R/test.R</code></p></li>
+<li><p><code>rm figs/barchart.png</code></p></li>
+</ul>
 </div>
 <div id="package-management-system-renv" class="section level2">
 <h2>Package management system : `renv``</h2>
@@ -307,12 +342,49 @@ save(my_results, file = here::here(&#39;output&#39;, &#39;my_results.RData&#39;)
 <li>knitr</li>
 <li>rmarkdown</li>
 </ol>
-<p>In the terminal confirm where you are with <code>pwd</code>, and then type <code>R</code>. This should show you what version of R you are using (and other things). Install renv, and then run <code>renv::init()</code> in the terminal.</p>
-<p>This should list out not only the packages we are using but packages that those packages may depend on. Then it is saving all of that information into a lockfile which is now saved into the project file.</p>
-<p>Notice that other files appeared as well, such as “.Rprofile” which is a single line that says one line: ‘source(“renv/activate.R”)’. When you open R is is looking for these .Rprofile files (similar to bash or zshell). Be careful messing with this file, because that creates issues with reproducibility. What the line `(“renv/activate.R”)’ is doing is making R aware that we are in a project directory and there is a package library that’s associated with that package directory.</p>
+<p>In the terminal,</p>
+<ul>
+<li><code>pwd</code></li>
+</ul>
+<center>
+confirm where you are
+</center>
+<ul>
+<li><code>R</code></li>
+</ul>
+<center>
+open R
+</center>
+<p>This will also return what version of R we are working in.</p>
+<ul>
+<li><code>renv::init()</code></li>
+</ul>
+<p>Note: renv needs to already be installed in R.</p>
+<p>A list should be returned that shows the packages we are using, and the packages those packages depend on. Then it is saving all of that information into a lockfile which is now saved into the project file.</p>
+<p>Notice that other files appeared as well, such as “.Rprofile” which is a single line that says one line: ‘source(“renv/activate.R”)’. When you open R the software is looking for these .Rprofile files (similar to bash or zshell). Be careful messing with this file, because that creates issues with reproducibility.</p>
+<p>The line `(“renv/activate.R”)’ is making R aware that we are in a project directory and there is a package library that’s associated with that package directory.</p>
 <p>We also now have an “renv” folder which contains activate scripts, and takes all of the specific versions of packages and places them into the project library. Note that it wont actually put those files into the folder, but will search your computer for that version of the package and link to that. That way you don’t have a lot of duplicate packages on your computer.</p>
-<p>Close out R session in terminal with: <code>q()</code>, and then start a new R with ‘R’, and notice there is a different output, which recognizes our package environment. If you get errors loading packages then type <code>renv::restore()</code> which will install packages on your computer.</p>
-<p>Now look back at the rmd file <code>repor.Rmd</code> at lines 8 and 9, shown below.</p>
+<p>In the terminal:</p>
+<ul>
+<li><code>q()</code></li>
+</ul>
+<center>
+close R
+</center>
+<ul>
+<li>R</li>
+</ul>
+<center>
+start R
+</center>
+<p>Notice there is a different output, which recognizes our package environment. If you get errors loading packages then type the following into the terminal:</p>
+<ul>
+<li><code>renv::restore()</code></li>
+</ul>
+<center>
+install packages on your computer
+</center>
+<p>Now look back at the rmd file <code>report.Rmd</code> at lines 8 and 9, shown below.</p>
 <p><img src="img/report_img.png" /></p>
 <ol start="8" style="list-style-type: decimal">
 <li><p>Recognizes where this file is in relation to the project directory.</p></li>
@@ -321,7 +393,231 @@ save(my_results, file = here::here(&#39;output&#39;, &#39;my_results.RData&#39;)
 <p>Moral of the story is to copy these two lines of code at the top of all of our rmd.</p>
 </div>
 </div>
-<div id="part-3" class="section level1">
-<h1>Part 3</h1>
-<p>Coming soon…</p>
+<div id="part-3-12120---20549" class="section level1">
+<h1>Part 3 (1:21:20 - 2:05:49)</h1>
+<p>What does a collaborative workflow look like?</p>
+<div id="colaborating-with-renv" class="section level2">
+<h2>Colaborating with renv</h2>
+<p>User A initializes the lockfile using <code>renv::init()</code>.</p>
+<p>User A commits the following to github:</p>
+<ul>
+<li>renv.lock</li>
+<li>.Rprofile</li>
+<li>renv/activate.R</li>
+</ul>
+<p>User B clones and downloads repo, and uses <code>renv::restore()</code> to synchronize their local project directory.</p>
+<p>User B adds new packages to code, uses <code>renv::snapshot()</code> to record changes to <code>renv.lock</code></p>
+<p>User B commits <code>renv.lock</code> and pushes to GitHub.</p>
+<p>User A pulls from GitHub, opens <code>R</code>, and uses <code>renv::restore()</code> to synchronize their local project directory.</p>
+</div>
+<div id="breakout-exercise" class="section level2">
+<h2>Breakout Exercise</h2>
+<p>In the terminal:</p>
+<ul>
+<li><code>q()</code></li>
+</ul>
+<center>
+quit what you are working in
+</center>
+<ul>
+<li><code>pwd</code></li>
+</ul>
+<center>
+print working directory
+</center>
+<p>Verify you are in the correct example_project directory</p>
+<ul>
+<li><code>git init</code></li>
+</ul>
+<center>
+create a new Git repository
+</center>
+<p>Verify a git folder has been added.</p>
+<p>Now create a github repository for example project, and copy the line of code that looks like the following into the terminal:</p>
+<ul>
+<li><code>git remote add origin https://github.com/user_name/example_project.git</code></li>
+</ul>
+<p>Note: you might have issues if your github isn’t cached.</p>
+<p>For the first Commit:</p>
+<ul>
+<li><code>git status</code></li>
+</ul>
+<center>
+display status of working directory
+</center>
+<ul>
+<li><code>git add *</code></li>
+</ul>
+<center>
+add all files that don’t begin with a <code>.</code>
+</center>
+<ul>
+<li><code>git status</code></li>
+</ul>
+<center>
+display status of working directory
+</center>
+<p>Verify everything was added, otherwise:</p>
+<ul>
+<li><code>git add .thing1 .thing2 .thing3</code></li>
+</ul>
+<center>
+add files that begin with <code>.</code>
+</center>
+<ul>
+<li><code>git status</code></li>
+</ul>
+<center>
+display status of working directory
+</center>
+<p>Verify everything was added.</p>
+<ul>
+<li><p><code>git commit -m "my first commit"</code></p></li>
+<li><p><code>git push origin master</code></p></li>
+</ul>
+<p>Verify github was updated.</p>
+<p>User B then forks the repository to make a copy of it onto their computer. Cope a similar line of code shown below into the terminal:</p>
+<ul>
+<li><p><code>git clone https://github.com/user_name/example_project.git</code></p></li>
+<li><p><code>cd example_project</code></p></li>
+<li><p><code>R</code></p></li>
+</ul>
+<center>
+Open R
+</center>
+<ul>
+<li><p><code>renv::restore()</code></p></li>
+<li><p><code>q()</code></p></li>
+</ul>
+<center>
+Close R
+</center>
+<ul>
+<li><p><code>make report</code></p></li>
+<li><p><code>open Rmd/report.html</code></p></li>
+</ul>
+<p>Verify report runs.</p>
+<ul>
+<li><code>R</code></li>
+</ul>
+<center>
+Open R
+</center>
+<ul>
+<li>renv::remove(‘wesanderson’)</li>
+</ul>
+<center>
+remove wes anderson package
+</center>
+<p>Then open the barchart.R file to change following two lines of code:</p>
+<p><img src="img/barchart_colors.png" /></p>
+<p>Save.</p>
+<ul>
+<li><code>renv::snapshot()</code></li>
+</ul>
+<p>This will return the following:</p>
+<p><img src="img/renv_snapshot_img.png" /></p>
+<ul>
+<li><code>y</code></li>
+</ul>
+<p>You will now have a new lockfile.</p>
+<ul>
+<li><code>git diff</code></li>
+</ul>
+<center>
+check the changes that were made
+</center>
+<ul>
+<li><code>q()</code></li>
+</ul>
+<center>
+quit R
+</center>
+<p>Then commit.</p>
+<p>User A can then try these changes out in an isolated enviromnt.</p>
+<ul>
+<li><code>git remote add userb https://github.com/user_b/example_project.git</code></li>
+</ul>
+<center>
+link to user b’s repository
+</center>
+<ul>
+<li><code>git fetch user_b master</code></li>
+</ul>
+<center>
+fetch user_b’s main branch
+</center>
+<p><code>git checkout remotes/user_b/master</code></p>
+<center>
+checkout user_b’s main branch
+</center>
+<p>Verify changes.</p>
+<ul>
+<li><p><code>git checkout -b user_b</code></p></li>
+<li><p><code>git merge user_b</code></p></li>
+</ul>
+<center>
+merge user_b’s branch into master
+</center>
+<ul>
+<li><code>git push</code></li>
+</ul>
+<p>Now user A wants to change the colors again.</p>
+<ul>
+<li><p><code>R</code></p></li>
+<li><p><code>renv::remove("RColorBrewer")</code></p></li>
+<li><p><code>q()</code></p></li>
+</ul>
+<p>Then update the barchart.R file by removing lines 4 and 5, then replacing them with:</p>
+<p><img src="img/barchartR_colors2.png" /></p>
+<p>Save, then in the terminal:</p>
+<ul>
+<li><p>make report</p></li>
+<li><p>open Rmd/report.html</p></li>
+</ul>
+<p>Verify report looks good.</p>
+<ul>
+<li><p>git status</p></li>
+<li><p>git add <code>*</code></p></li>
+<li><p>git status</p></li>
+<li><p>git add (anything that was missed)</p></li>
+<li><p>git status</p></li>
+<li><p>git commit -m “Removed RColorBrewer and changed colors to baseR.”</p></li>
+<li><p>git push origin master</p></li>
+</ul>
+<p>B’s then copies the updated repository, and in the terminal:</p>
+<ul>
+<li>git remote add user_a git config advice.addIgnoredFile false</li>
+</ul>
+<center>
+(creates path to user A github repository)
+</center>
+<ul>
+<li><p>git fetch user_a master</p></li>
+<li><p>git checkout remotes/user_a/master</p></li>
+<li><p>R()</p></li>
+<li><p>renv::status()</p></li>
+<li><p>q()</p></li>
+<li><p>make report</p></li>
+<li><p>open Rmd/report.html</p></li>
+</ul>
+<p>Verify colors are baseR.</p>
+<ul>
+<li><p>git checkout -b user_a</p></li>
+<li><p>git checkout master</p></li>
+<li><p>git merge user_a</p></li>
+<li><p>git push origin master</p></li>
+</ul>
+<p>The end ~</p>
+<div id="questions" class="section level3">
+<h3>Questions</h3>
+<p>Q: Do we have to go between bash and R and bash again to touch do anything with env?</p>
+<p>A: Yes, but we can also do something else …</p>
+<p>In make file add the following lines of code:</p>
+<p><img src="img/update_makefile_img.png" /></p>
+<p>this will automate that entire process for us.</p>
+<p>Now in terminal we can type: <code>make restore</code> which will cut out the middle man which avoids the need to open an R session every time.</p>
+<p>Note: My completed replication of this example_project can be found <a href="https://github.com/rbolt13/example_project">here</a>.</p>
+</div>
+</div>
 </div>

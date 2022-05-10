@@ -1,5 +1,5 @@
 ---
-title: Project Organization (Part 1 and 2) - Data Sciene Toolkit
+title: Project Organization - Data Sciene Toolkit
 author: Randi Bolt
 date: '2022-05-05'
 slug: []
@@ -8,7 +8,7 @@ categories:
 tags: []
 ---
 
-This is part 1 and 2 of my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser. 
+These are my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser. 
 
 [Video](https://benkeser.github.io/info550/recordings/project-organization) | [Notes](https://benkeser.github.io/info550/lectures/08_organization/organization.html#1) | [Github](https://github.com/benkeser/info550)
 
@@ -276,17 +276,43 @@ In the R folder create an R file `test.R` with the following in code:
 
 ![](img/testR_img.png)
 
-Then in the terminal type: `Rscript R/test.R`, which should return the absolute path. 
+Then in the terminal: 
 
-Change line 3 from `here::here()` to `here::here("figs")`, save, and run `Rscript R/test.R`. This should show the absolute path of the "figs" folder. 
+* `Rscript R/test.R`
+
+<center> should return the absolute path </center> 
+
+In `test.R` change line 3 from `here::here()` to `here::here("figs")`, save, and run:
+
+* `Rscript R/test.R`
+
+<center >should return the absolute path of the "figs" folder </center> 
 
 **Example 2**
 
-In the terminal change to the R directory by typing: `cd R`. Check its correct by listing the items in that folder with `ls`. Then create a new directory in that folder called "R_subdir": `mkdir R_subdir`
+In the terminal<
 
-Now create an R file simialr to the previous example and play around. 
+* `cd R`
 
-Then when you're done remove the directory you created with `rm -rf R/R_subdir/` , `rm R/test.R`, `rm figs/barchart.png`
+<center> change to R directory </center>
+
+* `ls`
+
+<center> lists all files in current directory </center>
+
+Verify this is correct. 
+
+* `mkdir R_subdir`
+
+<center> create a new directory called "R_subdir"</center>
+
+Now create an R file similar to the previous example and play around with the here function. Then remove the files that were just added: 
+
+* `rm -rf R/R_subdir/` 
+
+* `rm R/test.R`
+
+* `rm figs/barchart.png`
 
 ## Package management system : `renv``
 
@@ -303,17 +329,47 @@ In example_project identify the projects that we need:
 3. knitr
 4. rmarkdown
 
-In the terminal confirm where you are with `pwd`, and then type `R`. This should show you what version of R you are using (and other things). Install renv, and then run `renv::init()` in the terminal. 
+In the terminal,
 
-This should list out not only the packages we are using but packages that those packages may depend on. Then it is saving all of that information into a lockfile which is now saved into the project file. 
+* `pwd`
 
-Notice that other files appeared as well, such as  ".Rprofile" which is a single line that says one line: 'source("renv/activate.R")'. When you open R is is looking for these .Rprofile files (similar to bash or zshell). Be careful messing with this file, because that creates issues with reproducibility. What the line `("renv/activate.R")' is doing is making R aware that we are in a project directory and there is a package library that's associated with that package directory. 
+<center> confirm where you are </center>
+
+* `R`
+
+<center> open R </center>
+
+This will also return what version of R we are working in. 
+
+* `renv::init()`
+
+Note: renv needs to already be installed in R. 
+
+A list should be returned that shows the packages we are using, and the packages those packages depend on. Then it is saving all of that information into a lockfile which is now saved into the project file. 
+
+Notice that other files appeared as well, such as  ".Rprofile" which is a single line that says one line: 'source("renv/activate.R")'. When you open R the software is looking for these .Rprofile files (similar to bash or zshell). Be careful messing with this file, because that creates issues with reproducibility. 
+
+The line `("renv/activate.R")' is making R aware that we are in a project directory and there is a package library that's associated with that package directory. 
 
 We also now have an "renv" folder which contains activate scripts, and takes all of the specific versions of packages and places them into the project library. Note that it wont actually put those files into the folder, but will search your computer for that version of the package and link to that. That way you don't have a lot of duplicate packages on your computer. 
 
-Close out R session in terminal with: `q()`, and then start a new R with 'R', and notice there is a different output, which recognizes our package environment. If you get errors loading packages then type `renv::restore()` which will install packages on your computer. 
+In the terminal: 
 
-Now look back at the rmd file `repor.Rmd` at lines 8 and 9, shown below. 
+* `q()` 
+
+<center> close R </center>
+
+* R
+
+<center> start R </center>
+
+Notice there is a different output, which recognizes our package environment. If you get errors loading packages then type the following into the terminal:
+
+* `renv::restore()` 
+
+<center> install packages on your computer </center> 
+
+Now look back at the rmd file `report.Rmd` at lines 8 and 9, shown below. 
 
 ![](img/report_img.png)
 
@@ -323,21 +379,244 @@ Now look back at the rmd file `repor.Rmd` at lines 8 and 9, shown below.
 
 Moral of the story is to copy these two lines of code at the top of all of our rmd. 
 
-# Part 3 
+# Part 3 (1:21:20 - 2:05:49)
 
-Coming soon... 
+What does a collaborative workflow look like? 
 
+## Colaborating with renv
 
+User A initializes the lockfile using `renv::init()`.
 
+User A commits the following to github:
 
+* renv.lock
+* .Rprofile
+* renv/activate.R
 
+User B clones and downloads repo, and uses  `renv::restore()` to synchronize their local project directory. 
 
+User B adds new packages to code, uses `renv::snapshot()` to record changes to `renv.lock`
 
+User B commits `renv.lock` and pushes to GitHub.
 
+User A pulls from GitHub, opens `R`, and uses `renv::restore()` to synchronize their local project directory.
 
+## Breakout Exercise 
 
+In the terminal:
 
+* `q()`
 
+<center> quit what you are working in </center>
 
+* `pwd`
 
+<center> print working directory </center>
 
+Verify you are in the correct example_project directory
+
+* `git init`
+
+<center> create a new Git repository </center>
+
+Verify a git folder has been added. 
+
+Now create a github repository for example project, and copy the line of code that looks like the following into the terminal:
+
+* `git remote add origin https://github.com/user_name/example_project.git`
+
+Note: you might have issues if your github isn't cached. 
+
+For the first Commit: 
+
+* `git status`
+
+<center> display status of working directory </center>
+
+* `git add *`
+
+<center> add all files that don't begin with a `.` </center>
+
+* `git status`
+
+<center> display status of working directory </center>
+
+Verify everything was added, otherwise: 
+
+* `git add .thing1 .thing2 .thing3`
+
+<center> add files that begin with `.` </center>
+
+* `git status`
+
+<center> display status of working directory </center>
+
+Verify everything was added. 
+
+* `git commit -m "my first commit"`
+
+* `git push origin master`
+
+Verify github was updated. 
+
+User B then forks the repository to make a copy of it onto their computer. Cope a similar line of code shown below into the terminal: 
+
+* `git clone https://github.com/user_name/example_project.git`
+
+* `cd example_project`
+
+* `R`
+
+<center> Open R </center>
+
+* `renv::restore()`
+
+* `q()`
+
+<center> Close R </center>
+
+* `make report`
+
+* `open Rmd/report.html`
+
+Verify report runs.
+
+* `R`
+
+<center> Open R </center>
+
+* renv::remove('wesanderson')
+
+<center> remove wes anderson package </center>
+
+Then open the barchart.R file to change following two lines of code: 
+
+![](img/barchart_colors.png)
+
+Save. 
+
+*  `renv::snapshot()`
+
+This will return the following: 
+
+![](img/renv_snapshot_img.png)
+
+* `y`
+
+You will now have a new lockfile. 
+
+* `git diff` 
+
+<center> check the changes that were made </center>
+
+* `q()` 
+
+<center> quit R</center>
+
+Then commit. 
+
+User A can then try these changes out in an isolated enviromnt. 
+
+* `git remote add userb https://github.com/user_b/example_project.git` 
+
+<center> link to user b's repository </center>
+
+* `git fetch user_b master` 
+
+<center> fetch user_b's main branch </center>
+
+`git checkout remotes/user_b/master` 
+
+<center> checkout user_b's main branch </center>
+
+Verify changes. 
+
+* `git checkout -b user_b`
+
+* `git merge user_b`
+
+<center> merge user_b's branch into master </center>
+
+* `git push`
+
+Now user A wants to change the colors again. 
+
+* `R`
+
+* `renv::remove("RColorBrewer")`
+
+* `q()`
+
+Then update the barchart.R file by removing lines 4 and 5, then replacing them with: 
+
+![](img/barchartR_colors2.png)
+
+Save, then in the terminal: 
+
+* make report
+
+* open Rmd/report.html
+
+Verify report looks good. 
+
+* git status
+
+* git add `*`
+
+* git status
+
+* git add (anything that was missed)
+
+* git status
+
+* git commit -m "Removed RColorBrewer and changed colors to baseR."
+
+* git push origin master 
+
+B's then copies the updated repository, and in the terminal: 
+
+* git remote add user_a git config advice.addIgnoredFile false
+
+<center>(creates path to user A github repository)</center>
+
+* git fetch user_a master 
+
+* git checkout remotes/user_a/master
+
+* R()
+
+* renv::status()
+
+* q()
+
+* make report
+
+* open Rmd/report.html
+
+Verify colors are baseR. 
+
+* git checkout -b user_a
+
+* git checkout master
+
+* git merge user_a
+
+* git push origin master
+
+The end ~ 
+
+### Questions
+
+Q: Do we have to go between bash and R and bash again to touch do anything with env?
+
+A: Yes, but we can also do something else ...
+
+In make file add the following lines of code: 
+
+![](img/update_makefile_img.png)
+
+this will automate that entire process for us. 
+
+Now in terminal we can type: `make restore` which will cut out the middle man which avoids the need to open an R session every time. 
+
+Note: My completed replication of this example_project can be found [here](https://github.com/rbolt13/example_project). 
