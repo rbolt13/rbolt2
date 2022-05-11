@@ -1,5 +1,5 @@
 ---
-title: Project Organization - Data Sciene Toolkit
+title: Project Organization - Data Science Toolkit
 author: Randi Bolt
 date: '2022-05-05'
 slug: []
