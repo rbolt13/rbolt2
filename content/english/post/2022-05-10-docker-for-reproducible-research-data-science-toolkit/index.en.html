@@ -237,8 +237,8 @@ tags:
 <div id="dockerfile" class="section level2">
 <h2>Dockerfile</h2>
 <p><img src="img/dockerfile_instructions.png" /></p>
-<div id="copy-example" class="section level3">
-<h3>COPY Example</h3>
+<div id="copy-example" class="section level4">
+<h4>COPY Example</h4>
 <p>create a new hello world file.</p>
 <p>Now add the following line to your dockerfile:</p>
 <p>COPY hello_world.txt home/hello_wolrd.txt</p>
@@ -253,7 +253,9 @@ tags:
 <li><p>exit</p></li>
 </ul>
 <p>This will be useful so that we can copy our code into the container.</p>
-<p>### WORKDIR</p>
+</div>
+<div id="workdir" class="section level4">
+<h4>WORKDIR</h4>
 <p>Sets the working directory for all of your commands.</p>
 <p>Reason: We don’t always know what the directories are within docker (like home in the previous example), so we want docker to the directory where our project lives.</p>
 <p>Update Dockerfile with the following:</p>
@@ -267,7 +269,9 @@ tags:
 <ul>
 <li>exit</li>
 </ul>
-<p>### CMD</p>
+</div>
+<div id="cmd" class="section level4">
+<h4>CMD</h4>
 <p>Continers entry point: what is the container going to do by defualt?</p>
 <p>Use cases:</p>
 <ul>

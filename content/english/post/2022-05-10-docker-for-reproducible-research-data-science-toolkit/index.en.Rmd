@@ -293,7 +293,7 @@ If you need to put a special piece of software inside a container you would goog
 
 ![](img/dockerfile_instructions.png)
 
-### COPY Example 
+#### COPY Example 
 
 create a new hello world file. 
 
@@ -319,7 +319,7 @@ In the sublime terminal:
  
  This will be useful so that we can copy our code into the container. 
  
- ### WORKDIR 
+#### WORKDIR 
  
  Sets the working directory for all of your commands.
  
@@ -339,7 +339,7 @@ In the sublime terminal:
  
  * exit 
  
- ### CMD
+#### CMD
  
  Continers entry point: what is the container going to do by defualt? 
  
