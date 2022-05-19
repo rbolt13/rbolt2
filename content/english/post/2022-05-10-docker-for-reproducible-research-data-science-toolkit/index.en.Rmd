@@ -9,7 +9,7 @@ tags:
   - docker
 ---
 
-This is part 1 of my notes on _Docker for reproducible research_ from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser.
+These are my notes on _Docker for reproducible research_ from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser.
 
 [Video](https://benkeser.github.io/info550/recordings/docker-for-reproducible-research) | [Notes](https://benkeser.github.io/info550/lectures/11_docker/docker.html#1) | [Github](https://github.com/benkeser/info550/tree/master/lectures/11_docker)
 
@@ -382,3 +382,230 @@ Then in the terminal:
 * echo $my_variable
 
 * exit 
+
+# Part 3 (1:31:20 - 3:24:40)
+
+Make sure you have a Docker account and are logged in. Then in the terminal: 
+
+* docker pull rocker/rstudio
+
+* docker pull rocker/tidyverse
+
+## DockerHub
+
+DockerHub is the Github for images. Many are free, some are not. 
+* [Ubuntu](https://hub.docker.com/_/ubuntu)
+
+* [R/Rstudio](https://hub.docker.com/u/rocker/)
+
+* [ngix](https://hub.docker.com/_/nginx)
+
+* [many other](https://hub.docker.com/search?q=&type=image) 
+
+
+## Pushing to DockerHub 
+
+Share images by building locally and using docker push. In the docer_ex directory: 
+
+* docker build -t user_name/test_repo . 
+
+* docker push user_name/test_repo 
+
+This should now be available on your DockerHub. 
+
+### Viewing / removing containers / images
+
+docker container ps : list running containers, add -a to see all recently run containters. 
+
+docker images : list all downloaded images
+
+docker image rm [id] : replace [id] with code from Imgae ID column of docker images
+
+docker system prune : remove all unused images and containers. Add -a to remove everything 
+
+You can always download your containers through DockerHub, and dont need them on your computer all the time. 
+
+## Rocker images
+
+R/Rstudio images are avaialbel from rocker 
+
+* [rocker/r-ubuntu:20.04](https://hub.docker.com/r/rocker/r-ubuntu)
+
+* [rocker/rstudio](https://hub.docker.com/r/rocker/rstudio)
+
+* [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse)
+
+## R Studio Images 
+
+The entry for rocker/rstuido is to run R Studio server, a web browser interface to R Studio. 
+
+In the terminal: 
+
+* docker run -e PASSWORD="s123" -p 8787:8787 rocker/rstudio
+
+Then open the following webpage in your web browser:  http://localhost:8787 
+
+The default username: rstudio, and password: s123 (what you set before). 
+
+Now this rstudio is inside your docker, and you will have the same enviroment regardless of what computer you are using. 
+
+[CTL][C] : stops container from running. 
+
+Note: adding a -d will run the program in detached mode. It doesn't care if you close terminal or window.
+
+* docker run -e PASSWORD="s123" -p 8787:8787 -d rocker/rstudio
+
+To kill: 
+
+* docker container kill ##container_id##
+
+## An R Project Workflow 
+
+Download the example_project folder, and then find in the terminal. 
+
+* cd example_project\ 2
+
+* docker build -t ex_proj .
+
+* subl . 
+
+Look through the files, and read what is happening in the docker file. 
+
+* docker run -it ex_proj 
+
+* cd project 
+
+* ls
+
+* echo $which_fig 
+
+* R
+
+* library(wesanderson)
+
+* ?wesanderson
+
+* q()
+
+* exit 
+
+* docker container ps $\quad\quad\text{: verify container isn't running}$
+
+
+#### Typical Workflow: 
+
+* updating analysis code, running, ... 
+
+* tweak figures, compile report
+
+#### Docker Workflows (slightly more complicated)
+
+* different R version/packages between container and local?
+
+* update code locally, rebuild image, run code in container, ...
+
+* tweak figures locally, rebuild image, compile report in container,... 
+
+## Mounted Directories 
+
+We can write code and have changes appear instantly inside a running container by using the -v option to docker run 
+
+* "Mounts" a local directory to a directory in the container. 
+
+* i.e. directory on local computer appears in container. 
+
+For example: on local computer, project directory is at /path/to/project. In container, project direcotry is /project/
+
+In terminal: 
+
+(example)
+
+* docker run -v /path/to/project/R:/project/R -it ex_proj $\quad\quad\text{: connect path of project/R on computer to path of project/R in container}$
+
+(mine)
+
+* docker run -v ~/Desktop/2022/example_project\ 2/R:/project/R -it ex_proj 
+
+* ls
+
+* cd project
+
+* cd R
+
+* cat make_barchart.R
+
+On local computer change the contents of make_barchart.R, by adding a new comment. 
+
+* cat make_barchart.R $\quad\quad\quad\text{: concatonate code}$
+
+Mounted directories are also useful for retrieving final output. 
+
+* cd .. $\quad\quad\text{: move back into project folder}$
+
+* make report.html $\quad\quad\text{: creates .html file in project}$
+
+### Output folder
+
+Create one output folder that has anything you want the user to retrieve. Then instruct the user that if they want to retrieve the output from this container that they need to mount a local directory to this output folder. 
+
+### Enviroment variables
+
+A useful way to control the run-time behavior of docker containers is to set environment variables at runtime. 
+
+Recall we set our environment variable to "gears_vs_cylindars". However if we check the code for make_barchart.R we notice an ifelse state with if(which_fig = "gears_vs_cylinders") ... else if(which_fig = "gears_vs_carb"). 
+
+In the terminal, in ex_proj docker 
+
+* R $\quad\text{: open R}$
+
+* Sys.getenv("which_figs")
+
+* q() $\quad\text{: quit R}$
+
+* export some_other_variable="hello!"
+
+* R $\quad\text{: open R}$
+
+* Sys.getenv("some_other_variable")
+
+* q() $\quad\text{: quit R}$
+
+* exit $\quad\text{: close docker}$
+
+We can overide this variable at runtime using `-e`
+
+In the terminal:
+
+* docker run -e which_fig="something_else" -e some_other_variable="some_other_value" -it ex_proj
+
+* echo $which_fig
+
+* echo $some_other_variable
+
+* R
+
+* Sys.getenv("some other variable")
+
+* q()
+
+* exit 
+
+## Breakout Exercise 2 
+
+1. Run the ex-proj container with the /project/ folder mounted to a local directory. Examine the report generated.
+
+
+2. Look at example_project/R/make_barchart.R and Dockerfile to see how the ENV variable which_fig is used.
+
+
+3. Re-run the container using option -e which_fig="..." to produce a figure of gears vs. carb (replace ... with the proper string).
+
+
+4. Modify the Dockerfile to add a separate directory for the output to the container. Modify the Makefile to write the html report to this directory.
+
+
+5. Re-build and re-run the container with a local directory mounted to your new output directory in the container.
+
+
+6. Change the CMD command so that the entry point is to make the report.
+
