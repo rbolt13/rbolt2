@@ -71,7 +71,7 @@ tags:
 </ul>
 <p>Verify data is in clean_data folder</p>
 <ol start="5" style="list-style-type: decimal">
-<li><span class="math inline">\(\underline{\text{Create make_table.R}}\)</span></li>
+<li><span class="math inline">\(\underline{\text{Create make table file}}\)</span></li>
 </ol>
 <p>[command] [N] : to create a new file.</p>
 <p>Then save that file in the code folder as “make_table.R” with the following code:</p>
@@ -128,7 +128,156 @@ tags:
 </div>
 </div>
 </div>
-<div id="part-2-3300---xxxx" class="section level1">
-<h1>Part 2 (33:00 - XX:XX)</h1>
-<p>Coming Soon …</p>
+<div id="part-2-docker-3300---11650" class="section level1">
+<h1>Part 2: Docker (33:00 - 1:16:50)</h1>
+<p>The problem: there are things on your computer that have nothing to do with R that R depends on. R wont help you track those dependencies. Renv only helps make sure R packages are up to date.</p>
+<p>You can download R code from github, but that doesn’t mean you can run it.</p>
+<div id="key-principle-software-is-code" class="section level3">
+<h3>Key Principle: <span style="color: red;">Software is Code!</span></h3>
+<ul>
+<li><p>running code requires software</p></li>
+<li><p>we want a way to package up all analysis and code AND software</p></li>
+</ul>
+<p>Containerization gives us a way to do this.</p>
+<ul>
+<li>Docker is a popular containerization program</li>
+</ul>
+<p>Think of a Docker container as a virtual machine:</p>
+<ul>
+<li><p>Hos its own (Unix) operating system</p></li>
+<li><p>Has its own file system</p></li>
+<li><p>Has its own software application</p></li>
+</ul>
+<p>(A computer within a computer)</p>
+</div>
+<div id="images-vs.-containers" class="section level3">
+<h3>Images Vs. Containers</h3>
+<p>Docker image:</p>
+<ul>
+<li><p>source code, libraries, dependencies, tools, and other files needed to run a container.</p></li>
+<li><p>a blueprint for the enviroment in which you will execute your analysis</p></li>
+</ul>
+<p>Docker container:</p>
+<ul>
+<li><p>created when we run an image</p></li>
+<li><p>contruct a run-time enviroment to execute your code</p></li>
+<li><p>or provide an interactive way to excecute code.</p></li>
+</ul>
+</div>
+<div id="how-does-it-work" class="section level3">
+<h3>How does it work?</h3>
+<ul>
+<li><p>Docker installed program.</p></li>
+<li><p>Write a Dockerfile, plain text that tells Docker what to put in image.</p></li>
+<li><p>build the image</p></li>
+<li><p>run the image (creating container) to execute code.</p></li>
+</ul>
+</div>
+<div id="interactive-ubuntu-container" class="section level2">
+<h2>Interactive Ubuntu container</h2>
+<p>In the terminal:</p>
+<ul>
+<li>docker pull ubuntu <span class="math inline">\(\quad\quad\quad\text{: this is downloading an image from the internet}\)</span></li>
+</ul>
+<p>This is installing an empty ubuntu operating system.</p>
+<p>If you have issues with this step check out this stack overflow link <a href="https://stackoverflow.com/questions/52698748/connection-refused-on-pushing-a-docker-image">here</a> or <a href="https://stackoverflow.com/questions/2333400/what-can-be-the-reasons-of-connection-refused-errors">here</a>.</p>
+<ul>
+<li>docker run -it ubuntu /bin/bash <span class="math inline">\(\quad\text{: puts you inside interactive (-it) ubuntu operating system}\)</span></li>
+</ul>
+<p>In a different terminal on your computer:</p>
+<ul>
+<li>docker container ps <span class="math inline">\(\quad\text{: prints all the containers you have running}\)</span></li>
+</ul>
+<p>Back inside docker terminal:</p>
+<ul>
+<li><p>touch my_file_in_my_container <span class="math inline">\(\quad\quad\text{: add file to container}\)</span></p></li>
+<li><p>exit <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad\quad\text{: container stops running}\)</span></p></li>
+<li><p>docker container ps <span class="math inline">\(\quad\quad\quad\quad\text{: see the docker container no longer exists}\)</span></p></li>
+<li><p>docker run -it ubuntu /bin/bash <span class="math inline">\(\quad\quad\text{: start a docker container}\)</span></p></li>
+</ul>
+<p>Notice this is a different container, and the file that was created no longer exists.</p>
+<p><strong>Containers are transient!</strong></p>
+<ul>
+<li>exit <span class="math inline">\(\quad\quad\quad\quad\quad\quad\quad\quad\quad\text{: exit container}\)</span></li>
+</ul>
+<div id="adding-a-text-editor-to-a-docker-file" class="section level3">
+<h3>Adding a text editor to a docker file</h3>
+<p>In the terminal:</p>
+<ul>
+<li><p>mkdir docker_ex <span class="math inline">\(\quad\quad \text{: created docker_ex directory}\)</span></p></li>
+<li><p>subl docker_ex <span class="math inline">\(\quad\quad\text{: open in sublime}\)</span></p></li>
+</ul>
+<p>[command] [s] : save file as “Dockerfile”</p>
+<p><img src="img/dockerfile_img01.png" /></p>
+<ul>
+<li><p><strong>FROM</strong> : gives a starting point at the ubuntu operating system.</p></li>
+<li><p>apt-get: is a package management system in ubuntu</p></li>
+<li><p>update: make sure apt-get is up to date</p></li>
+<li><p>install vim: installs the text editor vim</p></li>
+<li><p><strong>Run</strong>: Docker syntax that tells it to run those two commands from the ubuntu operating system.</p></li>
+</ul>
+<p>Now back in the terminal:</p>
+<ul>
+<li><p>cd docker_example/</p></li>
+<li><p>ls</p></li>
+<li><p>docker build -t ubuntu_plus_vim . <span class="math inline">\(\quad\quad\text{build docker file from current directory (thats what &quot;.&quot; means)}\)</span></p></li>
+</ul>
+<p>Docker is angery because we aren’t inside the container to hit yes.</p>
+<p>Fix: add “-y” to code (line 7) that says yes:</p>
+<p><img src="img/dockerfile_img_02.png" /></p>
+<p>Now that it works lets run it.</p>
+<ul>
+<li><p>docker run -it ubuntu_plus_vim /bin/bash <span class="math inline">\(\quad\quad\text{: open up ubunto with vim that we just created}\)</span></p></li>
+<li><p>vim <span class="math inline">\(\quad\quad\text{opens text editor for editing}\)</span></p></li>
+<li><p>:q <span class="math inline">\(\quad\quad\quad\text{to quit vim}\)</span></p></li>
+</ul>
+<p>If you need to put a special piece of software inside a container you would google “how to install ____ on ubuntu”, because that is being installed.</p>
+</div>
+</div>
+<div id="dockerfile" class="section level2">
+<h2>Dockerfile</h2>
+<p><img src="img/dockerfile_instructions.png" /></p>
+<div id="copy-example" class="section level3">
+<h3>COPY Example</h3>
+<p>create a new hello world file.</p>
+<p>Now add the following line to your dockerfile:</p>
+<p>COPY hello_world.txt home/hello_wolrd.txt</p>
+<p>In the sublime terminal:</p>
+<ul>
+<li><p>docker build -t ubuntu_plus_vim_plus_helloworld .</p></li>
+<li><p>docker run -it ubuntu_plus_vim_plus_helloworld</p></li>
+<li><p>ls</p></li>
+<li><p>cd home</p></li>
+<li><p>ls</p></li>
+<li><p>cat hello_world.txt</p></li>
+<li><p>exit</p></li>
+</ul>
+<p>This will be useful so that we can copy our code into the container.</p>
+<p>### WORKDIR</p>
+<p>Sets the working directory for all of your commands.</p>
+<p>Reason: We don’t always know what the directories are within docker (like home in the previous example), so we want docker to the directory where our project lives.</p>
+<p>Update Dockerfile with the following:</p>
+<p><img src="img/dockerfile_img_03.png" /></p>
+<p>In the terminal:</p>
+<ul>
+<li><p>docker build -t try_workdir .</p></li>
+<li><p>docker run -it try_workdir /bin/bash</p></li>
+</ul>
+<p>Notice that we start out in the analysis_directory, and inside the directory is hello_world.txt.</p>
+<ul>
+<li>exit</li>
+</ul>
+<p>### CMD</p>
+<p>Continers entry point: what is the container going to do by defualt?</p>
+<p>Use cases:</p>
+<ul>
+<li><p>interactively run bash: CMD /bin/bash</p></li>
+<li><p>open R: CMD [“R”]</p></li>
+<li><p>run whole analysis and produce report: CMD Rscript -e “rmarkdown::render(…)”</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="part-3-11652--" class="section level1">
+<h1>Part 3 (1:16:52 - )</h1>
 </div>
