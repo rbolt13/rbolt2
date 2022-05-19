@@ -159,7 +159,7 @@ Notice the output folder isn't included.
 
 Now the output folder is visible. 
 
-# Part 2: Docker (33:00 - 1:16:50)
+# Part 2: Docker (33:00 - 1:30:45)
 
 The problem: there are things on your computer that have nothing to do with R that R depends on. R wont help you track those dependencies. Renv only helps make sure R packages are up to date. 
 
@@ -351,4 +351,34 @@ Use cases:
 
 * run whole analysis and produce report: CMD Rscript -e "rmarkdown::render(...)"
 
-# Part 3 (1:16:52 - )
+### Breakout Exercise 1: 
+
+Inside docker_ex directory: 
+
+In the terminal: 
+
+*  echo "This file is silly" > silly_file.txt
+
+* subl
+
+Create and save the following Dockerfile within the same directory as newimgage.Dockerfile: 
+
+![](img/img4.png)
+
+Then in the terminal: 
+
+* docker build -t br1 --file newimage.Dockerfile . 
+
+* docker run br1 
+
+(should print message: Hello from your computer)
+
+* docker run -it br1 /bin/bash
+
+* ls
+
+* cat silly_file.txt
+
+* echo $my_variable
+
+* exit 

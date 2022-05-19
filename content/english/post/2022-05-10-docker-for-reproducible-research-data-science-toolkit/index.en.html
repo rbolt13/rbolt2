@@ -128,8 +128,8 @@ tags:
 </div>
 </div>
 </div>
-<div id="part-2-docker-3300---11650" class="section level1">
-<h1>Part 2: Docker (33:00 - 1:16:50)</h1>
+<div id="part-2-docker-3300---13045" class="section level1">
+<h1>Part 2: Docker (33:00 - 1:30:45)</h1>
 <p>The problem: there are things on your computer that have nothing to do with R that R depends on. R wont help you track those dependencies. Renv only helps make sure R packages are up to date.</p>
 <p>You can download R code from github, but that doesn’t mean you can run it.</p>
 <div id="key-principle-software-is-code" class="section level3">
@@ -280,8 +280,29 @@ tags:
 <li><p>run whole analysis and produce report: CMD Rscript -e “rmarkdown::render(…)”</p></li>
 </ul>
 </div>
+<div id="breakout-exercise-1" class="section level3">
+<h3>Breakout Exercise 1:</h3>
+<p>Inside docker_ex directory:</p>
+<p>In the terminal:</p>
+<ul>
+<li><p>echo “This file is silly” &gt; silly_file.txt</p></li>
+<li><p>subl</p></li>
+</ul>
+<p>Create and save the following Dockerfile within the same directory as newimgage.Dockerfile:</p>
+<p><img src="img/img4.png" /></p>
+<p>Then in the terminal:</p>
+<ul>
+<li><p>docker build -t br1 –file newimage.Dockerfile .</p></li>
+<li><p>docker run br1</p></li>
+</ul>
+<p>(should print message: Hello from your computer)</p>
+<ul>
+<li><p>docker run -it br1 /bin/bash</p></li>
+<li><p>ls</p></li>
+<li><p>cat silly_file.txt</p></li>
+<li><p>echo $my_variable</p></li>
+<li><p>exit</p></li>
+</ul>
 </div>
 </div>
-<div id="part-3-11652--" class="section level1">
-<h1>Part 3 (1:16:52 - )</h1>
 </div>
