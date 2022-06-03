@@ -1,0 +1,591 @@
+---
+title: 'Reproducible Circular NBA Barcharts '
+author: Randi Bolt
+date: '2022-06-02'
+slug: []
+categories:
+  - Project Engineering
+tags:
+  - R
+  - docker
+  - Makefile
+  - NBAcharts
+  - rvest
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>These are the steps I took to re-create NBA Circular Barcharts, but in a structured reproducible manner with a Makefile, and Dockerfile. You can find the <em>completed</em> version of this project <a href="https://github.com/rbolt13/nba_proj">here</a>.</p>
+<div id="from-the-beginning" class="section level1">
+<h1>00_ From the beginning</h1>
+<center>
+<iframe src="https://giphy.com/embed/Vh2szshWnZz9D7AHDB" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-Vh2szshWnZz9D7AHDB">via GIPHY</a>
+</p>
+</center>
+<div id="folders" class="section level3">
+<h3>00_00_ Folders</h3>
+<p>Open up a bash terminal and type in the following lines of code:</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+mkdir nba_proj
+</td>
+<td style="text-align:center;">
+make nba_proj folder
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+cd nba_proj
+</td>
+<td style="text-align:center;">
+move into nba_proj folder
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+pwd
+</td>
+<td style="text-align:center;">
+print working directory
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+mkdir 00_R
+</td>
+<td style="text-align:center;">
+make 00_R folder for the code
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+mkdir 01_raw_data
+</td>
+<td style="text-align:center;">
+make 01_raw_data folder for the raw (scraped) data
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+mkdir 02_clean_data
+</td>
+<td style="text-align:center;">
+make 02_clean_data folder for the clean data
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+mkdir 03_figs
+</td>
+<td style="text-align:center;">
+make 03_figs folder for the barchart imgs
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+mkdir 04_output
+</td>
+<td style="text-align:center;">
+make 04_output folder for report that is printed
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+mkdir 05_sandbox
+</td>
+<td style="text-align:center;">
+make 05_sandbox folder as a space to play with the code
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note: I numbered my folders so they would be in the general <em>order</em> I would use them / would want a collaborator to view them.</p>
+</div>
+<div id="renv" class="section level3">
+<h3>00_01_ renv</h3>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+R
+</td>
+<td style="text-align:center;">
+open R within the terminal
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ren::init()
+</td>
+<td style="text-align:center;">
+creates renv folder and contents
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+q()
+</td>
+<td style="text-align:center;">
+quit R
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+y
+</td>
+<td style="text-align:center;">
+yes, to save workspace image
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note: <a href="https://www.r-bloggers.com/2013/03/download-and-install-r-in-ubuntu/">Link</a> on how to download and install R through the terminal if not already downloaded to your machine.</p>
+</div>
+<div id="github" class="section level3">
+<h3>00_02_ github</h3>
+<p>From your github account create a repository nba_proj.</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+git init
+</td>
+<td style="text-align:center;">
+initialize git repository
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git remote add origin <a href="https://github.com/rbolt13/nba_proj.git" class="uri">https://github.com/rbolt13/nba_proj.git</a>
+</td>
+<td style="text-align:center;">
+add location of repository
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git status
+</td>
+<td style="text-align:center;">
+check status
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git add *
+</td>
+<td style="text-align:center;">
+select all
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git status
+</td>
+<td style="text-align:center;">
+check status
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git add .Rhistory .Rprofile
+</td>
+<td style="text-align:center;">
+add dot files that were missed
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git status
+</td>
+<td style="text-align:center;">
+check status
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git commit -m “my first commit”
+</td>
+<td style="text-align:center;">
+adds comment to first commit
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+git push origin main
+</td>
+<td style="text-align:center;">
+push to github
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.git-tower.com/learn/git/faq/git-rename-master-to-main">Rename master branch to main</a></p>
+</div>
+</div>
+<div id="project_files.r-makefile-and-report.rmd" class="section level1">
+<h1>01_ project_files.R, Makefile, and report.Rmd</h1>
+<center>
+<iframe src="https://giphy.com/embed/SyJyPwlThHScE" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/steven-universe-su-ruby-SyJyPwlThHScE">via GIPHY</a>
+</p>
+</center>
+<div id="scrape-files" class="section level3">
+<h3>01_00_ scrape files</h3>
+<p>Create the following files:</p>
+<ul>
+<li><p><a href="https://github.com/rbolt13/nba_proj/blob/master/00_R/00_00_scrape_stats_raw_data.R">00_00_scrape_stats_raw_data.R</a></p></li>
+<li><p><a href="https://github.com/rbolt13/nba_proj/blob/master/00_R/00_01_scrape_colors_raw_data.R">00_01_scrape_colors_raw_data.R</a></p></li>
+</ul>
+<p>Set environmental variable:</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+export which_team=“blazers”
+</td>
+<td style="text-align:center;">
+create global variable
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+R
+</td>
+<td style="text-align:center;">
+open R
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Sys.getenv(“which_team”)
+</td>
+<td style="text-align:center;">
+verify that which_team = “blazers”
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+q()
+</td>
+<td style="text-align:center;">
+quit R
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+y
+</td>
+<td style="text-align:center;">
+yes
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create lines 1-7 of the <a href="https://github.com/rbolt13/nba_proj/blob/main/Makefile">Makefile</a>, and save the raw data for stats and colors.</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+make raw_data stats
+</td>
+<td style="text-align:center;">
+creates stats data file in raw data folder
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+make raw_data/colors
+</td>
+<td style="text-align:center;">
+creates colors data file in raw data folder
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Push files to github.</strong></p>
+</div>
+<div id="label-data" class="section level3">
+<h3>01_02_ label data</h3>
+<p>Create the following file:</p>
+<ul>
+<li><a href="https://github.com/rbolt13/nba_proj/blob/main/00_R/00_02_labels_raw_data.R">00_02_graph_labels_raw_data.R</a></li>
+</ul>
+Add lines 9-10 of the <a href="https://github.com/rbolt13/nba_proj/blob/main/Makefile">Makefile</a>, and save the label data.
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+make raw_data/labels
+</td>
+<td style="text-align:center;">
+creates labels data file in raw data folder
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Push files to github.</strong></p>
+</div>
+<div id="clean-data" class="section level3">
+<h3>01_03_ clean data</h3>
+<p>Create the following file:</p>
+<ul>
+<li><a href="https://github.com/rbolt13/nba_proj/blob/main/00_R/01_00_clean_data.R">01_00_clean_data.R</a></li>
+</ul>
+<p>Set environmental variable:</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+export which_stat=“PTS”
+</td>
+<td style="text-align:center;">
+create global variable
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+R
+</td>
+<td style="text-align:center;">
+open R
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Sys.getenv(“which_stat”)
+</td>
+<td style="text-align:center;">
+verify that which_stat = “PTS”
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+q()
+</td>
+<td style="text-align:center;">
+quit R
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+y
+</td>
+<td style="text-align:center;">
+yes
+</td>
+</tr>
+</tbody>
+</table>
+<p>Add lines 13-14 of the <a href="https://github.com/rbolt13/nba_proj/blob/main/Makefile">Makefile</a>, and save the clean data.</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+make clean_data/raw_data
+</td>
+<td style="text-align:center;">
+make clean data out of raw data
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Push files to github.</strong></p>
+</div>
+<div id="report" class="section level3">
+<h3>01_05_ report</h3>
+<p>Create the following file:</p>
+<ul>
+<li><a href="https://github.com/rbolt13/nba_proj/blob/main/00_R/report.Rmd">report.Rmd</a></li>
+</ul>
+<p>Add lines 22 - 23 of the <a href="https://github.com/rbolt13/nba_proj/blob/main/Makefile">Makefile</a>, and save report to output file.</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+report
+</td>
+<td style="text-align:center;">
+save report to output folder
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Push files to github.</strong></p>
+</div>
+<div id="env-package-management" class="section level3">
+<h3>01_06_ env (package management)</h3>
+<p>Add lines 26 - 27 of the <a href="https://github.com/rbolt13/nba_proj/blob/main/Makefile">Makefile</a>, and update project.</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+restore
+</td>
+<td style="text-align:center;">
+opens R and restores packages
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Push files to github.</strong></p>
+</div>
+</div>
+<div id="dockerfile" class="section level1">
+<h1>02_ Dockerfile</h1>
+<center>
+<iframe src="https://giphy.com/embed/VeNMIIutNd12576kaM" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-VeNMIIutNd12576kaM">via GIPHY</a>
+</p>
+</center>
+<p>Open docker on your computer.</p>
+<table class=" lightable-material-dark lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Terminal Command
+</th>
+<th style="text-align:center;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+docker build -t nba_proj .
+</td>
+<td style="text-align:center;">
+build docker
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+docker run -it nba_proj /bin/bash
+</td>
+<td style="text-align:center;">
+run docker interactive nba_proj docker with bash terminal
+</td>
+</tr>
+</tbody>
+</table>
+<p>To be continued…</p>
+</div>
+<div id="bonus-notes" class="section level1">
+<h1>Bonus Notes</h1>
+<ul>
+<li><p>Makefile uses tabs not spaces, and you will get an error about missing separator.</p></li>
+<li><p>git add –all</p></li>
+</ul>
+</div>

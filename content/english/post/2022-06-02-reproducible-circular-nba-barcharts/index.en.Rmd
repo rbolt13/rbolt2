@@ -1,0 +1,259 @@
+---
+title: 'Reproducible Circular NBA Barcharts '
+author: Randi Bolt
+date: '2022-06-02'
+slug: []
+categories:
+  - Project Engineering
+tags:
+  - R
+  - docker
+  - Makefile
+  - NBAcharts
+  - rvest
+---
+
+These are the steps I took to re-create NBA Circular Barcharts, but in a structured reproducible manner with a Makefile, and Dockerfile. You can find the _completed_ version of this project  [here](https://github.com/rbolt13/nba_proj). 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# libraries 
+library(kableExtra)
+library(magrittr)
+# function that creates tables 
+tbs_function <- function(terminal, description){
+  df <- base::data.frame("Terminal_Command" = terminal, 
+                 "Description" = description)
+ kb_df <- kableExtra::kable(df,
+                  col.names = c("Terminal Command", 
+                                "Description"),
+                  align = "cc") %>%
+  kable_material_dark("hover", full_width = F) 
+ return(kb_df)
+}
+```
+
+# 00_ From the beginning
+
+<center>
+
+<iframe src="https://giphy.com/embed/Vh2szshWnZz9D7AHDB" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-Vh2szshWnZz9D7AHDB">via GIPHY</a></p>
+
+</center>
+
+### 00_00_ Folders
+
+Open up a bash terminal and type in the following lines of code:  
+
+```{r creating project folders, echo=FALSE}
+terminal <- c("mkdir nba_proj",
+              "cd nba_proj",
+              "pwd",
+              "mkdir 00_R",
+              "mkdir 01_raw_data",
+              "mkdir 02_clean_data",
+              "mkdir 03_figs",
+              "mkdir 04_output",
+              "mkdir 05_sandbox")
+description <- c("make nba_proj folder",
+                 "move into nba_proj folder",
+                 "print working directory",
+                 "make 00_R folder for the code",
+                 "make 01_raw_data folder for the raw (scraped) data",
+                 "make 02_clean_data folder for the clean data",
+                 "make 03_figs folder for the barchart imgs",
+                 "make 04_output folder for report that is printed",
+                 "make 05_sandbox folder as a space to play with the code")
+tbs_function(terminal, description)
+```
+
+Note: I numbered my folders so they would be in the general _order_ I would use them / would want a collaborator to view them. 
+
+### 00_01_ renv
+
+```{r renv, echo=FALSE}
+terminal <- c("R",
+              "ren::init()",
+              "q()",
+              "y")
+description <- c("open R within the terminal",
+                 "creates renv folder and contents",
+                 "quit R",
+                 "yes, to save workspace image")
+tbs_function(terminal, description)
+```
+
+Note:  [Link](https://www.r-bloggers.com/2013/03/download-and-install-r-in-ubuntu/) on how to download and install R through the terminal if not already downloaded to your machine. 
+
+### 00_02_ github
+
+From your github account create a repository nba_proj. 
+
+```{r git, echo=FALSE}
+terminal <- c("git init",
+              "git remote add origin https://github.com/rbolt13/nba_proj.git",
+              "git status",
+              "git add *",
+              "git status",
+              "git add .Rhistory .Rprofile",
+              "git status",
+              "git commit -m \"my first commit\"",
+              "git push origin main")
+description <- c("initialize git repository",
+                 "add location of repository",
+                 "check status",
+                 "select all",
+                 "check status",
+                 "add dot files that were missed",
+                 "check status",
+                 "adds comment to first commit",
+                 "push to github")
+tbs_function(terminal, description)
+```
+
+[Rename master branch to main](https://www.git-tower.com/learn/git/faq/git-rename-master-to-main)
+
+# 01_ project_files.R, Makefile, and report.Rmd
+
+<center>
+
+<iframe src="https://giphy.com/embed/SyJyPwlThHScE" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/steven-universe-su-ruby-SyJyPwlThHScE">via GIPHY</a></p>
+
+</center>
+
+### 01_00_ scrape files 
+
+Create the following files: 
+
+* [00_00_scrape_stats_raw_data.R](https://github.com/rbolt13/nba_proj/blob/master/00_R/00_00_scrape_stats_raw_data.R)
+
+* [00_01_scrape_colors_raw_data.R](https://github.com/rbolt13/nba_proj/blob/master/00_R/00_01_scrape_colors_raw_data.R)
+
+Set environmental variable: 
+
+```{r, echo=FALSE}
+terminal <- c("export which_team=\"blazers\"",
+              "R",
+              "Sys.getenv(\"which_team\")",
+              "q()",
+              "y")
+description <- c("create global variable",
+                 "open R",
+                 "verify that which_team = \"blazers\"",
+                 "quit R",
+                 "yes")
+tbs_function(terminal, description)
+```
+
+Create lines 1-7 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the raw data for stats and colors. 
+
+```{r scrape data makefile, echo=FALSE}
+terminal <- c("make raw_data stats",
+              "make raw_data/colors")
+description <- c("creates stats data file in raw data folder",
+                "creates colors data file in raw data folder")
+tbs_function(terminal, description)
+```
+
+**Push files to github.**
+
+### 01_02_ label data
+
+Create the following file: 
+
+* [00_02_graph_labels_raw_data.R](https://github.com/rbolt13/nba_proj/blob/main/00_R/00_02_labels_raw_data.R)
+
+Add lines 9-10 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the label data. 
+```{r labels file, echo=FALSE}
+terminal <- c("make raw_data/labels")
+description <- c("creates labels data file in raw data folder")
+tbs_function(terminal, description)
+```
+
+**Push files to github.**
+
+### 01_03_ clean data 
+
+Create the following file: 
+
+* [01_00_clean_data.R](https://github.com/rbolt13/nba_proj/blob/main/00_R/01_00_clean_data.R)
+
+Set environmental variable: 
+
+```{r, echo=FALSE}
+terminal <- c("export which_stat=\"PTS\"",
+              "R",
+              "Sys.getenv(\"which_stat\")",
+              "q()",
+              "y")
+description <- c("create global variable",
+                 "open R",
+                 "verify that which_stat = \"PTS\"",
+                 "quit R",
+                 "yes")
+tbs_function(terminal, description)
+```
+
+Add lines 13-14 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the clean data. 
+
+```{r clean data makefile, echo=FALSE}
+terminal <- c("make clean_data/raw_data")
+description <- c("make clean data out of raw data")
+tbs_function(terminal, description)
+```
+
+**Push files to github.**
+
+### 01_05_ report
+
+Create the following file: 
+
+* [report.Rmd](https://github.com/rbolt13/nba_proj/blob/main/00_R/report.Rmd)
+
+Add lines 22 - 23 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save report to output file. 
+
+```{r report makefile, echo=FALSE}
+terminal <- c("report")
+description <- c("save report to output folder")
+tbs_function(terminal, description)
+```
+
+**Push files to github.**
+
+### 01_06_ env (package management)
+
+Add lines 26 - 27 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and update project. 
+
+```{r make env file, echo=FALSE}
+terminal <- c("restore")
+description <- c("opens R and restores packages")
+tbs_function(terminal, description)
+```
+
+**Push files to github.**
+
+# 02_ Dockerfile
+
+<center>
+
+<iframe src="https://giphy.com/embed/VeNMIIutNd12576kaM" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-VeNMIIutNd12576kaM">via GIPHY</a></p>
+
+</center>
+
+Open docker on your computer. 
+
+```{r, echo=FALSE}
+terminal <- c("docker build -t nba_proj .",
+              "docker run -it nba_proj /bin/bash")
+description <- c("build docker",
+                 "run docker interactive nba_proj docker with bash terminal")
+tbs_function(terminal, description)
+```
+
+To be continued...
+
+# Bonus Notes
+
+* Makefile uses tabs not spaces, and you will get an error about missing separator. 
+
+* git add --all 
