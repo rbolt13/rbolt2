@@ -8,7 +8,25 @@ categories:
 tags: []
 ---
 
-These are my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser. 
+These are my notes on Project Organization from [Data Science Toolkit](https://benkeser.github.io/info550/), by David Benkeser.
+
+```{r, include=FALSE}
+# libraries 
+library(kableExtra)
+library(magrittr)
+# function that creates tables 
+tbs_function <- function(terminal, description){
+  df <- base::data.frame("Terminal_Command" = terminal, 
+                 "Description" = description)
+ kb_df <- kableExtra::kable(df,
+                  col.names = c("Terminal Command", 
+                                "Description"),
+                  align = "cc") %>%
+  kable_material_dark("hover", full_width = F) 
+ return(kb_df)
+}
+```
+
 
 [Video](https://benkeser.github.io/info550/recordings/project-organization) | [Notes](https://benkeser.github.io/info550/lectures/08_organization/organization.html#1) | [Github](https://github.com/benkeser/info550)
 
@@ -276,43 +294,43 @@ In the R folder create an R file `test.R` with the following in code:
 
 ![](img/testR_img.png)
 
-Then in the terminal: 
-
-* `Rscript R/test.R`
-
-<center> should return the absolute path </center> 
+```{r, echo=FALSE}
+terminal <- c("Rscript R/test.R")
+description <- c("return the absolute path")
+tbs_function(terminal, description)
+```
 
 In `test.R` change line 3 from `here::here()` to `here::here("figs")`, save, and run:
 
-* `Rscript R/test.R`
-
-<center >should return the absolute path of the "figs" folder </center> 
+```{r, echo=FALSE}
+terminal <- c("Rscript R/test.R")
+description <- c("return the absolute path of the `figs` folder")
+tbs_function(terminal, description)
+```
 
 **Example 2**
 
-In the terminal<
-
-* `cd R`
-
-<center> change to R directory </center>
-
-* `ls`
-
-<center> lists all files in current directory </center>
-
-Verify this is correct. 
-
-* `mkdir R_subdir`
-
-<center> create a new directory called "R_subdir"</center>
+```{r, echo=FALSE}
+terminal <- c("cd R",
+              "ls",
+              "mkdir R_subdir")
+description <- c("change directory to R folder",
+                 "list all the files in current folder",
+                 "make new directory called `R_subdir`")
+tbs_function(terminal, description)
+```
 
 Now create an R file similar to the previous example and play around with the here function. Then remove the files that were just added: 
 
-* `rm -rf R/R_subdir/` 
-
-* `rm R/test.R`
-
-* `rm figs/barchart.png`
+```{r, echo=FALSE}
+terminal <- c("rm -rf R/R_subdir/",
+              "rm R/test.R",
+              "rm figs/barchart.png")
+description <- c("recursice force to action removal (for directories) of R_subdir",
+                 "remove test.R",
+                 "remove barchart.png")
+tbs_function(terminal, description)
+```
 
 ## Package management system : `renv``
 
@@ -329,19 +347,15 @@ In example_project identify the projects that we need:
 3. knitr
 4. rmarkdown
 
-In the terminal,
-
-* `pwd`
-
-<center> confirm where you are </center>
-
-* `R`
-
-<center> open R </center>
-
-This will also return what version of R we are working in. 
-
-* `renv::init()`
+```{r, echo=FALSE}
+terminal <- c("pwd",
+              "R",
+              "renv::init()")
+description <- c("print working directory",
+                 "open R",
+                 "package management that will also return what version of R we are working in")
+tbs_function(terminal, description)
+```
 
 Note: renv needs to already be installed in R. 
 
@@ -353,29 +367,29 @@ The line `("renv/activate.R")' is making R aware that we are in a project direct
 
 We also now have an "renv" folder which contains activate scripts, and takes all of the specific versions of packages and places them into the project library. Note that it wont actually put those files into the folder, but will search your computer for that version of the package and link to that. That way you don't have a lot of duplicate packages on your computer. 
 
-In the terminal: 
-
-* `q()` 
-
-<center> close R </center>
-
-* R
-
-<center> start R </center>
+```{r, echo=FALSE}
+terminal <- c("q()",
+              "R")
+description <- c("close R",
+                 "open R")
+tbs_function(terminal, description)
+```
 
 Notice there is a different output, which recognizes our package environment. If you get errors loading packages then type the following into the terminal:
 
-* `renv::restore()` 
-
-<center> install packages on your computer </center> 
+```{r, echo=FALSE}
+terminal <- c("renv::restore()")
+description <- c("install packages on your computer")
+tbs_function(terminal, description)
+```
 
 Now look back at the rmd file `report.Rmd` at lines 8 and 9, shown below. 
 
 ![](img/report_img.png)
 
-8. Recognizes where this file is in relation to the project directory. 
+Line 8. Recognizes where this file is in relation to the project directory. 
 
-9. This is saying anytime you find R code in this rmd script, run it from the project directly (which is where the code needs to be run from to make it aware of renv and packages needed).
+Line 9. This is saying anytime you find R code in this rmd script, run it from the project directly (which is where the code needs to be run from to make it aware of renv and packages needed).
 
 Moral of the story is to copy these two lines of code at the top of all of our rmd. 
 
@@ -403,91 +417,91 @@ User A pulls from GitHub, opens `R`, and uses `renv::restore()` to synchronize t
 
 ## Breakout Exercise 
 
-In the terminal:
-
-* `q()`
-
-<center> quit what you are working in </center>
-
-* `pwd`
-
-<center> print working directory </center>
-
-Verify you are in the correct example_project directory
-
-* `git init`
-
-<center> create a new Git repository </center>
+```{r, echo=FALSE}
+terminal <- c("q()",
+              "pwd",
+              "git init")
+description <- c("quit R",
+                 "print working directory",
+                 "initialize git repository")
+tbs_function(terminal, description)
+```
 
 Verify a git folder has been added. 
 
 Now create a github repository for example project, and copy the line of code that looks like the following into the terminal:
 
-* `git remote add origin https://github.com/user_name/example_project.git`
+```{r, echo=FALSE}
+terminal <- c("git remote add origin https://github.com/user_name/example_project.git")
+description <- c("connect github to computer")
+tbs_function(terminal, description)
+```
 
 Note: you might have issues if your github isn't cached. 
 
 For the first Commit: 
 
-* `git status`
-
-<center> display status of working directory </center>
-
-* `git add *`
-
-<center> add all files that don't begin with a `.` </center>
-
-* `git status`
-
-<center> display status of working directory </center>
+```{r, echo=FALSE}
+terminal <- c("git status",
+              "git add *",
+              "git status")
+description <- c("display status of working directory",
+                 "add all files (with names)",
+                 "display status of working directory")
+tbs_function(terminal, description)
+```
 
 Verify everything was added, otherwise: 
 
-* `git add .thing1 .thing2 .thing3`
-
-<center> add files that begin with `.` </center>
-
-* `git status`
-
-<center> display status of working directory </center>
+```{r, echo=FALSE}
+terminal <- c("it add .thing1 .thing2 .thing3",
+              "git status")
+description <- c("add files that begin with `.`",
+                 "display status of working directory")
+tbs_function(terminal, description)
+```
 
 Verify everything was added. 
 
-* `git commit -m "my first commit"`
-
-* `git push origin master`
+```{r, echo=FALSE}
+terminal <- c("git commit -m `my first commit`",
+              "git push origin main")
+description <- c("commit with message",
+                 "push commit to main directory")
+tbs_function(terminal, description)
+```
 
 Verify github was updated. 
 
 User B then forks the repository to make a copy of it onto their computer. Cope a similar line of code shown below into the terminal: 
 
-* `git clone https://github.com/user_name/example_project.git`
-
-* `cd example_project`
-
-* `R`
-
-<center> Open R </center>
-
-* `renv::restore()`
-
-* `q()`
-
-<center> Close R </center>
-
-* `make report`
-
-* `open Rmd/report.html`
+```{r, echo=FALSE}
+terminal <- c("git clone https://github.com/user_name/example_project.git",
+              "cd example_project",
+              "R",
+              "renv::restore()",
+              "q()",
+              "make report",
+              "open Rmd/report.html")
+description <- c("clone repository",
+                 "change to example_project folder",
+                 "open R",
+                 "restore enviroment",
+                 "quit",
+                 "make report",
+                 "open Rmd/report.html")
+tbs_function(terminal, description)
+```
 
 Verify report runs.
 
-* `R`
-
-<center> Open R </center>
-
-* renv::remove('wesanderson')
-
-<center> remove wes anderson package </center>
+```{r, echo=FALSE}
+terminal <- c("R",
+              "renv::remove('wesanderson')")
+description <- c("open R",
+                 "remove `wesanderson` package from revn enviroment")
+tbs_function(terminal, description)
+```
 
 Then open the barchart.R file to change following two lines of code: 
 
@@ -495,57 +509,68 @@ Then open the barchart.R file to change following two lines of code:
 
 Save. 
 
-*  `renv::snapshot()`
+```{r, echo=FALSE}
+terminal <- c("renv::snapshot()")
+description <- c("print enviroment snapshot")
+tbs_function(terminal, description)
+```
 
 This will return the following: 
 
 ![](img/renv_snapshot_img.png)
-
-* `y`
+```{r, echo=FALSE}
+terminal <- c("q()",
+              "y")
+description <- c("quit R",
+                 "save")
+tbs_function(terminal, description)
+```
 
 You will now have a new lockfile. 
 
-* `git diff` 
-
-<center> check the changes that were made </center>
-
-* `q()` 
-
-<center> quit R</center>
+```{r, echo=FALSE}
+terminal <- c("git diff")
+description <- c("check that changes were made")
+tbs_function(terminal, description)
+```
 
 Then commit. 
 
-User A can then try these changes out in an isolated enviromnt. 
+User A can then try these changes out in an isolated environment. 
 
-* `git remote add userb https://github.com/user_b/example_project.git` 
-
-<center> link to user b's repository </center>
-
-* `git fetch user_b master` 
-
-<center> fetch user_b's main branch </center>
-
-`git checkout remotes/user_b/master` 
-
-<center> checkout user_b's main branch </center>
+```{r, echo=FALSE}
+terminal <- c("git remote add userb https://github.com/user_b/example_project.git",
+              "git fetch user_b main",
+              "git checkout remotes/user_b/main")
+description <- c("link to user b's repository",
+                 "fetch user_b's main branch",
+                 "checkout user_b's main branch")
+tbs_function(terminal, description)
+```
 
 Verify changes. 
 
-* `git checkout -b user_b`
-
-* `git merge user_b`
-
-<center> merge user_b's branch into master </center>
-
-* `git push`
+```{r, echo=FALSE}
+terminal <- c("git checkout -b user_b",
+              "git merge user_b",
+              "git push")
+description <- c("grab user_b's branch",
+                 "merge user_b's branch",
+                 "push to main")
+tbs_function(terminal, description)
+```
 
 Now user A wants to change the colors again. 
 
-* `R`
-
-* `renv::remove("RColorBrewer")`
-
-* `q()`
+```{r, echo=FALSE}
+terminal <- c("R",
+              "renv::remove('RColorBrewer')",
+              "q()")
+description <- c("open R",
+                 "remove 'RColorBreker' package from enviroment",
+                 "quit R")
+tbs_function(terminal, description)
+```
 
 Then update the barchart.R file by removing lines 4 and 5, then replacing them with: 
 
@@ -553,55 +578,65 @@ Then update the barchart.R file by removing lines 4 and 5, then replacing them w
 
 Save, then in the terminal: 
 
-* make report
-
-* open Rmd/report.html
+```{r, echo=FALSE}
+terminal <- c("make report",
+              "open Rmd/report.html")
+description <- c("make report",
+                 "open report")
+tbs_function(terminal, description)
+```
 
 Verify report looks good. 
 
-* git status
-
-* git add `*`
-
-* git status
-
-* git add (anything that was missed)
-
-* git status
-
-* git commit -m "Removed RColorBrewer and changed colors to baseR."
-
-* git push origin master 
+```{r, echo=FALSE}
+terminal <- c("git status",
+              "git add --all",
+              "git status",
+              "git commit -m `removed RColorBrewere and changed to baseR`",
+              "git push origin main")
+description <- c("display status of working directory",
+                "add all files",
+                "display status of working directory",
+                "commit with message about change",
+                "push changes to main branch")
+tbs_function(terminal, description)
+```
 
 B's then copies the updated repository, and in the terminal: 
 
-* git remote add user_a git config advice.addIgnoredFile false
-
-<center>(creates path to user A github repository)</center>
-
-* git fetch user_a master 
-
-* git checkout remotes/user_a/master
-
-* R()
-
-* renv::status()
-
-* q()
-
-* make report
-
-* open Rmd/report.html
+```{r, echo=FALSE}
+terminal <- c("git remote add user_a git config advice.addIgnoredFile false",
+              "git fetch user_a main",
+              "git checkout remotes/user_a/main",
+              "R",
+              "renv::status()",
+              "q()",
+              "make report",
+              "open Rmd/report.html")
+description <- c("creates path to user A github repository",
+                 "fetch user_a's main branch",
+                 "checkout user_a's main branch",
+                 "open R",
+                 "check enviroment",
+                 "quit R",
+                 "make report",
+                 "open report")
+tbs_function(terminal, description)
+```
 
 Verify colors are baseR. 
 
-* git checkout -b user_a
-
-* git checkout master
-
-* git merge user_a
-
-* git push origin master
+```{r, echo=FALSE}
+terminal <- c("git checkout -b user_a",
+              "git checkout main",
+              "git merge user_a",
+              "git push origin main")
+description <- c("grab user_a's update branch",
+                 "checkout to main",
+                 "merge user_a's updates",
+                 "push to main")
+tbs_function(terminal, description)
+```
 
 The end ~ 
 
