@@ -13,7 +13,7 @@ tags:
   - rvest
 ---
 
-These are the steps I took to re-create NBA Circular Barcharts, but in a structured reproducible manner with a Makefile, and Dockerfile. You can find the _completed_ version of this project  [here](https://github.com/rbolt13/nba_proj). 
+These are the steps I took to re-create NBA Circular Barcharts, but in a structured reproducible manner with a Makefile, and Dockerfile. You can find the *completed* version of this project [here](https://github.com/rbolt13/nba_proj).
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -33,17 +33,21 @@ tbs_function <- function(terminal, description){
 }
 ```
 
-# 00_ From the beginning
+# 00\_ From the beginning
 
 <center>
 
-<iframe src="https://giphy.com/embed/Vh2szshWnZz9D7AHDB" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-Vh2szshWnZz9D7AHDB">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/Vh2szshWnZz9D7AHDB" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p><a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-Vh2szshWnZz9D7AHDB">via GIPHY</a></p>
 
 </center>
 
-### 00_00_ Folders
+### 00_00\_ Folders
 
-Open up a bash terminal and type in the following lines of code:  
+Open up a bash terminal and type in the following lines of code:
 
 ```{r creating project folders, echo=FALSE}
 terminal <- c("mkdir nba_proj",
@@ -67,9 +71,9 @@ description <- c("make nba_proj folder",
 tbs_function(terminal, description)
 ```
 
-Note: I numbered my folders so they would be in the general _order_ I would use them / would want a collaborator to view them. 
+Note: I numbered my folders so they would be in the general *order* I would use them / would want a collaborator to view them.
 
-### 00_01_ renv
+### 00_01\_ renv
 
 ```{r renv, echo=FALSE}
 terminal <- c("R",
@@ -83,11 +87,11 @@ description <- c("open R within the terminal",
 tbs_function(terminal, description)
 ```
 
-Note:  [Link](https://www.r-bloggers.com/2013/03/download-and-install-r-in-ubuntu/) on how to download and install R through the terminal if not already downloaded to your machine. 
+Note: [Link](https://www.r-bloggers.com/2013/03/download-and-install-r-in-ubuntu/) on how to download and install R through the terminal if not already downloaded to your machine.
 
-### 00_02_ github
+### 00_02\_ github
 
-From your github account create a repository nba_proj. 
+From your github account create a repository nba_proj.
 
 ```{r git, echo=FALSE}
 terminal <- c("git init",
@@ -113,23 +117,27 @@ tbs_function(terminal, description)
 
 [Rename master branch to main](https://www.git-tower.com/learn/git/faq/git-rename-master-to-main)
 
-# 01_ project_files.R, Makefile, and report.Rmd
+# 01\_ project_files.R, Makefile, and report.Rmd
 
 <center>
 
-<iframe src="https://giphy.com/embed/SyJyPwlThHScE" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/steven-universe-su-ruby-SyJyPwlThHScE">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/SyJyPwlThHScE" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p><a href="https://giphy.com/gifs/steven-universe-su-ruby-SyJyPwlThHScE">via GIPHY</a></p>
 
 </center>
 
-### 01_00_ scrape files 
+### 01_00\_ scrape files
 
-Create the following files: 
+Create the following files:
 
-* [00_00_scrape_stats_raw_data.R](https://github.com/rbolt13/nba_proj/blob/master/00_R/00_00_scrape_stats_raw_data.R)
+-   [00_00_scrape_stats_raw_data.R](https://github.com/rbolt13/nba_proj/blob/master/00_R/00_00_scrape_stats_raw_data.R)
 
-* [00_01_scrape_colors_raw_data.R](https://github.com/rbolt13/nba_proj/blob/master/00_R/00_01_scrape_colors_raw_data.R)
+-   [00_01_scrape_colors_raw_data.R](https://github.com/rbolt13/nba_proj/blob/master/00_R/00_01_scrape_colors_raw_data.R)
 
-Set environmental variable: 
+Set environmental variable:
 
 ```{r, echo=FALSE}
 terminal <- c("export which_team=\"blazers\"",
@@ -145,7 +153,7 @@ description <- c("create global variable",
 tbs_function(terminal, description)
 ```
 
-Create lines 1-7 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the raw data for stats and colors. 
+Create lines 1-7 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the raw data for stats and colors.
 
 ```{r scrape data makefile, echo=FALSE}
 terminal <- c("make raw_data stats",
@@ -157,13 +165,14 @@ tbs_function(terminal, description)
 
 **Push files to github.**
 
-### 01_02_ label data
+### 01_02\_ label data
 
-Create the following file: 
+Create the following file:
 
-* [00_02_graph_labels_raw_data.R](https://github.com/rbolt13/nba_proj/blob/main/00_R/00_02_labels_raw_data.R)
+-   [00_02_graph_labels_raw_data.R](https://github.com/rbolt13/nba_proj/blob/main/00_R/00_02_labels_raw_data.R)
 
-Add lines 9-10 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the label data. 
+Add lines 9-10 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the label data.
+
 ```{r labels file, echo=FALSE}
 terminal <- c("make raw_data/labels")
 description <- c("creates labels data file in raw data folder")
@@ -172,13 +181,13 @@ tbs_function(terminal, description)
 
 **Push files to github.**
 
-### 01_03_ clean data 
+### 01_03\_ clean data
 
-Create the following file: 
+Create the following file:
 
-* [01_00_clean_data.R](https://github.com/rbolt13/nba_proj/blob/main/00_R/01_00_clean_data.R)
+-   [01_00_clean_data.R](https://github.com/rbolt13/nba_proj/blob/main/00_R/01_00_clean_data.R)
 
-Set environmental variable: 
+Set environmental variable:
 
 ```{r, echo=FALSE}
 terminal <- c("export which_stat=\"PTS\"",
@@ -194,7 +203,7 @@ description <- c("create global variable",
 tbs_function(terminal, description)
 ```
 
-Add lines 13-14 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the clean data. 
+Add lines 13-14 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save the clean data.
 
 ```{r clean data makefile, echo=FALSE}
 terminal <- c("make clean_data/raw_data")
@@ -204,13 +213,13 @@ tbs_function(terminal, description)
 
 **Push files to github.**
 
-### 01_05_ report
+### 01_05\_ report
 
-Create the following file: 
+Create the following file:
 
-* [report.Rmd](https://github.com/rbolt13/nba_proj/blob/main/00_R/report.Rmd)
+-   [report.Rmd](https://github.com/rbolt13/nba_proj/blob/main/00_R/report.Rmd)
 
-Add lines 22 - 23 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save report to output file. 
+Add lines 22 - 23 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and save report to output file.
 
 ```{r report makefile, echo=FALSE}
 terminal <- c("report")
@@ -220,9 +229,9 @@ tbs_function(terminal, description)
 
 **Push files to github.**
 
-### 01_06_ env (package management)
+### 01_06\_ env (package management)
 
-Add lines 26 - 27 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and update project. 
+Add lines 26 - 27 of the [Makefile](https://github.com/rbolt13/nba_proj/blob/main/Makefile), and update project.
 
 ```{r make env file, echo=FALSE}
 terminal <- c("restore")
@@ -232,15 +241,19 @@ tbs_function(terminal, description)
 
 **Push files to github.**
 
-# 02_ Dockerfile
+# 02\_ Dockerfile
 
 <center>
 
-<iframe src="https://giphy.com/embed/VeNMIIutNd12576kaM" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-VeNMIIutNd12576kaM">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/VeNMIIutNd12576kaM" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p><a href="https://giphy.com/gifs/cartoonnetwork-steven-universe-the-movie-sutm-VeNMIIutNd12576kaM">via GIPHY</a></p>
 
 </center>
 
-Open docker on your computer. 
+Open docker on your computer.
 
 ```{r, echo=FALSE}
 terminal <- c("docker build -t nba_proj .",
@@ -254,6 +267,6 @@ To be continued...
 
 # Bonus Notes
 
-* Makefile uses tabs not spaces, and you will get an error about missing separator. 
+-   Makefile uses tabs not spaces, and you will get an error about missing separator.
 
-* git add --all 
+-   git add --all
