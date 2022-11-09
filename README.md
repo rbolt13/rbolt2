@@ -1,7 +1,7 @@
 # About
 This is my personal website, and growing portfolio created with blogdown in R Studio.   
 
-View [here](https://www.rbolt.me/). 
+View [here](https://rbolt2.netlify.app/). 
 
 # To Do 
 * add comments to blog posts
