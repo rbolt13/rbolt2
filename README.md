@@ -1,5 +1,5 @@
 # About
-This is my personal website, and growing portfolio created with blogdown in R Studio.   
+This was my personal website, and growing portfolio created with blogdown in R Studio.   
 
 View [here](https://rbolt2.netlify.app/). 
 
